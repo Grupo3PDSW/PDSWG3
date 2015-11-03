@@ -5,6 +5,7 @@
  */
 package edu.eci.pdsw.samples.entities;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 /**
@@ -16,8 +17,24 @@ public class ReportProblem {
     public String decription;
     public int idLab;
     public int idPc;
-    public Timestamp date;
-
+    public Date date;
+    
+    public ReportProblem(String description, int idL, int IdP, Date date ){
+        
+        this.decription=description;
+        idLab=idL;
+        idPc=IdP;
+        this.date=date;
+    }
+    
+    @Override
+    public String toString() {
+        return "Bitacora{" + "decription=" + decription
+                           + ", idLab=" + idLab
+                           + ", idPc=" + idPc 
+                           + ", date=" + date + '}';
+    }
+    
     public String getDecription() {
         return decription;
     }
@@ -42,11 +59,11 @@ public class ReportProblem {
         this.idPc = idPc;
     }
 
-    public Timestamp getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(Timestamp date) {
+    public void setDate(Date date) {
         this.date = date;
     }
     

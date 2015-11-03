@@ -18,6 +18,24 @@ public class Task{
     public String status;
     public int IdTask;
     public String taskCommnets;
+    
+    public Task(String td, String type, String sta, int idT, String tc){
+        TaskDescription=td;
+        this.type=type;
+        status=sta;
+        IdTask=idT;
+        taskCommnets=tc;
+        
+    }
+    
+    @Override
+    public String toString() {
+        return "Task{" + "TaskDescription=" + TaskDescription
+                           + ", type=" + type
+                           + ", status=" + status 
+                           + ", IdTask=" + IdTask 
+                           + ", taskCommnets="+ taskCommnets+ '}';
+    }
      
     public String getTaskCommnets() {
         return taskCommnets;

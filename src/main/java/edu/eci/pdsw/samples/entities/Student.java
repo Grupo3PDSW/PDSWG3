@@ -16,26 +16,21 @@ public class Student {
     public int idStudent;
     public String name;
     public String email;
-    public boolean isMonitor;
-    public int turn;
-
-    public boolean isIsMonitor() {
-        return isMonitor;
+    
+    public Student(int id, String n, String e){
+        
+        idStudent=id;
+        name=n;
+        email=e;
     }
-
-    public void setIsMonitor(boolean isMonitor) {
-        this.isMonitor = isMonitor;
+    
+    @Override
+    public String toString() {
+        return "Student{" + "IDStudent=" + idStudent
+                           + ", name=" + name 
+                           + ", email=" + email+'}';
     }
-
-    public int getTurn() {
-        return turn;
-    }
-
-    public void setTurn(int turn) {
-        this.turn = turn;
-    }
-
-
+    
     public int getIdStudent() {
         return idStudent;
     }
