@@ -19,6 +19,10 @@ public class Monitor extends Student {
         this.IdTurn=idTurn;
         
     }
+    
+    public Monitor(){
+    
+    }
 
     public int getIdTurn() {
         return IdTurn;

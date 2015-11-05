@@ -6,6 +6,7 @@
 package edu.eci.pdsw.samples.services;
 
 import edu.eci.pdsw.samples.entities.Bitacora;
+import edu.eci.pdsw.samples.entities.Monitor;
 import edu.eci.pdsw.samples.entities.Student;
 import edu.eci.pdsw.samples.entities.Task;
 import edu.eci.pdsw.samples.persistencee.DaoFactory;
@@ -24,12 +25,14 @@ public class ServicesFacade {
     
     private final Properties properties=new Properties();
     
-    DaoFactory dao=DaoFactory.getInstance(properties);
+    
     
     private ServicesFacade(String propFileName) throws IOException{        
 	InputStream input = null;
         input = this.getClass().getClassLoader().getResourceAsStream(propFileName);        
         properties.load(input);
+        
+        DaoFactory.getInstance(properties);
     }
     
     public static ServicesFacade getInstance(String propertiesFileName) throws RuntimeException{
@@ -81,11 +84,38 @@ public class ServicesFacade {
     }
     
     public Student consultarEstudiante(int idEstu) throws ServiceFacadeException{
+        DaoFactory daof=DaoFactory.getInstance(properties);
         try {
-            dao.beginSession();
-            Student stu=dao.getDaoStudent().load(idEstu);
-            dao.endSession();
+            daof.beginSession();
+            Student stu=daof.getDaoStudent().load(idEstu);
+            daof.endSession();
             return stu;
+        } catch (PersistenceException ex) {
+            System.out.println(ex.toString());
+            throw new ServiceFacadeException("Error al consultar estudiante.",ex);
+        }        
+    }
+    
+    public Bitacora consultarBitacora( int idBitacora) throws ServiceFacadeException{
+        DaoFactory daof=DaoFactory.getInstance(properties);
+        try {
+            daof.beginSession();
+            Bitacora bit=daof.getDaoBitacora().load(idBitacora);
+            daof.endSession();
+            return bit;
+        } catch (PersistenceException ex) {
+            System.out.println(ex.toString());
+            throw new ServiceFacadeException("Error al consultar estudiante.",ex);
+        }        
+    }
+    
+    public Monitor consultarMonitor(int idMonitor) throws ServiceFacadeException{
+        DaoFactory daof=DaoFactory.getInstance(properties);
+        try {
+            daof.beginSession();
+            Monitor monitor=daof.getDaoMonitor().load(idMonitor);
+            daof.endSession();
+            return monitor;
         } catch (PersistenceException ex) {
             System.out.println(ex.toString());
             throw new ServiceFacadeException("Error al consultar estudiante.",ex);

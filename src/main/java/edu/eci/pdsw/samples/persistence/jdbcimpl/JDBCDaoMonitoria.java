@@ -6,6 +6,7 @@
 package edu.eci.pdsw.samples.persistence.jdbcimpl;
 
 import edu.eci.pdsw.samples.persistencee.DaoMonitoria;
+import java.sql.Connection;
 
 /**
  *
@@ -13,4 +14,9 @@ import edu.eci.pdsw.samples.persistencee.DaoMonitoria;
  */
 public class JDBCDaoMonitoria implements DaoMonitoria{
     
+      Connection con;
+
+        public JDBCDaoMonitoria(Connection con) {
+        this.con = con;
+    }
 }

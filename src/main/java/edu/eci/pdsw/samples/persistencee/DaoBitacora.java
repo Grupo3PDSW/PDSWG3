@@ -16,5 +16,7 @@ public interface DaoBitacora {
     
    public void save(Bitacora b);
    
+   public Bitacora load(int idBitacora) throws PersistenceException;
+   
    
 }

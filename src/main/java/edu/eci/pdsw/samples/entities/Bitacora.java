@@ -33,6 +33,11 @@ public class Bitacora {
         BitMonitoria = mo;
     }
     
+    public Bitacora(){
+    
+    }
+    
+    
     @Override
     public String toString() {
         return "Bitacora{" + "Monitor_Estudiantes_id=" + BitMonitor.getIdStudent()

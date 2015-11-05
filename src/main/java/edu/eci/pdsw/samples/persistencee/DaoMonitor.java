@@ -5,10 +5,13 @@
  */
 package edu.eci.pdsw.samples.persistencee;
 
+import edu.eci.pdsw.samples.entities.Monitor;
+
 /**
  *
  * @author 2101751
  */
 public interface DaoMonitor {
     
+    public Monitor load(int idMonitor)throws PersistenceException;
 }

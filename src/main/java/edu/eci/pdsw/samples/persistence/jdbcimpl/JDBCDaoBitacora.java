@@ -8,8 +8,10 @@ package edu.eci.pdsw.samples.persistence.jdbcimpl;
 import edu.eci.pdsw.samples.entities.Bitacora;
 import edu.eci.pdsw.samples.persistencee.DaoBitacora;
 import edu.eci.pdsw.samples.persistencee.PersistenceException;
+import edu.eci.pdsw.samples.services.ServicesFacade;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -50,7 +52,31 @@ public class JDBCDaoBitacora implements DaoBitacora{
             }
         }
     }
+
     
+    @Override
+    public Bitacora load(int idBitacora)throws PersistenceException {
+        PreparedStatement ps;
+        Bitacora bitacora = new Bitacora();
+        try{
+            ps=con.prepareStatement("SELECT * from Bitacora WHERE id = ?" );
+            ps.setInt(1, idBitacora);
+            ResultSet rs=ps.executeQuery();
+            
+            bitacora.setDescription(rs.getString("descripcion"));
+            bitacora.setIdBit(rs.getInt("id"));
+            bitacora.setFecha(rs.getDate("fecha"));
+           // bitacora.setBitMonitor(ServicesFacade.getInstance("applicationconfig.properties").consultarEstudiante(rs.getInt("Monitor_Estudiantes_id")));
+            
+            return bitacora;
+        }catch(SQLException ex) {
+            
+                throw new PersistenceException("An error ocurred while loading an order.",ex);
+            
+            
+        }
+        //return stu;
+    }
     
     
 }

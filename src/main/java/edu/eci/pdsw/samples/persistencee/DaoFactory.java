@@ -47,4 +47,13 @@ public abstract class DaoFactory {
     public abstract DaoStudent getDaoStudent();
     
     public abstract DaoTask getDaoTask();
+    
+    public abstract DaoMonitor getDaoMonitor();
+    
+    public abstract DaoMonitoria getDaoMonitoria();
+    
+    public abstract DaoReportProblem getDaoReportProblem();
+    
+    public abstract DaoTurn getDaoTurn();
+    
 }

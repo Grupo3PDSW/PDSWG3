@@ -7,8 +7,12 @@ package edu.eci.pdsw.samples.persistence.jdbcimpl;
 
 import edu.eci.pdsw.samples.persistencee.DaoBitacora;
 import edu.eci.pdsw.samples.persistencee.DaoFactory;
+import edu.eci.pdsw.samples.persistencee.DaoMonitor;
+import edu.eci.pdsw.samples.persistencee.DaoMonitoria;
+import edu.eci.pdsw.samples.persistencee.DaoReportProblem;
 import edu.eci.pdsw.samples.persistencee.DaoStudent;
 import edu.eci.pdsw.samples.persistencee.DaoTask;
+import edu.eci.pdsw.samples.persistencee.DaoTurn;
 import edu.eci.pdsw.samples.persistencee.PersistenceException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -105,6 +109,26 @@ public class JDBCDaoFactory extends DaoFactory{
     @Override
     public DaoTask getDaoTask(){
         return new JDBCDaoTask(connectionInstance.get());
+    }
+
+    @Override
+    public DaoMonitor getDaoMonitor() {
+        return new JDBCDaoMonitor(connectionInstance.get());  
+    }
+
+    @Override
+    public DaoMonitoria getDaoMonitoria() {
+        return new JDBCDaoMonitoria(connectionInstance.get());
+    }
+
+    @Override
+    public DaoReportProblem getDaoReportProblem() {
+        return new JDBCDaoReportProblem(connectionInstance.get());
+    }
+
+    @Override
+    public DaoTurn getDaoTurn() {
+        return new JDBCDaoTurn(connectionInstance.get());
     }
     
 }

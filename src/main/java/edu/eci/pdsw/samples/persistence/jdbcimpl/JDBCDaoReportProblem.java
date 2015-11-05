@@ -6,6 +6,7 @@
 package edu.eci.pdsw.samples.persistence.jdbcimpl;
 
 import edu.eci.pdsw.samples.persistencee.DaoReportProblem;
+import java.sql.Connection;
 
 /**
  *
@@ -13,4 +14,9 @@ import edu.eci.pdsw.samples.persistencee.DaoReportProblem;
  */
 public class JDBCDaoReportProblem implements DaoReportProblem{
     
+      Connection con;
+
+    public JDBCDaoReportProblem(Connection con) {
+        this.con = con;
+    }
 }
