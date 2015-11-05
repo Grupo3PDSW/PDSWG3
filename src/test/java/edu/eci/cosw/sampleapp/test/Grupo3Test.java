@@ -1,5 +1,10 @@
 package edu.eci.cosw.sampleapp.test;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+import org.junit.After;
 import static org.junit.Assert.fail;
 import org.junit.Test;
 import org.junit.Before;
@@ -41,11 +46,34 @@ import static org.junit.Assert.*;
 
 public class Grupo3Test {
 
-    
+public class AppTest {
+
+     @Before
+    public void setUp() {
+    }
+
+    @After
+    public void clearDB() throws SQLException {
+        Connection conn = DriverManager.getConnection("jdbc:h2:file:./target/db/testdb;MODE=MYSQL", "sa", "");
+        Statement stmt = conn.createStatement();
+        stmt.execute("delete from Bitacora");
+        stmt.execute("delete from Equipo");
+        stmt.execute("delete from Estudiante ");
+        stmt.execute("delete from Laboratorio");
+        stmt.execute("delete from Monitor");
+        stmt.execute("delete from Monitoria");
+        stmt.execute("delete from Problema");
+        stmt.execute("delete from Tarea");
+        stmt.execute("delete from Turno");
+        
+        conn.commit();
+        conn.close();
+    }
     
   @Test
   public void sampleTest() {
 	//fail("No hay pruebas implementadas");	
   }
 
-} 
+}
+}
