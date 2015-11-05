@@ -143,3 +143,27 @@ ALTER TABLE Equipo ADD CONSTRAINT Recursos_Laboratorios FOREIGN KEY Recursos_Lab
 
 -- End of file.
 
+
+--INSERTAR ESTUDIANTE
+
+INSERT INTO Estudiante 
+VALUES (2091854, 'Daniel Tarquino','daniel.tarquino@mail.escuelaing.edu.co'); 
+
+INSERT INTO Estudiante 
+VALUES (2096579, 'Santiago Sossa','santiago.sossa@mail.escuelaing.edu.co'); 
+
+INSERT INTO Estudiante 
+VALUES (2390876, 'Leonardo Castro','leonardo.castro@mail.escuelaing.edu.co'); 
+
+INSERT INTO Estudiante 
+VALUES (2548765, 'Felipe Diaz','felipe.diaz@mail.escuelaing.edu.co'); 
+
+INSERT INTO Estudiante 
+VALUES (2889911,'Alejandro Villarraga','alejandro.villarraga@mail.escuelaing.edu.co'); 
+
+INSERT INTO Estudiante 
+VALUES (2334455, 'Camilo Nieves', 'camilo.nieves@mail.escuelaing.edu.co'); 
+
+INSERT INTO Estudiante
+VALUES (2119009, 'Camila Torres','camila.torres@mail.escuelaing.edu.co'); 
+
