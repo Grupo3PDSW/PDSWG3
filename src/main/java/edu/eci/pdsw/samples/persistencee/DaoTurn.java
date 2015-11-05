@@ -5,10 +5,15 @@
  */
 package edu.eci.pdsw.samples.persistencee;
 
+import edu.eci.pdsw.samples.entities.Turn;
+
 /**
  *
  * @author 2101751
  */
 public interface DaoTurn {
     
+    public void save(Turn t);
+
+    public Turn load(int idTurn);
 }

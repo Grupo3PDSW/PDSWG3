@@ -12,11 +12,11 @@ import java.sql.Connection;
  *
  * @author 2101751
  */
-public class JDBCDaoReportProblem implements DaoReportProblem{
+public class JDBCDaoProblem implements DaoReportProblem{
     
       Connection con;
 
-    public JDBCDaoReportProblem(Connection con) {
+    public JDBCDaoProblem(Connection con) {
         this.con = con;
     }
 }

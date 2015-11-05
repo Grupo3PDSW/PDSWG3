@@ -123,7 +123,7 @@ public class JDBCDaoFactory extends DaoFactory{
 
     @Override
     public DaoReportProblem getDaoReportProblem() {
-        return new JDBCDaoReportProblem(connectionInstance.get());
+        return new JDBCDaoProblem(connectionInstance.get());
     }
 
     @Override

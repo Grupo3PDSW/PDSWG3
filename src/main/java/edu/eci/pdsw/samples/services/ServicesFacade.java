@@ -9,6 +9,7 @@ import edu.eci.pdsw.samples.entities.Bitacora;
 import edu.eci.pdsw.samples.entities.Monitor;
 import edu.eci.pdsw.samples.entities.Student;
 import edu.eci.pdsw.samples.entities.Task;
+import edu.eci.pdsw.samples.entities.Turn;
 import edu.eci.pdsw.samples.persistencee.DaoFactory;
 import edu.eci.pdsw.samples.persistencee.PersistenceException;
 import java.io.IOException;
@@ -152,6 +153,19 @@ public class ServicesFacade {
             Monitor monitor=daof.getDaoMonitor().load(idMonitor);
             daof.endSession();
             return monitor;
+        } catch (PersistenceException ex) {
+            System.out.println(ex.toString());
+            throw new ServiceFacadeException("Error al consultar estudiante.",ex);
+        }        
+    }
+    
+    public Turn consultarTurn(int idTurn) throws ServiceFacadeException{
+        DaoFactory daof=DaoFactory.getInstance(properties);
+        try {
+            daof.beginSession();
+            Turn turn=daof.getDaoTurn().load(idTurn);
+            daof.endSession();
+            return turn;
         } catch (PersistenceException ex) {
             System.out.println(ex.toString());
             throw new ServiceFacadeException("Error al consultar estudiante.",ex);

@@ -12,26 +12,28 @@ import java.sql.Timestamp;
  *
  * @author felipe
  */
-public class ReportProblem {
+public class Problem {
    
     public String decription;
-    public int idLab;
+    public int idEquipo;
     public int idPc;
+    public int idProblem;
     public Date date;
     
-    public ReportProblem(String description, int idL, int IdP, Date date ){
+    public Problem(String description, int idL, int IdP, Date date ){
         
         this.decription=description;
-        idLab=idL;
+        idEquipo=idL;
         idPc=IdP;
         this.date=date;
     }
     
     @Override
     public String toString() {
-        return "Bitacora{" + "decription=" + decription
-                           + ", idLab=" + idLab
-                           + ", idPc=" + idPc 
+        return "Problem{" + "decription=" + decription
+                           + ", idEquipo=" + idEquipo
+                           + ", idPc=" + idPc
+                           + ", idProblem=" + idProblem
                            + ", date=" + date + '}';
     }
     
@@ -41,14 +43,6 @@ public class ReportProblem {
 
     public void setDecription(String decription) {
         this.decription = decription;
-    }
-
-    public int getIdLab() {
-        return idLab;
-    }
-
-    public void setIdLab(int idLab) {
-        this.idLab = idLab;
     }
 
     public int getIdPc() {
@@ -66,5 +60,23 @@ public class ReportProblem {
     public void setDate(Date date) {
         this.date = date;
     }
+
+    public int getIdEquipo() {
+        return idEquipo;
+    }
+
+    public void setIdEquipo(int idEquipo) {
+        this.idEquipo = idEquipo;
+    }
+
+    public int getIdProblem() {
+        return idProblem;
+    }
+
+    public void setIdProblem(int idProblem) {
+        this.idProblem = idProblem;
+    }
+    
+    
     
 }
