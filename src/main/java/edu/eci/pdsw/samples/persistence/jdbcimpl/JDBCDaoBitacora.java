@@ -8,6 +8,7 @@ package edu.eci.pdsw.samples.persistence.jdbcimpl;
 import edu.eci.pdsw.samples.entities.Bitacora;
 import edu.eci.pdsw.samples.persistencee.DaoBitacora;
 import edu.eci.pdsw.samples.persistencee.PersistenceException;
+import edu.eci.pdsw.samples.services.ServiceFacadeException;
 import edu.eci.pdsw.samples.services.ServicesFacade;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -28,6 +29,10 @@ public class JDBCDaoBitacora implements DaoBitacora{
         this.con = con;
     }            
     
+    /**
+     * 
+     * @param b contiene una bitacora que es usada para realizar la insersion en la bb 
+     */
     @Override
     public void save(Bitacora b) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.        
@@ -56,7 +61,8 @@ public class JDBCDaoBitacora implements DaoBitacora{
     
     @Override
     public Bitacora load(int idBitacora)throws PersistenceException {
-        PreparedStatement ps;
+        return null;
+    /*    PreparedStatement ps;
         Bitacora bitacora = new Bitacora();
         try{
             ps=con.prepareStatement("SELECT * from Bitacora WHERE id = ?" );
@@ -66,7 +72,7 @@ public class JDBCDaoBitacora implements DaoBitacora{
             bitacora.setDescription(rs.getString("descripcion"));
             bitacora.setIdBit(rs.getInt("id"));
             bitacora.setFecha(rs.getDate("fecha"));
-           // bitacora.setBitMonitor(ServicesFacade.getInstance("applicationconfig.properties").consultarEstudiante(rs.getInt("Monitor_Estudiantes_id")));
+            bitacora.setBitMonitor(ServicesFacade.getInstance("applicationconfig.properties").consultarMonitor(rs.getInt("Monitor_Estudiantes_id")));
             
             return bitacora;
         }catch(SQLException ex) {
@@ -74,8 +80,10 @@ public class JDBCDaoBitacora implements DaoBitacora{
                 throw new PersistenceException("An error ocurred while loading an order.",ex);
             
             
+        } catch (ServiceFacadeException ex) {
+            Logger.getLogger(JDBCDaoBitacora.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //return stu;
+        //return stu;*/
     }
     
     

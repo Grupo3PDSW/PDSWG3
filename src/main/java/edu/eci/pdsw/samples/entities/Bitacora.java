@@ -22,7 +22,15 @@ public class Bitacora {
     public Date fecha;
     public Monitoria BitMonitoria;
 
-    
+    /**
+     * Constructor de la clase Bitacora
+     * @param m parametro que contiene la informacion de un monitor
+     * @param d contiene la descripcion de la Bitacora
+     * @param id contiene el id del la bitacora
+     * @param ta contiene toda la informacion de la tarea sealizada en la bitacora
+     * @param fecha fecha de registro de la bitacora
+     * @param mo contiene toda la informacion de la monitoria correspondiente realizada en el turno 
+     */
     public Bitacora(Monitor m,  String d, int id, Task ta, Date fecha, Monitoria mo){
         BitMonitor = m;
         //BitTurn = t;
@@ -33,11 +41,17 @@ public class Bitacora {
         BitMonitoria = mo;
     }
     
+    /**
+     * 
+     */
     public Bitacora(){
     
     }
     
-    
+    /**
+     * 
+     * @return 
+     */
     @Override
     public String toString() {
         return "Bitacora{" + "Monitor_Estudiantes_id=" + BitMonitor.getIdStudent()
@@ -49,6 +63,8 @@ public class Bitacora {
                            + ", Monitoria_id=" + BitMonitoria.getIdMonitoria()+ '}';
     }
     
+    
+    
     public Monitor getBitMonitor() {
         return BitMonitor;
     }
@@ -57,13 +73,7 @@ public class Bitacora {
         this.BitMonitor = BitMonitor;
     }
 
-    /*public Turn getBitTurn() {
-        return BitTurn;
-    }
-
-    public void setBitTurn(Turn BitTurn) {
-        this.BitTurn = BitTurn;
-    }*/
+    
 
     public String getDescription() {
         return description;

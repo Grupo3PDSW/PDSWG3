@@ -46,7 +46,11 @@ public class ServicesFacade {
         return instance;
     }
     
-    
+    /**
+     * El metodo regista la bitacora en la BD
+     * @param b contiene toda la informacion de la bitacora a registrar.
+     * @throws ServiceFacadeException 
+     */
     public void registrarBitacora(Bitacora b) throws ServiceFacadeException {
         DaoFactory daof=DaoFactory.getInstance(properties);
         try {
@@ -59,6 +63,12 @@ public class ServicesFacade {
         }
     }
     
+    
+    /**
+     * El metodo regista a un estudiante en la BD
+     * @param stu Contiene toda la informacion del estudiante.
+     * @throws ServiceFacadeException 
+     */
     public void registrarEstudiante(Student stu) throws ServiceFacadeException {
         DaoFactory daof=DaoFactory.getInstance(properties);
         try {
@@ -71,6 +81,11 @@ public class ServicesFacade {
         }
     }
     
+    /**
+     * El metodo registra una tarea en la BD
+     * @param t contiene toda la informacion de la tarea
+     * @throws ServiceFacadeException 
+     */
     public void registrarTarea(Task t) throws ServiceFacadeException {
         DaoFactory daof=DaoFactory.getInstance(properties);
         try {
@@ -83,6 +98,13 @@ public class ServicesFacade {
         }
     }
     
+    
+    /**
+     * El metodo consulta un estudiante de la base de datos y lo retorna como un objeto
+     * @param idEstu es el Id de estudiante a consultar
+     * @return retorla el objeto estudiante con su informacion correspondiente
+     * @throws ServiceFacadeException 
+     */
     public Student consultarEstudiante(int idEstu) throws ServiceFacadeException{
         DaoFactory daof=DaoFactory.getInstance(properties);
         try {
@@ -96,6 +118,13 @@ public class ServicesFacade {
         }        
     }
     
+    
+    /**
+     * Consulta una bitacora en la base de datos
+     * @param idBitacora contiene el Id de la bitacora a consultar
+     * @return retorna la bitacora como objeto con toda la informacion necesaria
+     * @throws ServiceFacadeException 
+     */
     public Bitacora consultarBitacora( int idBitacora) throws ServiceFacadeException{
         DaoFactory daof=DaoFactory.getInstance(properties);
         try {
@@ -109,6 +138,13 @@ public class ServicesFacade {
         }        
     }
     
+    
+    /**
+     * Consulta un monitor de la base de datos
+     * @param idMonitor contiene el id del monitor a consultar
+     * @return retorna un monitor con toda la informacion respectiva.
+     * @throws ServiceFacadeException 
+     */
     public Monitor consultarMonitor(int idMonitor) throws ServiceFacadeException{
         DaoFactory daof=DaoFactory.getInstance(properties);
         try {
