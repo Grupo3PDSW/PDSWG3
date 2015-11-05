@@ -71,8 +71,8 @@ public class AppTest {
     }
     
   @Test
-  public void sampleTest() {
-	//fail("No hay pruebas implementadas");	
+  public void CH1ATest() {
+	
   }
 
 }
