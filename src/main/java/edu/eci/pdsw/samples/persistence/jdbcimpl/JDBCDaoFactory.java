@@ -5,12 +5,15 @@
  */
 package edu.eci.pdsw.samples.persistence.jdbcimpl;
 
+import edu.eci.pdsw.samples.persistencee.DaoBitacora;
 import edu.eci.pdsw.samples.persistencee.DaoFactory;
+import edu.eci.pdsw.samples.persistencee.DaoStudent;
+import edu.eci.pdsw.samples.persistencee.DaoTask;
+import edu.eci.pdsw.samples.persistencee.PersistenceException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
-import javax.persistence.PersistenceException;
 
 /**
  *
@@ -87,6 +90,21 @@ public class JDBCDaoFactory extends DaoFactory{
         } catch (SQLException ex) {
             throw new PersistenceException("Error on connection closing.", ex);
         }
+    }
+    
+    @Override
+    public DaoBitacora getDaoBitacora() {
+        return new JDBCDaoBitacora(connectionInstance.get());
+    }
+
+    @Override
+    public DaoStudent getDaoStudent(){
+        return new JDBCDaoStudent(connectionInstance.get());
+    }
+    
+    @Override
+    public DaoTask getDaoTask(){
+        return new JDBCDaoTask(connectionInstance.get());
     }
     
 }

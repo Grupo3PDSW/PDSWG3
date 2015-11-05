@@ -7,7 +7,6 @@ package edu.eci.pdsw.samples.persistencee;
 
 import edu.eci.pdsw.samples.persistence.jdbcimpl.JDBCDaoFactory;
 import java.util.Properties;
-import javax.persistence.PersistenceException;
 
 /**
  *
@@ -42,4 +41,10 @@ public abstract class DaoFactory {
     public abstract void rollbackTransaction() throws PersistenceException;
 
     public abstract void endSession() throws PersistenceException;
+    
+    public abstract DaoBitacora getDaoBitacora();
+    
+    public abstract DaoStudent getDaoStudent();
+    
+    public abstract DaoTask getDaoTask();
 }

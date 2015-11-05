@@ -7,12 +7,12 @@ package edu.eci.pdsw.samples.persistence.jdbcimpl;
 
 import edu.eci.pdsw.samples.entities.Bitacora;
 import edu.eci.pdsw.samples.persistencee.DaoBitacora;
+import edu.eci.pdsw.samples.persistencee.PersistenceException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.persistence.PersistenceException;
 
 /**
  *

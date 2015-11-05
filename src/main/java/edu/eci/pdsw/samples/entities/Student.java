@@ -24,6 +24,10 @@ public class Student {
         email=e;
     }
     
+    public Student(){
+    
+    }
+    
     @Override
     public String toString() {
         return "Student{" + "IDStudent=" + idStudent
