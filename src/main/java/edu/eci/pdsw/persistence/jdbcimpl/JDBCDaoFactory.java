@@ -9,6 +9,7 @@ import edu.eci.pdsw.persistencee.DaoBitacora;
 import edu.eci.pdsw.persistencee.DaoFactory;
 import edu.eci.pdsw.persistencee.DaoMonitor;
 import edu.eci.pdsw.persistencee.DaoMonitoria;
+import edu.eci.pdsw.persistencee.DaoProblem;
 import edu.eci.pdsw.persistencee.DaoReportProblem;
 import edu.eci.pdsw.persistencee.DaoStudent;
 import edu.eci.pdsw.persistencee.DaoTask;
@@ -129,6 +130,11 @@ public class JDBCDaoFactory extends DaoFactory{
     @Override
     public DaoTurn getDaoTurn() {
         return new JDBCDaoTurn(connectionInstance.get());
+    }
+
+    @Override
+    public DaoProblem getDaoProblem() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

@@ -55,5 +55,7 @@ public abstract class DaoFactory {
     public abstract DaoReportProblem getDaoReportProblem();
     
     public abstract DaoTurn getDaoTurn();
+
+    public abstract DaoProblem getDaoProblem();
     
 }

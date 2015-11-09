@@ -7,6 +7,7 @@ package edu.eci.pdsw.services;
 
 import edu.eci.pdsw.entities.Bitacora;
 import edu.eci.pdsw.entities.Monitor;
+import edu.eci.pdsw.entities.Problem;
 import edu.eci.pdsw.entities.Student;
 import edu.eci.pdsw.entities.Task;
 import edu.eci.pdsw.entities.Turn;
@@ -95,10 +96,28 @@ public class ServicesFacade {
             daof.commitTransaction();
             daof.endSession();
         } catch (PersistenceException ex) {
-            throw new ServiceFacadeException("error no se registro estudiante",ex);
+            throw new ServiceFacadeException("error no se registro la tarea",ex);
         }
     }
     
+    
+    
+        /**
+     * El metodo registra un problema en la BD
+     * @param p     
+     * @throws ServiceFacadeException 
+     */
+    public void registrarProblema(Problem p) throws ServiceFacadeException {
+        DaoFactory daof=DaoFactory.getInstance(properties);
+        try {
+            daof.beginSession();
+            daof.getDaoProblem().save(p);
+            daof.commitTransaction();
+            daof.endSession();
+        } catch (PersistenceException ex) {
+            throw new ServiceFacadeException("error no se registro el problema ",ex);
+        }
+    }
     
     /**
      * El metodo consulta un estudiante de la base de datos y lo retorna como un objeto
@@ -120,6 +139,9 @@ public class ServicesFacade {
     }
     
     
+    
+    
+    
     /**
      * Consulta una bitacora en la base de datos
      * @param idBitacora contiene el Id de la bitacora a consultar
@@ -135,7 +157,7 @@ public class ServicesFacade {
             return bit;
         } catch (PersistenceException ex) {
             System.out.println(ex.toString());
-            throw new ServiceFacadeException("Error al consultar estudiante.",ex);
+            throw new ServiceFacadeException("Error al consultar la bitacora .",ex);
         }        
     }
     
@@ -155,7 +177,7 @@ public class ServicesFacade {
             return monitor;
         } catch (PersistenceException ex) {
             System.out.println(ex.toString());
-            throw new ServiceFacadeException("Error al consultar estudiante.",ex);
+            throw new ServiceFacadeException("Error al consultar monitor.",ex);
         }        
     }
     
@@ -168,7 +190,7 @@ public class ServicesFacade {
             return turn;
         } catch (PersistenceException ex) {
             System.out.println(ex.toString());
-            throw new ServiceFacadeException("Error al consultar estudiante.",ex);
+            throw new ServiceFacadeException("Error al consultar turno.",ex);
         }        
     }
 }
