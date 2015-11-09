@@ -16,12 +16,22 @@ public class Student {
     public int idStudent;
     public String name;
     public String email;
+    public boolean isMonitor;
     
-    public Student(int id, String n, String e){
+    public Student(int id, String n, String e, boolean is){
         
         idStudent=id;
         name=n;
         email=e;
+        isMonitor=is;
+    }
+
+    public boolean isIsMonitor() {
+        return isMonitor;
+    }
+
+    public void setIsMonitor(boolean isMonitor) {
+        this.isMonitor = isMonitor;
     }
     
     public Student(){

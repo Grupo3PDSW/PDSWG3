@@ -17,13 +17,15 @@ public class Turn {
     public Date horaFinal;
     public int IdTurn;
     public String dia;
+    public Student monitor;
     
-    public Turn(Date hi, Date hf, int idT, String dia){
+    public Turn(Date hi, Date hf, int idT, String dia, Student m){
         
         horaInicio=hi;
         horaFinal=hf;
         IdTurn=idT;
         this.dia=dia;
+        monitor=m;
     }
 
     public Turn() {
@@ -36,6 +38,14 @@ public class Turn {
                            + ", horaFinal=" + horaFinal
                            + ", IdTurn=" + IdTurn 
                            + ", dia=" +  dia+ '}';
+    }
+
+    public Student getMonitor() {
+        return monitor;
+    }
+
+    public void setMonitor(Student monitor) {
+        this.monitor = monitor;
     }
 
     public Date getHoraInicio() {

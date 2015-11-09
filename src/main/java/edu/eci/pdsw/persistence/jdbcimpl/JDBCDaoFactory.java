@@ -7,7 +7,6 @@ package edu.eci.pdsw.persistence.jdbcimpl;
 
 import edu.eci.pdsw.persistencee.DaoBitacora;
 import edu.eci.pdsw.persistencee.DaoFactory;
-import edu.eci.pdsw.persistencee.DaoMonitor;
 import edu.eci.pdsw.persistencee.DaoMonitoria;
 import edu.eci.pdsw.persistencee.DaoProblem;
 import edu.eci.pdsw.persistencee.DaoReportProblem;
@@ -112,10 +111,6 @@ public class JDBCDaoFactory extends DaoFactory{
         return new JDBCDaoTask(connectionInstance.get());
     }
 
-    @Override
-    public DaoMonitor getDaoMonitor() {
-        return new JDBCDaoMonitor(connectionInstance.get());  
-    }
 
     @Override
     public DaoMonitoria getDaoMonitoria() {

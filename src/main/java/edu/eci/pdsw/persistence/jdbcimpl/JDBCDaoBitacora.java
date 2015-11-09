@@ -41,7 +41,7 @@ public class JDBCDaoBitacora implements DaoBitacora{
             ps = con.prepareStatement("insert into Bitacora(Monitor_Estudiantes_id, Monitor_Turnos_id, "
                     + "descripcion, id, tarea_id, fecha, Monitoria_id) values (?,?,?,?,?,?,?)");
             ps.setInt(1, b.getBitMonitor().getIdStudent());
-            ps.setInt(2, b.getBitMonitor().getIdTurn());
+            ps.setInt(2, b.getBitTurn().getIdTurn());
             ps.setString(3, b.getDescription());
             ps.setInt(4, b.getIdBit());     
             ps.setInt(5, b.getBitTask().getIdTask());

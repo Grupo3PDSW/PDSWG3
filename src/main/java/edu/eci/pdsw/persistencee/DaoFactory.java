@@ -48,7 +48,6 @@ public abstract class DaoFactory {
     
     public abstract DaoTask getDaoTask();
     
-    public abstract DaoMonitor getDaoMonitor();
     
     public abstract DaoMonitoria getDaoMonitoria();
     
