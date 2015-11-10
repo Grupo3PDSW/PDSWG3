@@ -131,7 +131,7 @@ ALTER TABLE Turno ADD CONSTRAINT Turno_Estudiante FOREIGN KEY Turno_Estudiante (
 
 -- End of file.
 
-
+/*
 --INSERTAR ESTUDIANTES
 INSERT INTO Estudiante 
 VALUES (2091854, 'Daniel Tarquino','daniel.tarquino@mail.escuelaing.edu.co','N'); 
@@ -382,3 +382,4 @@ VALUES('Sin novedades',19,NULL,'2015-11-05 16:00:00',NULL,2119009,19);
 INSERT INTO Bitacora
 VALUES('Sin novedades',20,NULL,'2015-11-05 19:00:00',NULL,2334455,20);
 
+*/
