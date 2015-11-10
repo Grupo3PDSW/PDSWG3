@@ -6,11 +6,16 @@
 package edu.eci.pdsw.persistence.jdbcimpl;
 
 import edu.eci.pdsw.entities.Bitacora;
+import edu.eci.pdsw.entities.Monitoria;
+import edu.eci.pdsw.entities.Student;
+import edu.eci.pdsw.entities.Task;
+import edu.eci.pdsw.entities.Turn;
 import edu.eci.pdsw.persistencee.DaoBitacora;
 import edu.eci.pdsw.persistencee.PersistenceException;
 import edu.eci.pdsw.services.ServiceFacadeException;
 import edu.eci.pdsw.services.ServicesFacade;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -58,33 +63,10 @@ public class JDBCDaoBitacora implements DaoBitacora{
         }
     }
 
-    
     @Override
-    public Bitacora load(int idBitacora)throws PersistenceException {
-        return null;
-    /*    PreparedStatement ps;
-        Bitacora bitacora = new Bitacora();
-        try{
-            ps=con.prepareStatement("SELECT * from Bitacora WHERE id = ?" );
-            ps.setInt(1, idBitacora);
-            ResultSet rs=ps.executeQuery();
-            
-            bitacora.setDescription(rs.getString("descripcion"));
-            bitacora.setIdBit(rs.getInt("id"));
-            bitacora.setFecha(rs.getDate("fecha"));
-            bitacora.setBitMonitor(ServicesFacade.getInstance("applicationconfig.properties").consultarMonitor(rs.getInt("Monitor_Estudiantes_id")));
-            
-            return bitacora;
-        }catch(SQLException ex) {
-            
-                throw new PersistenceException("An error ocurred while loading an order.",ex);
-            
-            
-        } catch (ServiceFacadeException ex) {
-            Logger.getLogger(JDBCDaoBitacora.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        //return stu;*/
+    public Bitacora load(int idBitacora) throws PersistenceException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
     
 }

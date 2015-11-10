@@ -6,7 +6,6 @@
 package edu.eci.pdsw.services;
 
 import edu.eci.pdsw.entities.Bitacora;
-import edu.eci.pdsw.entities.Monitor;
 import edu.eci.pdsw.entities.Problem;
 import edu.eci.pdsw.entities.Student;
 import edu.eci.pdsw.entities.Task;
@@ -160,26 +159,7 @@ public class ServicesFacade {
             throw new ServiceFacadeException("Error al consultar la bitacora .",ex);
         }        
     }
-    
-    
-    /**
-     * Consulta un monitor de la base de datos
-     * @param idMonitor contiene el id del monitor a consultar
-     * @return retorna un monitor con toda la informacion respectiva.
-     * @throws ServiceFacadeException 
-     */
-    public Monitor consultarMonitor(int idMonitor) throws ServiceFacadeException{
-        DaoFactory daof=DaoFactory.getInstance(properties);
-        try {
-            daof.beginSession();
-            Monitor monitor=daof.getDaoMonitor().load(idMonitor);
-            daof.endSession();
-            return monitor;
-        } catch (PersistenceException ex) {
-            System.out.println(ex.toString());
-            throw new ServiceFacadeException("Error al consultar monitor.",ex);
-        }        
-    }
+
     
     public Turn consultarTurn(int idTurn) throws ServiceFacadeException{
         DaoFactory daof=DaoFactory.getInstance(properties);

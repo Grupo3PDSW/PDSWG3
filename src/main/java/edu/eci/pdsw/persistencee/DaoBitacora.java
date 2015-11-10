@@ -9,7 +9,7 @@ import edu.eci.pdsw.entities.Bitacora;
 
 /**
  *
- * @author felipe
+ * @author 
  */
 public interface DaoBitacora {
     
