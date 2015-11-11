@@ -26,6 +26,10 @@ public class Student {
         isMonitor=is;
     }
 
+    public Student() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public boolean isIsMonitor() {
         return isMonitor;
     }
@@ -34,9 +38,7 @@ public class Student {
         this.isMonitor = isMonitor;
     }
     
-    public Student(){
-    
-    }
+ 
     
     @Override
     public String toString() {

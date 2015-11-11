@@ -7,6 +7,7 @@ package edu.eci.pdsw.entities;
 
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.logging.Logger;
 
 /**
  *
@@ -15,27 +16,28 @@ import java.sql.Timestamp;
 public class Problem {
    
     public String decription;
-    public int idEquipo;
-    public int idPc;
+    public int idEquipo;  
     public int idProblem;
     public Date date;
-    
-    public Problem(String description, int idL, int IdP, Date date ){
-        
-        this.decription=description;
-        idEquipo=idL;
-        idPc=IdP;
-        this.date=date;
+    public int Estudiante_id;
+
+    public Problem(String decription, int idEquipo, int idProblem, Date date, int Estudiante_id) {
+        this.decription = decription;
+        this.idEquipo = idEquipo;
+        this.idProblem = idProblem;
+        this.date = date;
+        this.Estudiante_id = Estudiante_id;
     }
+    private static final Logger LOG = Logger.getLogger(Problem.class.getName());
     
+    
+
     @Override
     public String toString() {
-        return "Problem{" + "decription=" + decription
-                           + ", idEquipo=" + idEquipo
-                           + ", idPc=" + idPc
-                           + ", idProblem=" + idProblem
-                           + ", date=" + date + '}';
+        return "Problem{" + "decription=" + decription + ", idEquipo=" + idEquipo + ", idProblem=" + idProblem + ", date=" + date + ", Estudiante_id=" + Estudiante_id + '}';
     }
+
+    
     
     public String getDecription() {
         return decription;
@@ -43,22 +45,6 @@ public class Problem {
 
     public void setDecription(String decription) {
         this.decription = decription;
-    }
-
-    public int getIdPc() {
-        return idPc;
-    }
-
-    public void setIdPc(int idPc) {
-        this.idPc = idPc;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
     }
 
     public int getIdEquipo() {
@@ -75,6 +61,22 @@ public class Problem {
 
     public void setIdProblem(int idProblem) {
         this.idProblem = idProblem;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public int getEstudiante_id() {
+        return Estudiante_id;
+    }
+
+    public void setEstudiante_id(int Estudiante_id) {
+        this.Estudiante_id = Estudiante_id;
     }
     
     

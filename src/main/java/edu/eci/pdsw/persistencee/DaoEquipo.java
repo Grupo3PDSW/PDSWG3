@@ -6,15 +6,14 @@
 package edu.eci.pdsw.persistencee;
 
 import edu.eci.pdsw.entities.Equipo;
-import edu.eci.pdsw.entities.Problem;
-
 
 /**
  *
  * @author 2098167
  */
-public interface DaoProblem {
-     public void save(Problem p);
-
-  
+public interface DaoEquipo {
+    
+    public void save(Equipo e);
+    
+    public Equipo load(int id);
 }

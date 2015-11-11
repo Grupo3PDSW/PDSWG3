@@ -6,6 +6,7 @@
 package edu.eci.pdsw.services;
 
 import edu.eci.pdsw.entities.Bitacora;
+import edu.eci.pdsw.entities.Equipo;
 import edu.eci.pdsw.entities.Monitoria;
 import edu.eci.pdsw.entities.Problem;
 import edu.eci.pdsw.entities.Student;
@@ -119,6 +120,23 @@ public class ServicesFacade {
         }
     }
     
+            /**
+     * El metodo registra un equipo en la BD
+     * @param e
+     * @throws ServiceFacadeException 
+     */
+    public void registrarEquipo(Equipo e) throws ServiceFacadeException {
+        DaoFactory daof=DaoFactory.getInstance(properties);
+        try {
+            daof.beginSession();
+            daof.getDaoEquipo().save(e);
+            daof.commitTransaction();
+            daof.endSession();
+        } catch (PersistenceException ex) {
+            throw new ServiceFacadeException("error no se registro el problema ",ex);
+        }
+    }
+    
     
     public void ActualizarEstadoDeTarea(int idTask, String estado) throws ServiceFacadeException{
         DaoFactory daof=DaoFactory.getInstance(properties);
@@ -217,7 +235,7 @@ public class ServicesFacade {
             throw new ServiceFacadeException("Error al consultar estudiante.",ex);
         }        
     }
-    
+
     
     
 }

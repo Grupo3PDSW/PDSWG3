@@ -1,5 +1,7 @@
 package edu.eci.pdsw.test;
 
+import edu.eci.pdsw.entities.Problem;
+import edu.eci.pdsw.entities.Student;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -68,8 +70,23 @@ public class AppTest {
     }
     
     @Test
-    //CH1A: Reporta problemas de manera correcta.
-    public void CH1ATest() {
+    //CH1A: Reporta problemas basicos de manera correcta.
+    public void CH1ATest() throws SQLException {
+        Connection conn = DriverManager.getConnection("jdbc:h2:file:./target/db/testdb;MODE=MYSQL", "sa", "");        
+        Statement stmt = conn.createStatement();
+        
+        Student s;
+         s = new Student (2098167,"Pepito Perez","ejemplo@test.com",false);
+        Laboratorio l;
+         
+        
+        Problem p = new Problem("No funciona teclado",);
+        
+        
+        stmt.execute();
+        
+        
+        
 
     }
     @Test

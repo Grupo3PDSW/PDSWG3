@@ -51,10 +51,13 @@ public abstract class DaoFactory {
     
     public abstract DaoMonitoria getDaoMonitoria();
     
-    public abstract DaoReportProblem getDaoReportProblem();
-    
+ 
     public abstract DaoTurn getDaoTurn();
 
     public abstract DaoProblem getDaoProblem();
+
+    public abstract  DaoEquipo getDaoEquipo();
+    
+    public abstract DaoLaboratorio getDaoLaboratorio();
     
 }

@@ -6,10 +6,11 @@
 package edu.eci.pdsw.persistence.jdbcimpl;
 
 import edu.eci.pdsw.persistencee.DaoBitacora;
+import edu.eci.pdsw.persistencee.DaoEquipo;
 import edu.eci.pdsw.persistencee.DaoFactory;
+import edu.eci.pdsw.persistencee.DaoLaboratorio;
 import edu.eci.pdsw.persistencee.DaoMonitoria;
 import edu.eci.pdsw.persistencee.DaoProblem;
-import edu.eci.pdsw.persistencee.DaoReportProblem;
 import edu.eci.pdsw.persistencee.DaoStudent;
 import edu.eci.pdsw.persistencee.DaoTask;
 import edu.eci.pdsw.persistencee.DaoTurn;
@@ -118,7 +119,7 @@ public class JDBCDaoFactory extends DaoFactory{
     }
 
     @Override
-    public DaoReportProblem getDaoReportProblem() {
+    public DaoProblem getDaoProblem() {
         return new JDBCDaoProblem(connectionInstance.get());
     }
 
@@ -128,8 +129,15 @@ public class JDBCDaoFactory extends DaoFactory{
     }
 
     @Override
-    public DaoProblem getDaoProblem() {
+    public DaoEquipo getDaoEquipo() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public DaoLaboratorio getDaoLaboratorio() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+
     
 }
