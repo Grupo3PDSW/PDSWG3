@@ -13,14 +13,12 @@ import java.util.Set;
  */
 public class Task{
     
-    public String TaskDescription;
     public String type;
     public String status;
     public int IdTask;
     public String taskCommnets;
     
-    public Task(String td, String type, String sta, int idT, String tc){
-        TaskDescription=td;
+    public Task(String type, String sta, int idT, String tc){
         this.type=type;
         status=sta;
         IdTask=idT;
@@ -28,9 +26,13 @@ public class Task{
         
     }
     
+    public Task(){
+        
+    }
+    
     @Override
     public String toString() {
-        return "Task{" + "TaskDescription=" + TaskDescription
+        return "Task{" 
                            + ", type=" + type
                            + ", status=" + status 
                            + ", IdTask=" + IdTask 
@@ -45,15 +47,6 @@ public class Task{
         this.taskCommnets = taskCommnets;
     }
    
-
-    public String getTaskDescription() {
-        return TaskDescription;
-    }
-
-    public void setTaskDescription(String TaskDescription) {
-        this.TaskDescription = TaskDescription;
-    }
-
     public String getType() {
         return type;
     }

@@ -14,4 +14,8 @@ import edu.eci.pdsw.entities.Task;
 public interface DaoTask {
     
     public void save(Task t);
+    
+    public void UpdateEstado(int id, String estado);
+    
+    public Task load(int idtask);
 }

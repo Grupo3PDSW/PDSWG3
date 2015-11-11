@@ -19,6 +19,8 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -34,35 +36,45 @@ public class JDBCDaoBitacora implements DaoBitacora{
         this.con = con;
     }            
     
-    /**
-     * 
-     * @param b contiene una bitacora que es usada para realizar la insersion en la bb 
-     */
+    
+    
     @Override
-    public void save(Bitacora b) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.        
+    public void save(Bitacora b) throws PersistenceException {
         PreparedStatement ps;
-        try {
-            ps = con.prepareStatement("insert into Bitacora(Monitor_Estudiantes_id, Monitor_Turnos_id, "
-                    + "descripcion, id, tarea_id, fecha, Monitoria_id) values (?,?,?,?,?,?,?)");
-            ps.setInt(1, b.getBitMonitor().getIdStudent());
-            ps.setInt(2, b.getBitTurn().getIdTurn());
-            ps.setString(3, b.getDescription());
-            ps.setInt(4, b.getIdBit());     
-            ps.setInt(5, b.getBitTask().getIdTask());
-            ps.setDate(6, b.getFecha());
-            ps.setInt(7, b.getBitMonitoria().getIdMonitoria());
-            ps.execute();
+        try{
             
-        } catch (SQLException ex) {
-            try {
-                throw new PersistenceException("Error.",ex);
-            } catch (PersistenceException ex1) {
-                Logger.getLogger(JDBCDaoBitacora.class.getName()).log(Level.SEVERE, null, ex1);
-            }
+            if(b.getIdBit()==0){
+                ps=con.prepareStatement("insert into Bitacora(descripcion, tarea_id,"
+                    + "fecha, Monitoria_id, Monitor, Turno_id) "
+                        + "values (?,?,?,?,?,?)" ,Statement.RETURN_GENERATED_KEYS);
+                ps.setInt(5, b.getBitMonitor().getIdStudent());
+                ps.setInt(6 , b.getBitTurn().getIdTurn());
+                ps.setString(1, b.getDescription());  
+                ps.setInt(2, b.getBitTask().getIdTask());
+                ps.setDate(3, b.getFecha());
+                ps.setInt(4, b.getBitMonitoria().getIdMonitoria());
+                ps.execute();
+                ResultSet rs=ps.getGeneratedKeys();
+                if(rs.next()){
+                    b.setIdBit(rs.getInt("id"));
+                }
+                
+            }else{
+                ps=con.prepareStatement("insert into Bitacora(descripcion, tarea_id,"
+                    + "fecha, Monitoria_id, Monitor, Turno_id) "
+                        + "values (?,?,?,?,?,?)");
+                ps.setInt(1, b.getIdBit());
+                ps.setDate(2, b.getFecha());
+                ps.execute();
+            }    
+              
+        }catch (SQLException ex) {
+            throw new PersistenceException("An error ocurred while loading an order.",ex);
         }
     }
 
+    
+    
     @Override
     public Bitacora load(int idBitacora) throws PersistenceException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

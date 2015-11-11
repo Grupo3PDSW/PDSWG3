@@ -5,10 +5,14 @@
  */
 package edu.eci.pdsw.persistencee;
 
+import edu.eci.pdsw.entities.Monitoria;
+
 /**
  *
  * @author 2101751
  */
 public interface DaoMonitoria {
+    
+    public Monitoria load(int idMonitoria);
     
 }

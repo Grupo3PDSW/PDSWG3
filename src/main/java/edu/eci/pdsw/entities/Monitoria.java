@@ -13,11 +13,27 @@ public class Monitoria {
     public String LenguajeDeProgramacion;
     public String tema;
     public int IdMonitoria;
+    public String DarSoporte;
     
-    public Monitoria(String lg, String tema, int IdM){
+    public Monitoria(String lg, String tema, int IdM, String DarSo){
         LenguajeDeProgramacion=lg;
         this.tema=tema;
         IdMonitoria=IdM;
+        DarSoporte = DarSo;
+        
+        
+    }
+    
+    public Monitoria(){
+        
+    }
+
+    public String getDarSoporte() {
+        return DarSoporte;
+    }
+
+    public void setDarSoporte(String DarSoporte) {
+        this.DarSoporte = DarSoporte;
     }
     
     @Override

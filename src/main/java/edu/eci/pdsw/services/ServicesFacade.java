@@ -6,6 +6,7 @@
 package edu.eci.pdsw.services;
 
 import edu.eci.pdsw.entities.Bitacora;
+import edu.eci.pdsw.entities.Monitoria;
 import edu.eci.pdsw.entities.Problem;
 import edu.eci.pdsw.entities.Student;
 import edu.eci.pdsw.entities.Task;
@@ -118,6 +119,20 @@ public class ServicesFacade {
         }
     }
     
+    
+    public void ActualizarEstadoDeTarea(int idTask, String estado) throws ServiceFacadeException{
+        DaoFactory daof=DaoFactory.getInstance(properties);
+        try {
+            daof.beginSession();
+            daof.getDaoTask().UpdateEstado(idTask, estado);
+            daof.endSession();
+            
+        } catch (PersistenceException ex) {
+            System.out.println(ex.toString());
+            throw new ServiceFacadeException("Error al consultar estudiante.",ex);
+        }        
+    }
+    
     /**
      * El metodo consulta un estudiante de la base de datos y lo retorna como un objeto
      * @param idEstu es el Id de estudiante a consultar
@@ -159,7 +174,9 @@ public class ServicesFacade {
             throw new ServiceFacadeException("Error al consultar la bitacora .",ex);
         }        
     }
-
+    
+    
+    
     
     public Turn consultarTurn(int idTurn) throws ServiceFacadeException{
         DaoFactory daof=DaoFactory.getInstance(properties);
@@ -173,4 +190,34 @@ public class ServicesFacade {
             throw new ServiceFacadeException("Error al consultar turno.",ex);
         }        
     }
+    
+    public Monitoria consultarMonitoria(int idMoni) throws ServiceFacadeException{
+        DaoFactory daof=DaoFactory.getInstance(properties);
+        try {
+            daof.beginSession();
+            Monitoria moni=daof.getDaoMonitoria().load(idMoni);
+            daof.endSession();
+            return moni;
+        } catch (PersistenceException ex) {
+            System.out.println(ex.toString());
+            throw new ServiceFacadeException("Error al consultar estudiante.",ex);
+        }        
+    }
+    
+    
+    public Task consultarTarea(int idTask) throws ServiceFacadeException{
+        DaoFactory daof=DaoFactory.getInstance(properties);
+        try {
+            daof.beginSession();
+            Task tar=daof.getDaoTask().load(idTask);
+            daof.endSession();
+            return tar;
+        } catch (PersistenceException ex) {
+            System.out.println(ex.toString());
+            throw new ServiceFacadeException("Error al consultar estudiante.",ex);
+        }        
+    }
+    
+    
+    
 }

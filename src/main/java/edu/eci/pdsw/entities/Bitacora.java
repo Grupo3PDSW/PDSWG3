@@ -15,13 +15,12 @@ import java.sql.Timestamp;
 public class Bitacora {
     
     public Student BitMonitor;
-    //public Turn BitTurn;
     public String description;
-    public int IdBit;
     public Task BitTask;
     public Date fecha;
     public Monitoria BitMonitoria;
     public Turn BitTurn;
+    public int IdBit;
 
     /**
      * Constructor de la clase Bitacora
@@ -32,15 +31,23 @@ public class Bitacora {
      * @param fecha fecha de registro de la bitacora
      * @param mo contiene toda la informacion de la monitoria correspondiente realizada en el turno 
      */
-    public Bitacora(Student m,  String d, int id, Task ta, Date fecha, Monitoria mo, Turn t){
+    public Bitacora(Student m,  String d, Task ta, Date fecha, Monitoria mo, Turn t, int idb){
         BitMonitor = m;
         //BitTurn = t;
         description = d;
-        IdBit = id;
         BitTask = ta;
         this.fecha = fecha;
         BitMonitoria = mo;
         BitTurn=t;
+        IdBit = idb;
+    }
+
+    public int getIdBit() {
+        return IdBit;
+    }
+
+    public void setIdBit(int IdBit) {
+        this.IdBit = IdBit;
     }
     
     /**
@@ -59,7 +66,6 @@ public class Bitacora {
         return "Bitacora{" + "Monitor_Estudiantes_id=" + BitMonitor.getIdStudent()
                            + ", Monitor_Turnos_id=" + BitTurn.getIdTurn() 
                            + ", descripcion=" + description 
-                           + ", id=" + IdBit 
                            + ", tarea_id=" + BitTask.getIdTask()  
                            + ", fecha=" + this.fecha
                            + ", Monitoria_id=" + BitMonitoria.getIdMonitoria()+ '}';
@@ -91,14 +97,6 @@ public class Bitacora {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public int getIdBit() {
-        return IdBit;
-    }
-
-    public void setIdBit(int IdBit) {
-        this.IdBit = IdBit;
     }
 
     public Task getBitTask() {

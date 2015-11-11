@@ -8,30 +8,53 @@
         <title>Registro De Bitacora</title>
     </h:head>
     <h:body>
-    
-        <h:form id = "formulario_Bitacora">
-        <h:outputLabel id="table" value="Estado: "/>
-        <p:inputText value="" > </p:inputText>
-        </h:form>
+    <h:outputText value="Registro de Bitacora"  />
         
-        <h:form id = "formulario_Bitacora2">
-        <h:outputLabel id="table" value="Fecha de Inicio: "/>
-        <p:inputText value="" > </p:inputText>
-        </h:form>
+        <p:layout style="min-width:40px;min-height:20px;">
+            
+            <p:layoutUnit position="center" resizable="true" size="10" minSize="40" maxSize="20">
+                <div style="height:500px">
+                    <h:form>
+                        <p:growl id="msgs" showDetail="true" />
+
+                        <p:dashboard id="board" model="#{dashboardView.model}">
+                            <p:ajax event="reorder" listener="#{dashboardView.handleReorder}" update="msgs" />
+
+                            <p:panel id="sports" header="Estado">
+                                <h:inputText value="#{beanMonitores.estado}"  />
+                            </p:panel>
+                            
+                            <p:panel id="tarea" header="Id de Tarea">
+                                <h:inputText value="#{beanMonitores.idTask}"  />
+                            </p:panel>
+
+                            <p:panel id="finance" header="Fecha ">
+                                <h:inputText value="#{beanMonitores.fecha}"  />
+                            </p:panel>
+
+                            <p:panel id="lifestyle" header="Id Turno">
+                                <h:inputText value="#{beanMonitores.idTurn}"  />
+                            </p:panel>
+
+                            <p:panel id="weather" header="Usuario (Monitor)">
+                                <h:inputText value="#{beanMonitores.idMonitor}"  />
+                            </p:panel>
+
+                            <p:panel id="politics" header="Descripcion">
+                                <h:inputText value="#{beanMonitores.descrip}" />
+                            </p:panel>
+                        </p:dashboard>
+
+                        <div style="clear:both" />
+                    </h:form>
+                </div>
+                        <p:commandButton value="REGISTRAR" actionListener="#{beanMonitores.bitacoraBean}" />
+                <img src="PDSWG3/Imagenes/ECI.jpg" width="300" height="124"></img>
+                
+            </p:layoutUnit>
+            
+            
+        </p:layout>
         
-        <h:form id = "formulario_Bitacora3">
-        <h:outputLabel id="table" value="Fecha de fin "/>
-        <p:inputText value="" > </p:inputText>
-        </h:form>
-        
-        <h:form id = "formulario_Bitacora4">
-        <h:outputLabel id="table" value="Usuario: "/>
-        <p:inputText value="" > </p:inputText>
-        </h:form>
-        
-        <h:form id = "formulario_Bitacora5">
-        <h:outputLabel id="table" value="Descripcion: "/>
-        <p:inputText value="" > </p:inputText>
-        </h:form>
     </h:body>
 </html>

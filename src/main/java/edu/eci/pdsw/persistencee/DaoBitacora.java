@@ -14,7 +14,7 @@ import edu.eci.pdsw.entities.Bitacora;
 public interface DaoBitacora {
     
     
-   public void save(Bitacora b);
+   public void save(Bitacora b) throws PersistenceException;
    
    public Bitacora load(int idBitacora) throws PersistenceException;
    
