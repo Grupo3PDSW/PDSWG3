@@ -15,6 +15,7 @@ import edu.eci.pdsw.entities.Problem;
  */
 public interface DaoProblem {
      public void save(Problem p);
-
+     
+     public Problem load (int idProblem);
   
 }

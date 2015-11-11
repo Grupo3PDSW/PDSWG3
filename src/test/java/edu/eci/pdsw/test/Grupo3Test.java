@@ -1,11 +1,18 @@
 package edu.eci.pdsw.test;
 
+import edu.eci.pdsw.entities.Equipo;
+import edu.eci.pdsw.entities.Laboratorio;
 import edu.eci.pdsw.entities.Problem;
 import edu.eci.pdsw.entities.Student;
+import edu.eci.pdsw.services.ServiceFacadeException;
+import edu.eci.pdsw.services.ServicesFacade;
 import java.sql.Connection;
+
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Date;
+import java.util.LinkedList;
 import org.junit.After;
 import static org.junit.Assert.fail;
 import org.junit.Test;
@@ -71,21 +78,22 @@ public class AppTest {
     
     @Test
     //CH1A: Reporta problemas basicos de manera correcta.
-    public void CH1ATest() throws SQLException {
+    public void CH1ATest() throws SQLException, ServiceFacadeException {
         Connection conn = DriverManager.getConnection("jdbc:h2:file:./target/db/testdb;MODE=MYSQL", "sa", "");        
         Statement stmt = conn.createStatement();
+        stmt.execute("insert into Estudiante values (2098167,'Pepito Perez','ejemplo@test.com',false))"); 
+        stmt.execute("insert into Laboratorio values (1,'prueba')");
+        stmt.execute("insert into Equipo values (1,1,'Asombrosos 120 Mb de RAM')");
+        stmt.execute("insert into Problema values ('Esta lento',1,1,'2015-11-01 10:00:00',2098167)");       
+        conn.commit();
+        Date d = new Date(2015,11,01,10,00,00)  ;     
+        Problem pro;
+         pro = new Problem ("Esta lento",1,1,d,2098167);
         
-        Student s;
-         s = new Student (2098167,"Pepito Perez","ejemplo@test.com",false);
-        Laboratorio l;
+        ServicesFacade f=ServicesFacade.getInstance("h2-applicationconfig.properties");
+        Problem p=f.consultarProblem(1);
          
-        
-        Problem p = new Problem("No funciona teclado",);
-        
-        
-        stmt.execute();
-        
-        
+        assertTrue(pro==p);
         
 
     }

@@ -5,9 +5,12 @@
  */
 package edu.eci.pdsw.entities;
 
-import java.sql.Date;
-import java.sql.Timestamp;
+
+
+import java.util.Date;
 import java.util.logging.Logger;
+
+
 
 /**
  *
@@ -29,6 +32,10 @@ public class Problem {
         this.Estudiante_id = Estudiante_id;
     }
     private static final Logger LOG = Logger.getLogger(Problem.class.getName());
+
+    public Problem() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
 

@@ -13,6 +13,8 @@ import edu.eci.pdsw.entities.Monitoria;
  */
 public interface DaoMonitoria {
     
+    
+    
     public Monitoria load(int idMonitoria);
     
 }

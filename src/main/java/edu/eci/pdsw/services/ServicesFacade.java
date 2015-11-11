@@ -170,6 +170,25 @@ public class ServicesFacade {
         }        
     }
     
+        /**
+     * El metodo consulta un problem de la base de datos y lo retorna como un objeto
+     * @param idPro es el Id del problema  a consultar
+     * @return retorla el objeto eproblema con su informacion correspondiente
+     * @throws ServiceFacadeException 
+     */
+    public Problem consultarProblem(int idPro) throws ServiceFacadeException{
+        DaoFactory daof=DaoFactory.getInstance(properties);
+        try {
+            daof.beginSession();
+            Problem pro=daof.getDaoProblem().load(idPro);
+            daof.endSession();
+            return pro;
+        } catch (PersistenceException ex) {
+            System.out.println(ex.toString());
+            throw new ServiceFacadeException("Error al consultar problem.",ex);
+        }        
+    }
+    
     
     
     
