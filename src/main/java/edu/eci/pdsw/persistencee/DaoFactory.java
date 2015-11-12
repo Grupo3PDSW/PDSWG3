@@ -24,7 +24,7 @@ public abstract class DaoFactory {
             synchronized (DaoFactory.class) {
                 if (instance == null) {
                     if (appProperties.get("dao").equals("jdbc")) {
-                        instance = new JDBCDaoFactory();                    
+                        instance = new JDBCDaoFactory(appProperties);                    
                     } else {
                         throw new RuntimeException("Wrong configuration: Unsupported DAO:" + appProperties.get("dao"));
                     }
