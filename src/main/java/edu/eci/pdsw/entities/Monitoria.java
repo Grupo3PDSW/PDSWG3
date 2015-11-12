@@ -66,4 +66,6 @@ public class Monitoria {
     public void setIdMonitoria(int IdMonitoria) {
         this.IdMonitoria = IdMonitoria;
     }
+
+
 }

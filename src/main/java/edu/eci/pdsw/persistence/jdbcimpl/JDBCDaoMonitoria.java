@@ -9,6 +9,7 @@ import edu.eci.pdsw.entities.Monitoria;
 import edu.eci.pdsw.persistencee.DaoMonitoria;
 import edu.eci.pdsw.persistencee.PersistenceException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,7 +27,11 @@ public class JDBCDaoMonitoria implements DaoMonitoria{
         public JDBCDaoMonitoria(Connection con) {
         this.con = con;
     }
-
+        
+        
+        
+        
+        
     @Override
     public Monitoria load(int idMonitoria) {
         PreparedStatement ps;
@@ -52,6 +57,26 @@ public class JDBCDaoMonitoria implements DaoMonitoria{
         return moni;
     }
 
+    @Override
+    public void save(Monitoria mo) {
+        PreparedStatement ps;
+        try {
+            ps = con.prepareStatement("insert into Monitoria   values (?,?,?,?)");
+            ps.setString(1,mo.getLenguajeDeProgramacion());
+            ps.setString(2, mo.getTema());
+            ps.setInt(3, mo.getIdMonitoria());       
+            ps.setString(4, mo.getDarSoporte());
+            
+            ps.execute();
+            
+        } catch (SQLException ex) {
+            try {
+                throw new PersistenceException("Error al guardar problema .",ex);
+            } catch (PersistenceException ex1) {
+                Logger.getLogger(JDBCDaoBitacora.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+        }
+    }
    
         
     

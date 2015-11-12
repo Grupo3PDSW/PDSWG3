@@ -1,7 +1,9 @@
 package edu.eci.pdsw.test;
 
+import edu.eci.pdsw.entities.Bitacora;
 import edu.eci.pdsw.entities.Equipo;
 import edu.eci.pdsw.entities.Laboratorio;
+import edu.eci.pdsw.entities.Monitoria;
 import edu.eci.pdsw.entities.Problem;
 import edu.eci.pdsw.entities.Student;
 import edu.eci.pdsw.services.ServiceFacadeException;
@@ -28,16 +30,13 @@ import static org.junit.Assert.*;
  *  
  * <HU1  (3) Reporte de problemas>
  *      - CH1A: Reporta problemas de manera correcta.
- *      - CH1B: Reporta problemas faltando algun dato no exigido (Comentarios adicionales).
- *      - CH1C: Reporta problemas faltando algun dato exigido (Descripcion, laboratorio, equipo etc.).
+ *      - CH1B: Reporta problemas con  un id repetido (no deberia reportar ).
  *      
  * 
  * <HU2  (13) Gestión de la bitácora>
  *      - CH2A: Realiza una entrada a la bitacora correctamente sin faltar datos.
- *      - CH2B: Realiza una entrada a la bitacora sobre una tarea que no esta   en el planeador como pendiente 
- *      - CH2C: Realiza una entrada sobre una tarea sin reportar su estado (resuelto o avanzado)
- *      - CH2D: Realiza una entrada sobre una faltando datos 
- *      - CH2E: Realiza una entrada sobre un soporte academico faltando datos.
+ *      - CH2B: Realiza una entrada a la bitacora con un id repetido (no deberia  ingresar )
+ * 
  * 
  * <HU3  (8) Reporte de monitores>
  * 
@@ -98,46 +97,90 @@ public class AppTest {
 
     }
     @Test
-    // CH1B: Reporta problemas faltando algun dato no exigido (Comentarios adicionales).
-    public void CH1BTest() {
-
+    // CH1B: Reporta problemas con un id repetido (no deberia reportar ).
+    public void CH1BTest() throws SQLException, ServiceFacadeException {
+        
+        //Se intentara ingresar un problema sin un id repetido lo cual no deberia ser posible 
+        
+        Connection conn = DriverManager.getConnection("jdbc:h2:file:./target/db/testdb;MODE=MYSQL", "sa", "");        
+        Statement stmt = conn.createStatement();
+        stmt.execute("insert into Estudiante values (2098167,'Pepito Perez','ejemplo@test.com',false))");  
+        stmt.execute("insert into Laboratorio values (1,'prueba')");
+        stmt.execute("insert into Equipo values (1,1,'Asombrosos 120 Mb de RAM')");
+        stmt.execute("insert into Problema values ('Esta lento',1,1,'2015-11-01 10:00:00',2098167)");  
+        stmt.execute("insert into Problema values ('Esta REEEELENTOOOO',1,1,'2015-11-01 10:10:00',2098167)");  
+        conn.commit();
+        Date d = new Date(2015,11,01,10,00,00)  ;     
+        Problem pro;
+         pro = new Problem ("Esta lento",1,1,d,2098167);
+        
+        ServicesFacade f=ServicesFacade.getInstance("h2-applicationconfig.properties");
+        Problem p=f.consultarProblem(1);
+         
+        assertTrue(pro==p);   
     }
 
 
-    @Test
-    // CH1C: Reporta problemas faltando algun dato exigido (Descripcion, laboratorio, equipo etc.).
-    public void CH1CTest() {
 
-    }
     @Test
     //CH2A: Realiza una entrada a la bitacora correctamente sin faltar datos.
-    public void CH2ATest() {
+    public void CH2ATest() throws SQLException, ServiceFacadeException {        
+        Connection conn = DriverManager.getConnection("jdbc:h2:file:./target/db/testdb;MODE=MYSQL", "sa", "");        
+        Statement stmt = conn.createStatement();
+        
+        stmt.execute("insert into Estudiante values (2020,'JUan Perez','ejemplo@test.com',true))"); 
+        stmt.execute("INSERT INTO Turno VALUES ('2015-11-01 07:00:00','2015-11-01 10:00:00',1,'Lunes',2020)");
+        stmt.execute("INSERT INTO Tarea VALUES(1,'Instalacion de software','avanzado','La instalacion esta en proceso,falta instalar el parche') ");
+        stmt.execute("INSERT INTO Monitoria  VALUES('Python','arrays',1,'se logro dar soporte') ");
+        stmt.execute("INSERT INTO Bitacora  VALUES('se realizo la primer monitoria del dia, y se cumplio con una tarea',1,1,'2015-11-01 10:00:00',1,2020,1); ");
+        stmt.execute("INSERT INTO Bitacora  VALUES('no hice nada ',1,1,'2015-11-01 10:00:00',1,2020,1); ");
+        conn.commit();
+        
+        Date d  ;   
+         d = new Date(2015,11,01,10,00,00);
+         
+        Bitacora mo;
+         mo = new Bitacora ("se realizo la primer monitoria del dia, y se cumplio con una tarea",1,1, (java.sql.Date) d,1,2020,1);
+        
+         
+        ServicesFacade f=ServicesFacade.getInstance("h2-applicationconfig.properties");
+        Bitacora b=f.consultarBitacora(1);
+         
+        assertTrue(mo==b);  
 
     }
 
     @Test
-    //CH2B: Realiza una entrada a la bitacora sobre una tarea que no esta   en el planeador como pendiente 
-    public void CH2BTest() {
+    //CH2B: Realiza una entrada a la bitacora con un id repetido (no deberia )
+    public void CH2BTest() throws SQLException, ServiceFacadeException {
+        Connection conn = DriverManager.getConnection("jdbc:h2:file:./target/db/testdb;MODE=MYSQL", "sa", "");        
+        Statement stmt = conn.createStatement();
+        
+        stmt.execute("insert into Estudiante values (2020,'JUan Perez','ejemplo@test.com',true))"); 
+        stmt.execute("INSERT INTO Turno VALUES ('2015-11-01 07:00:00','2015-11-01 10:00:00',1,'Lunes',2020)");
+        stmt.execute("INSERT INTO Tarea VALUES(1,'Instalacion de software','avanzado','La instalacion esta en proceso,falta instalar el parche') ");
+        stmt.execute("INSERT INTO Monitoria  VALUES('Python','arrays',1,'se logro dar soporte') ");
+        stmt.execute("INSERT INTO Bitacora  VALUES('se realizo la primer monitoria del dia, y se cumplio con una tarea',1,1,'2015-11-01 10:00:00',1,2020,1); ");
+        conn.commit();
+        
+        Date d  ;   
+         d = new Date(2015,11,01,10,00,00);
+         
+        Bitacora mo;
+         mo = new Bitacora ("se realizo la primer monitoria del dia, y se cumplio con una tarea",1,1, (java.sql.Date) d,1,2020,1);
+        
+         
+        ServicesFacade f=ServicesFacade.getInstance("h2-applicationconfig.properties");
+        Bitacora b=f.consultarBitacora(1);
+         
+        assertTrue(mo==b);  
 
     }
-    @Test
-    //CH2C: Realiza una entrada sobre una tarea sin reportar su estado (resuelto o avanzado)
-    public void CH2CTest() {
 
+ 
     }
 
-
-    @Test
-    //CH2D: Realiza una entrada sobre una faltando datos 
-    public void CH2DTest() {
-
-    }
-    @Test
-    //CH2E: Realiza una entrada sobre un soporte academico faltando datos.
-    public void CH2ETest() {
-
-    }
-
+    
     @Test
     //CH3A: Realiza un reporte de manera correcta.
     public void CH3ATest() {
@@ -164,3 +207,4 @@ public class AppTest {
 
     }
     }
+

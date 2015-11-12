@@ -21,6 +21,10 @@ public class Bitacora {
     public Monitoria BitMonitoria;
     public Turn BitTurn;
     public int IdBit;
+    public int taskid;
+    public int monitoria_id;
+    public int monitor_id;
+    public int turno_id;
 
     /**
      * Constructor de la clase Bitacora
@@ -41,6 +45,24 @@ public class Bitacora {
         BitTurn=t;
         IdBit = idb;
     }
+
+    public Bitacora(String description,  int IdBit, int taskid, Date fecha,int monitoria_id, int monitor_id, int turno_id) {
+        this.description = description;
+        this.fecha = fecha;
+        this.IdBit = IdBit;
+        this.taskid = taskid;
+        this.monitoria_id = monitoria_id;
+        this.monitor_id = monitor_id;
+        this.turno_id = turno_id;
+    }
+
+ 
+
+
+
+    
+    
+    
 
     public int getIdBit() {
         return IdBit;
