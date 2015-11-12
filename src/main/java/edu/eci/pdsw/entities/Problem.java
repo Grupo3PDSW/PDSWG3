@@ -14,7 +14,9 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author felipe
+ * @author 2098167
+ * 
+ * Clase Problema crea un problema con sus entidades
  */
 public class Problem {
    

@@ -254,6 +254,19 @@ public class ServicesFacade {
             throw new ServiceFacadeException("Error al consultar estudiante.",ex);
         }        
     }
+    
+        public Equipo consultarEquipo(int idEq) throws ServiceFacadeException{
+        DaoFactory daof=DaoFactory.getInstance(properties);
+        try {
+            daof.beginSession();
+            Equipo eq=daof.getDaoEquipo().load(idEq);
+            daof.endSession();
+            return eq;
+        } catch (PersistenceException ex) {
+            System.out.println(ex.toString());
+            throw new ServiceFacadeException("Error al consultar estudiante.",ex);
+        }        
+    }
 
     
     
