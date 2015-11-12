@@ -182,9 +182,9 @@ public class AppTest {
 
     
  
-
+     /*
     }
-    /**
+    
     @Test
     //CH3B: Realiza un reporte con seleccion de intervalo de fechas.
     public void CH3BTest() {
