@@ -60,4 +60,8 @@ public abstract class DaoFactory {
     
     public abstract DaoLaboratorio getDaoLaboratorio();
     
+    public abstract DaoReport getDaoReport(); 
+    
+    
+    
 }

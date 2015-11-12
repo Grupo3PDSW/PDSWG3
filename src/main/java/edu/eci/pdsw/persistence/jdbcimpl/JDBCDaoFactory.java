@@ -11,6 +11,7 @@ import edu.eci.pdsw.persistencee.DaoFactory;
 import edu.eci.pdsw.persistencee.DaoLaboratorio;
 import edu.eci.pdsw.persistencee.DaoMonitoria;
 import edu.eci.pdsw.persistencee.DaoProblem;
+import edu.eci.pdsw.persistencee.DaoReport;
 import edu.eci.pdsw.persistencee.DaoStudent;
 import edu.eci.pdsw.persistencee.DaoTask;
 import edu.eci.pdsw.persistencee.DaoTurn;
@@ -139,6 +140,11 @@ public class JDBCDaoFactory extends DaoFactory{
     @Override
     public DaoLaboratorio getDaoLaboratorio() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public DaoReport getDaoReport() {
+        return new JDBCDaoReport(connectionInstance.get());
     }
 
 

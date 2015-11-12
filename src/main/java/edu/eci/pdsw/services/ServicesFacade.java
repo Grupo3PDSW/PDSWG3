@@ -11,6 +11,7 @@ import edu.eci.pdsw.entities.Bitacora;
 import edu.eci.pdsw.entities.Equipo;
 import edu.eci.pdsw.entities.Monitoria;
 import edu.eci.pdsw.entities.Problem;
+import edu.eci.pdsw.entities.Report;
 import edu.eci.pdsw.entities.Student;
 import edu.eci.pdsw.entities.Task;
 import edu.eci.pdsw.entities.Turn;
@@ -310,10 +311,19 @@ public class ServicesFacade {
      * @throws ServiceFacadeException 
      */
         
-       // public Report HacerReporte( Date fecha1, Date fecha2){
-       // return null;
-        
-        //}
+       public Report HacerReporte( Date fecha1, Date fecha2) throws ServiceFacadeException{
+       
+        DaoFactory daof=DaoFactory.getInstance(properties);
+        try {
+            daof.beginSession();
+            Report reporte=daof.getDaoReport().load(fecha1,fecha2);
+            daof.endSession();
+            return reporte;
+        } catch (PersistenceException ex) {
+            System.out.println(ex.toString());
+            throw new ServiceFacadeException("Error al consultar estudiante.",ex);
+        }        
+      }
         
     
     
