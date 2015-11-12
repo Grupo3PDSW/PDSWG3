@@ -1,9 +1,14 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
-    <h:head></h:head>
+
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html     
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>RegistroProblema</title>
+    </h:head>
     <body>        
         <center> 
         <img  src="http://www.escuelaing.edu.co/uploads/keywords/logo.jpg" ></img>
@@ -20,8 +25,7 @@
                     <h:form>
                         <p:growl id="msgs" showDetail="true" />
 
-                        <p:dashboard id="board" model="#{dashboardView.model}">
-                            <p:ajax event="reorder" listener="#{dashboardView.handleReorder}" update="msgs" />
+                       
 
                             <p:panel id="sports" header="Descripcion">
                                 <h:inputText value="#{beanProblemas.desc}"  />
@@ -43,7 +47,7 @@
                                 <h:inputText value="#{beanProblemas.Estudiante_id}"  />
                             </p:panel>
                       
-                        </p:dashboard>
+                        
 
                         <div style="clear:both" />
                     </h:form>

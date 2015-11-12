@@ -5,6 +5,8 @@
  */
 package edu.eci.pdsw.services;
 
+import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
+import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import edu.eci.pdsw.entities.Bitacora;
 import edu.eci.pdsw.entities.Equipo;
 import edu.eci.pdsw.entities.Monitoria;
@@ -16,6 +18,7 @@ import edu.eci.pdsw.persistencee.DaoFactory;
 import edu.eci.pdsw.persistencee.PersistenceException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Date;
 import java.util.Properties;
 
 /**
@@ -299,6 +302,19 @@ public class ServicesFacade {
         }        
     }
 
+    /**
+     * Muestra un reporte apartir de la base de datos entre fechas seleccionadas 
+     * @param fecha1 , Fecha de inicio del intervalo
+     * @param fecha2 , Fecha de fin del intervalo
+     * @return retorna el reporte con la informacion necesaria
+     * @throws ServiceFacadeException 
+     */
+        
+       // public Report HacerReporte( Date fecha1, Date fecha2){
+       // return null;
+        
+        //}
+        
     
     
 }

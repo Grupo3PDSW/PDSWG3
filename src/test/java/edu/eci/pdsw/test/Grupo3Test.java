@@ -181,30 +181,13 @@ public class AppTest {
     }
 
     
-    @Test
-    //CH3A: Realiza un reporte de manera correcta.
-    public void CH3ATest() {
+ 
 
     }
     @Test
     //CH3B: Realiza un reporte con seleccion de intervalo de fechas.
     public void CH3BTest() {
-
+        
     }
 
-
-    @Test
-    //CH3C: Realiza un reporte con seleccion de fechas organizados por el top N de lenguajes.
-    public void CH3CTest() {
-
-    }
-    @Test
-    //CH3D: Realiza un reporte con las tareas discriminadas.
-    public void CH3DTest() {
-
-    }
-
-
-    }
-    
-
+}
