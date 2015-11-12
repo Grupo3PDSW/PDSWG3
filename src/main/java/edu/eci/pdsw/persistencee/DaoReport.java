@@ -14,7 +14,6 @@ import java.sql.Date;
  */
 public interface DaoReport {
     
-    public void save(Report r);
      
      public Report load (Date fecha1, Date fecha2);
     

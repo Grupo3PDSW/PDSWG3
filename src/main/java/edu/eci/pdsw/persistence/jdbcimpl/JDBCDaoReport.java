@@ -28,10 +28,6 @@ public class JDBCDaoReport implements DaoReport{
         this.con = con;
     }
     
-    @Override
-    public void save(Report r) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     @Override
     public Report load(Date fecha1, Date fecha2) {
