@@ -26,20 +26,13 @@ import java.util.Properties;
  */
 public class JDBCDaoFactory extends DaoFactory{
 
-     private static final ThreadLocal<Connection> connectionInstance = new ThreadLocal<Connection>() {
-    };
-
-    private static Properties appProperties = null;
-
-    public JDBCDaoFactory(Properties appProperties) {
-        this.appProperties = appProperties;
-    }
+     Connection con; 
 
     private static Connection openConnection() throws PersistenceException {
-        String url = appProperties.getProperty("url");
-        String driver = appProperties.getProperty("driver");
-        String user = appProperties.getProperty("user");
-        String pwd = appProperties.getProperty("pwd");
+         String url="jdbc:mysql://desarrollo.is.escuelaing.edu.co:3306/pdswg3";
+            String driver="com.mysql.jdbc.Driver";
+            String user="pdswg3";
+            String pwd="pdswg03";
 
         try {
             Class.forName(driver);
@@ -54,78 +47,90 @@ public class JDBCDaoFactory extends DaoFactory{
 
     @Override
     public void beginSession() throws PersistenceException {
-        connectionInstance.set(openConnection());
+       try {
+            if (con==null || con.isClosed()){            
+                con=openConnection();
+            }
+            else{
+                throw new PersistenceException("Session was already opened.");
+            }
+        } catch (SQLException ex) {
+            throw new PersistenceException("An error ocurred while opening a JDBC connection.",ex);
+        }
 
     }
 
     @Override
     public void endSession() throws PersistenceException {
-        try {
-            if (connectionInstance.get() == null || connectionInstance.get().isClosed()) {
+       try {
+            if (con==null || con.isClosed()){
                 throw new PersistenceException("Conection is null or is already closed.");
-            } else {
-                connectionInstance.get().close();
             }
+            else{
+                con.close();
+            }            
         } catch (SQLException ex) {
-            throw new PersistenceException("Error on connection closing.", ex);
+            throw new PersistenceException("Error on connection closing.",ex);
         }
     }
 
     @Override
     public void commitTransaction() throws PersistenceException {
-        try {
-            if (connectionInstance.get() == null || connectionInstance.get().isClosed()) {
+         try {
+            if (con==null || con.isClosed()){
                 throw new PersistenceException("Conection is null or is already closed.");
-            } else {
-                connectionInstance.get().commit();
             }
+            else{
+                con.commit();
+            }            
         } catch (SQLException ex) {
-            throw new PersistenceException("Error on connection closing.", ex);
-        }
+            throw new PersistenceException("Error on connection closing.",ex);
+        }        
     }
 
     @Override
     public void rollbackTransaction() throws PersistenceException {
-        try {
-            if (connectionInstance.get() == null || connectionInstance.get().isClosed()) {
+          try {
+            if (con==null || con.isClosed()){
                 throw new PersistenceException("Conection is null or is already closed.");
-            } else {
-                connectionInstance.get().rollback();
             }
+            else{
+                con.rollback();
+            }            
         } catch (SQLException ex) {
-            throw new PersistenceException("Error on connection closing.", ex);
+            throw new PersistenceException("Error on connection closing.",ex);
         }
     }
     
     @Override
     public DaoBitacora getDaoBitacora() {
-        return new JDBCDaoBitacora(connectionInstance.get());
+        return new JDBCDaoBitacora(con);
     }
 
     @Override
     public DaoStudent getDaoStudent(){
-        return new JDBCDaoStudent(connectionInstance.get());
+        return new JDBCDaoStudent(con);
     }
     
     @Override
     public DaoTask getDaoTask(){
-        return new JDBCDaoTask(connectionInstance.get());
+        return new JDBCDaoTask(con);
     }
 
 
     @Override
     public DaoMonitoria getDaoMonitoria() {
-        return new JDBCDaoMonitoria(connectionInstance.get());
+        return new JDBCDaoMonitoria(con);
     }
 
     @Override
     public DaoProblem getDaoProblem() {
-        return new JDBCDaoProblem(connectionInstance.get());
+        return new JDBCDaoProblem(con);
     }
 
     @Override
     public DaoTurn getDaoTurn() {
-        return new JDBCDaoTurn(connectionInstance.get());
+        return new JDBCDaoTurn(con);
     }
 
     @Override
