@@ -213,7 +213,12 @@ public class ServicesFacade {
     }
     
     
-    
+    /**
+     * Consulta un turno en la base de datos
+     * @param idTurn contiene el Id de la turno a consultar
+     * @return retorna el turno como objeto con toda la informacion necesaria
+     * @throws ServiceFacadeException 
+     */
     
     public Turn consultarTurn(int idTurn) throws ServiceFacadeException{
         DaoFactory daof=DaoFactory.getInstance(properties);
@@ -228,6 +233,16 @@ public class ServicesFacade {
         }        
     }
     
+    
+     /**
+     * Consulta una monitoria en la base de datos
+     * @param idMoni contiene el Id de la monitoria a consultar
+     * @return retorna la monitoria como objeto con toda la informacion necesaria
+     * @throws ServiceFacadeException 
+     */
+    
+    
+    
     public Monitoria consultarMonitoria(int idMoni) throws ServiceFacadeException{
         DaoFactory daof=DaoFactory.getInstance(properties);
         try {
@@ -240,6 +255,13 @@ public class ServicesFacade {
             throw new ServiceFacadeException("Error al consultar estudiante.",ex);
         }        
     }
+     /**
+     * Consulta una tarea en la base de datos
+     * @param idTask contiene el Id de la tarea a consultar
+     * @return retorna la tarea como objeto con toda la informacion necesaria
+     * @throws ServiceFacadeException 
+     */ 
+       
     
     
     public Task consultarTarea(int idTask) throws ServiceFacadeException{
@@ -254,6 +276,15 @@ public class ServicesFacade {
             throw new ServiceFacadeException("Error al consultar estudiante.",ex);
         }        
     }
+    
+    
+    
+     /**
+     * Consulta un equipo en la base de datos
+     * @param idEq contiene el Id del Equipo a consultar
+     * @return retorna el equipo como objeto con toda la informacion necesaria
+     * @throws ServiceFacadeException 
+     */
     
         public Equipo consultarEquipo(int idEq) throws ServiceFacadeException{
         DaoFactory daof=DaoFactory.getInstance(properties);
