@@ -331,20 +331,7 @@ public class ServicesFacade {
       }
        
        
-       
-       public String consultarContraseña(int idEstu) throws ServiceFacadeException{
-        DaoFactory daof=DaoFactory.getInstance(properties);
-        try {
-            daof.beginSession();
-            String contraseña=daof.getDaoStudent().loadContraseña(idEstu);
-            daof.endSession();
-            return contraseña;
-        } catch (PersistenceException ex) {
-            System.out.println(ex.toString());
-            throw new ServiceFacadeException("Error al consultar estudiante.",ex);
-        }        
-    }
-        
+    
     
     
 }

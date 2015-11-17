@@ -16,6 +16,4 @@ public interface DaoStudent {
     public void save(Student stu);
     
     public Student load(int id);
-    
-    public String loadContraseña(int id);
 }

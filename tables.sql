@@ -1,5 +1,5 @@
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2015-11-06 03:04:51.306
+-- Last modification date: 2015-11-17 17:56:30.408
 
 
 
@@ -80,5 +80,7 @@ CREATE TABLE Turno (
     Estudiante_id int  NOT NULL,
     CONSTRAINT Turno_pk PRIMARY KEY (id)
 );
+
+
 
 

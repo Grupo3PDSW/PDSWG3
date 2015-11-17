@@ -71,11 +71,5 @@ public class JDBCDaoStudent implements DaoStudent{
         return stu;
     }
 
-    @Override
-    public String loadContraseña(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-
     
 }

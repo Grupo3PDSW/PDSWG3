@@ -30,23 +30,6 @@ public class backingBean {
     public String Descrip;
     public int idTurn;
     public Bitacora bitacoraBean;
-    public String contraseñaIngresada;
-    
-    public boolean ingresoCorrecto() throws ServiceFacadeException{
-        boolean estado = false;
-        if(contraseñaIngresada.equals(ServicesFacade.getInstance("applicationconfig.properties").consultarContraseña(idMonitor))){
-            estado = true;
-        }
-        return estado;
-    }
-
-    public String getContraseñaIngresada() {
-        return contraseñaIngresada;
-    }
-
-    public void setContraseñaIngresada(String contraseñaIngresada) {
-        this.contraseñaIngresada = contraseñaIngresada;
-    }
     
     public Date getFecha() {
         return fecha;
