@@ -18,7 +18,7 @@ import javax.faces.bean.SessionScoped;
  *
  * @author 2101751
  */
-@ManagedBean 
+@ManagedBean (name = "beanMonitores")
 @SessionScoped
 public class backingBean {
     
@@ -30,18 +30,24 @@ public class backingBean {
     public String Descrip;
     public int idTurn;
     public Bitacora bitacoraBean;
+    public String contraseñaIngresada;
     
-    
-    public void registroBitacora() throws ServiceFacadeException{
-        Student stu = ServicesFacade.getInstance("applicationconfig.properties").consultarEstudiante(idMonitor);
-        ServicesFacade.getInstance("applicationconfig.properties").ActualizarEstadoDeTarea(idTask, estado);
-        Task tarea = ServicesFacade.getInstance("applicationconfig.properties").consultarTarea(idTask);
-        Monitoria moni = ServicesFacade.getInstance("applicationconfig.properties").consultarMonitoria(idMonitoria);
-        Turn turno = ServicesFacade.getInstance("applicationconfig.properties").consultarTurn(idTurn);
-        bitacoraBean = new Bitacora(stu, Descrip , tarea, fecha, moni, turno, 0);
-        ServicesFacade.getInstance("applicationconfig.properties").registrarBitacora(bitacoraBean);
+    public boolean ingresoCorrecto() throws ServiceFacadeException{
+        boolean estado = false;
+        if(contraseñaIngresada.equals(ServicesFacade.getInstance("applicationconfig.properties").consultarContraseña(idMonitor))){
+            estado = true;
+        }
+        return estado;
     }
 
+    public String getContraseñaIngresada() {
+        return contraseñaIngresada;
+    }
+
+    public void setContraseñaIngresada(String contraseñaIngresada) {
+        this.contraseñaIngresada = contraseñaIngresada;
+    }
+    
     public Date getFecha() {
         return fecha;
     }
@@ -100,7 +106,6 @@ public class backingBean {
     }
     
     public Bitacora getBitacoraBean() throws ServiceFacadeException {
-        registroBitacora();
         return bitacoraBean;
     }
 

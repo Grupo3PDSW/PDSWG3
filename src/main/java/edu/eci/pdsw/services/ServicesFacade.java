@@ -174,6 +174,11 @@ public class ServicesFacade {
         }        
     }
     
+    
+    
+    
+    
+    
         /**
      * El metodo consulta un problem de la base de datos y lo retorna como un objeto
      * @param idPro es el Id del problema  a consultar
@@ -324,6 +329,21 @@ public class ServicesFacade {
             throw new ServiceFacadeException("Error al consultar estudiante.",ex);
         }        
       }
+       
+       
+       
+       public String consultarContraseña(int idEstu) throws ServiceFacadeException{
+        DaoFactory daof=DaoFactory.getInstance(properties);
+        try {
+            daof.beginSession();
+            String contraseña=daof.getDaoStudent().loadContraseña(idEstu);
+            daof.endSession();
+            return contraseña;
+        } catch (PersistenceException ex) {
+            System.out.println(ex.toString());
+            throw new ServiceFacadeException("Error al consultar estudiante.",ex);
+        }        
+    }
         
     
     
