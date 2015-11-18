@@ -9,11 +9,15 @@ package edu.eci.pdsw.bean;
 import edu.eci.pdsw.entities.Report;
 import edu.eci.pdsw.services.ServiceFacadeException;
 import edu.eci.pdsw.services.ServicesFacade;
-import java.sql.Date;
-import javax.ejb.Stateless;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-
+import javax.faces.context.FacesContext;
+ 
+import org.primefaces.context.RequestContext;
+import org.primefaces.event.SelectEvent;
 /**
  *
  * @author 2091854
@@ -22,8 +26,8 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 public class ReporteBean {
 
-    public Date fecha1; 
-    public Date fecha2; 
+    public Date date1; 
+    public Date date2; 
     public int  codigoMonitor; 
     public String nombreMonitor; 
     public int tareas; 
@@ -34,27 +38,41 @@ public class ReporteBean {
     public int monitorias; 
     Report r;
     
+   
     public void registroProblema () throws ServiceFacadeException{               
 
-            Report re=  ServicesFacade.getInstance("applicationconfig.properties").HacerReporte(fecha1, fecha2);
+            Report re=  ServicesFacade.getInstance("applicationconfig.properties").HacerReporte(date1, date2);
             r = new Report(re.getFecha1(),re.getFecha2(),re.getCodigoMonitor(),re.getNombreMonitor(),re.getTareas(),re.getTipo(),re.getLenguajeProgramacion(),re.getTemaMonitoria(),re.getSoporte(),re.getMonitorias());
 //        r= new Report(fecha1, fecha2, codigoMonitor, nombreMonitor, tareas, tipo, lenguajeProgramacion, temaMonitoria, soporte, monitorias);
     }
 
+    public void onDateSelect(SelectEvent event) {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Date Selected", format.format(event.getObject())));
+    }
+     
+    public void click() {
+        RequestContext requestContext = RequestContext.getCurrentInstance();
+         
+        requestContext.update("form:display");
+        requestContext.execute("PF('dlg').show()");
+    }
+    
     public Date getFecha1() {
-        return fecha1;
+        return date1;
     }
 
     public void setFecha1(Date fecha1) {
-        this.fecha1 = fecha1;
+        this.date1 = date1;
     }
 
     public Date getFecha2() {
-        return fecha2;
+        return date2;
     }
 
     public void setFecha2(Date fecha2) {
-        this.fecha2 = fecha2;
+        this.date2 = date2;
     }
 
     public int getCodigoMonitor() {

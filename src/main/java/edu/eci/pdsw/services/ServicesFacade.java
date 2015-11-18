@@ -329,6 +329,10 @@ public class ServicesFacade {
             throw new ServiceFacadeException("Error al consultar estudiante.",ex);
         }        
       }
+
+    public Report HacerReporte(java.util.Date date1, java.util.Date date2) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
        
        
     
