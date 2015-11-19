@@ -7,6 +7,9 @@ package edu.eci.pdsw.persistencee;
 
 import edu.eci.pdsw.entities.Report;
 import java.sql.Date;
+import java.util.HashSet;
+import java.util.Set;
+import javax.management.Query;
 
 /**
  *
@@ -15,6 +18,6 @@ import java.sql.Date;
 public interface DaoReport {
     
      
-     public Report load (Date fecha1, Date fecha2);
+     public HashSet<Report> load (Date fecha1, Date fecha2) throws PersistenceException;
     
 }
