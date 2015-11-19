@@ -9,14 +9,14 @@
     </h:head>
     <h:body>
         <h:form id="Reporte">
-            <p:growl id="Reporte de Monitores" showDetail="true" />
+            <!--<p:growl id="Reporte de Monitores" showDetail="true" />-->
  
             <h:panelGrid columns="2" cellpadding="5">
-                <p:outputLabel for="inline" value="Inline:" />
-                <p:calendar id="inline" value="#{calendarView.date1}" mode="inline" />
+                <p:outputLabel value="Desde:" />
+                <p:calendar id="c1" value="#{calendarView.date1}" mode="inline" />
         
-                <p:outputLabel for="inline" value="Inline:" />
-                <p:calendar id="inline" value="#{calendarView.date2}" mode="inline" />
+                <p:outputLabel value="Hasta:" />
+                <p:calendar id="c2" value="#{calendarView.date2}" mode="inline" />
             </h:panelGrid>
             
             <p:dialog modal="true" resizable="false" header="Values" widgetVar="dlg" showEffect="fold">
@@ -32,5 +32,9 @@
                     </h:outputText>
                  </p:panelGrid>
             </p:dialog>
+            
+           
+            
+        </h:form>    
     </h:body>
 </html>
