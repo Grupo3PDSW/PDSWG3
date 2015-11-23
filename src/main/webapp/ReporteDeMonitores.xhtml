@@ -33,8 +33,50 @@
                  </p:panelGrid>
             </p:dialog>
             
-           
+            <p:growl id="growl" life="2000" />
             
+            <p:commandButton value="Generar Reporte" id="GenerarReporte" actionListener="#{beanReport.setFecha1(date1)}"  update="growl" icon="ui-icon-disk" />
+            
+            
+            
+           <p:dataTable var="Reporte Monitores" value="#{dtBasicView.cars}"> 
+               <f:facet name="header">
+                  Reporte de Monitores 
+               </f:facet>
+               <p:column headerText="Monitor">
+                   <h:outputText value="#{ReporteMonitores.monitor}"/>
+               </p:column>
+               <p:column headerText="Nombre">
+                   <h:outputText value="#{ReporteMonitores.nombre}"/>
+               </p:column>
+               <p:column headerText="Tareas">
+                   <h:outputText value="#{ReporteMonitores.tareas}"/>
+               </p:column>
+               <p:column headerText="Tipo de Tareas">
+                   <h:outputText value="#{ReporteMonitores.tipo}"/>
+               </p:column>
+               
+               <p:column headerText="Lenguajes más Consultados">
+                   <h:outputText value="#{ReporteMonitores.lenguajeProgramacion}"/>
+               </p:column>
+               
+               <p:column headerText="Tema">
+                   <h:outputText value="#{ReporteMonitores.tema}"/>
+               </p:column>
+               
+               <p:column headerText="Se dio Soporte">
+                   <h:outputText value="#{ReporteMonitores.DarSoporte}"/>
+               </p:column>
+               
+               <p:column headerText="Cantidad Monitoria">
+                   <h:outputText value="#{ReporteMonitores.lenguajeProgramacion}"/>
+               </p:column>
+               
+               
+           </p:dataTable>   
+               
+               
+               
         </h:form>    
     </h:body>
 </html>
