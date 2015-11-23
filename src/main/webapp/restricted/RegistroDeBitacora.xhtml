@@ -8,26 +8,27 @@
         <title>Registro De Bitacora</title>
     </h:head>
     <h:body>
-        <center>
+        <west>
         <h:panelGrid columns="2">        
-            <h:outputText value="Estado"  />
-            <h:inputText value="#{beanMonitores.estado}"  />       
-        
-        
-            <h:outputText value="TareaId"  />
-            <h:inputText value=""  />
-       
-        
-        
-            <h:outputText value="MonitoriaId"  />
-            <h:inputText value=""  />
-       
-        
-       
-            <h:outputText value="Comentario"  />
-            <h:inputText value=""  />        
+                        
+             <p:outputLabel for="console" value="Estado:" />
+             
+             <p:selectOneMenu id="console" value="#{beanMonitores.estado}" style="width:250px">
+                 <f:selectItem itemLabel="Seleccione una opcion" itemValue="" />
+                 <f:selectItem itemLabel="Resuelto" itemValue="Resuelto" />
+                 <f:selectItem itemLabel="Avanzado" itemValue="Avanzado" />
+             </p:selectOneMenu>
+             
+             
+             <p:outputLabel for="car" value="Tarea " />
+                 <p:selectOneMenu id="car" value="#{bean.car}">
+                 <f:selectItem itemLabel="Select One" itemValue="" />
+                 <f:selectItems value="#{beanMonitores.idTask}" />
+             </p:selectOneMenu>
+             
+            
         
         </h:panelGrid>
-    </center>    
+    </west>    
     </h:body>
 </html>
