@@ -5,6 +5,7 @@
  */
 package edu.eci.pdsw.persistence.jdbcimpl;
 
+import java.util.Date;
 import edu.eci.pdsw.entities.Bitacora;
 import edu.eci.pdsw.entities.Monitoria;
 import edu.eci.pdsw.entities.Student;
@@ -15,7 +16,6 @@ import edu.eci.pdsw.persistencee.PersistenceException;
 import edu.eci.pdsw.services.ServiceFacadeException;
 import edu.eci.pdsw.services.ServicesFacade;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -47,26 +47,19 @@ public class JDBCDaoBitacora implements DaoBitacora{
                 ps=con.prepareStatement("insert into Bitacora(descripcion, tarea_id,"
                     + "fecha, Monitoria_id, Monitor, Turno_id) "
                         + "values (?,?,?,?,?,?)" ,Statement.RETURN_GENERATED_KEYS);
-                ps.setInt(5, b.getBitMonitor().getIdStudent());
-                ps.setInt(6 , b.getBitTurn().getIdTurn());
+                ps.setInt(5, b.getMonitor_id());
+                ps.setInt(6 , b.getTurno_id());
                 ps.setString(1, b.getDescription());  
-                ps.setInt(2, b.getBitTask().getIdTask());
-                ps.setDate(3, b.getFecha());
-                ps.setInt(4, b.getBitMonitoria().getIdMonitoria());
+                ps.setInt(2, b.getTaskid());
+                ps.setDate(3, (java.sql.Date) b.getFecha());
+                ps.setInt(4, b.getMonitoria_id());
                 ps.execute();
                 ResultSet rs=ps.getGeneratedKeys();
                 if(rs.next()){
                     b.setIdBit(rs.getInt("id"));
                 }
                 
-            }else{
-                ps=con.prepareStatement("insert into Bitacora(descripcion, tarea_id,"
-                    + "fecha, Monitoria_id, Monitor, Turno_id) "
-                        + "values (?,?,?,?,?,?)");
-                ps.setInt(1, b.getIdBit());
-                ps.setDate(2, b.getFecha());
-                ps.execute();
-            }    
+            }   
               
         }catch (SQLException ex) {
             throw new PersistenceException("An error ocurred while loading an order.",ex);
