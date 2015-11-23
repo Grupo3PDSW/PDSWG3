@@ -2,7 +2,7 @@
  * Very simple bean that authenticates the user via Apache Shiro, using JSF
  * @author Daniel Mascarenhas
  */
-package edu.eci.pdsw.sample.bean.security;
+package edu.eci.pdsw.bean.security;
 
 import java.io.File;
 import org.apache.shiro.SecurityUtils;
@@ -48,10 +48,10 @@ public class ShiroLoginBean implements Serializable {
             subject.login(token);
 
             if (subject.hasRole("monitor")) {
-                FacesContext.getCurrentInstance().getExternalContext().redirect("restricted/RegistroDeBitacora.xhtml");
+                FacesContext.getCurrentInstance().getExternalContext().redirect("monitor/inicioMonitor.xhtml");
             }
-            else if(subject.hasRole("employee")){
-                FacesContext.getCurrentInstance().getExternalContext().redirect("employee/index.xhtml");
+            else if(subject.hasRole("usuario")){
+                FacesContext.getCurrentInstance().getExternalContext().redirect("usuario/inicioUsuario.xhtml");
             }
             else {
                 FacesContext.getCurrentInstance().getExternalContext().redirect("open/index.xhtml");
