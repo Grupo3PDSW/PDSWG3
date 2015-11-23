@@ -12,8 +12,12 @@ import edu.eci.pdsw.entities.Turn;
 import edu.eci.pdsw.services.ServiceFacadeException;
 import edu.eci.pdsw.services.ServicesFacade;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.model.SelectItem;
+import javax.faces.model.SelectItemGroup;
 /**
  *
  * @author 2101751
@@ -30,6 +34,40 @@ public class backingBean {
     public String Descrip;
     public int idTurn;
     public Bitacora bitacoraBean;
+    
+    
+
+    public List<SelectItem> getTaskList() {
+        return taskList;
+    }
+
+    public void setTaskList(List<SelectItem> taskList) {
+        this.taskList = taskList;
+    }
+
+    public SelectItemGroup getG1() {
+        return g1;
+    }
+
+    public void setG1(SelectItemGroup g1) {
+        this.g1 = g1;
+    }
+    public List<SelectItem> taskList;
+    
+    SelectItemGroup g1;
+
+    public backingBean() {
+        this.g1 = new SelectItemGroup("Listado de tareas");    
+        g1.setSelectItems(new SelectItem[] {new SelectItem("t1", "t1"), new SelectItem("t2", "t2"), new SelectItem("t3", "t3")});
+        
+        taskList = new ArrayList<SelectItem>();
+        taskList.add(g1);
+
+    }
+    
+    
+         
+       
     
     public Date getFecha() {
         return fecha;
@@ -95,6 +133,25 @@ public class backingBean {
     public void setBitacoraBean(Bitacora bitacoraBean) throws ServiceFacadeException {
         
         this.bitacoraBean = bitacoraBean;
+    }
+    
+    public List<String> completeArea(String query) {
+        List<String> results = new ArrayList<String>();
+         
+        if(query.equals("PrimeFaces")) {
+            results.add("PrimeFaces Rocks!!!");
+            results.add("PrimeFaces has 100+ components.");
+            results.add("PrimeFaces is lightweight.");
+            results.add("PrimeFaces is easy to use.");
+            results.add("PrimeFaces is developed with passion!");
+        }
+        else {
+            for(int i = 0; i < 10; i++) {
+                results.add(query + i);
+            }
+        }
+         
+        return results;
     }
     
     
