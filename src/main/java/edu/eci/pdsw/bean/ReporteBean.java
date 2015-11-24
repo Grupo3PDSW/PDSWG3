@@ -14,6 +14,7 @@ import edu.eci.pdsw.services.ServicesFacade;
 import java.text.SimpleDateFormat;
 import java.sql.Date;
 import java.util.HashSet;
+import java.util.Iterator;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -72,6 +73,31 @@ public class ReporteBean {
     public void reporte2(Date fecha1, Date fecha2) throws PersistenceException
     {
         jdbcReporte.loadSegundo(fecha1, fecha2);
+    }
+    
+    public void recorrerReporte1()
+    {
+        while(reporte1.iterator().hasNext())
+        {
+            Report next = reporte1.iterator().next();
+            setCodigoMonitor(next.getCodigoMonitor());
+            setNombreMonitor(next.getNombreMonitor());
+            setTareas(next.getTareas());
+            setTipo(next.getTipo());
+        }
+    }
+    
+        public void recorrerReporte2()
+    {
+        while(reporte2.iterator().hasNext())
+        {
+            Report next2 = reporte2.iterator().next();
+            setCodigoMonitor(next2.getCodigoMonitor());
+            setLenguajeProgramacion(next2.getLenguajeProgramacion());
+            setTemaMonitoria(next2.getTemaMonitoria());
+            setSoporte(next2.getSoporte());
+            setMonitorias(next2.getMonitorias());
+        }
     }
     
     public Date getFecha1() {
