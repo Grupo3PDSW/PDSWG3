@@ -12,9 +12,10 @@ import edu.eci.pdsw.persistencee.PersistenceException;
 import edu.eci.pdsw.services.ServiceFacadeException;
 import edu.eci.pdsw.services.ServicesFacade;
 import java.text.SimpleDateFormat;
-import java.sql.Date;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -30,8 +31,8 @@ import org.primefaces.event.SelectEvent;
 @SessionScoped
 public class ReporteBean {
 
-    public Date date1; 
-    public Date date2; 
+    public Date date1=new Date(System.currentTimeMillis()); 
+    public Date date2=new Date(System.currentTimeMillis()); 
     public int  codigoMonitor; 
     public String nombreMonitor; 
     public int tareas; 
@@ -43,12 +44,30 @@ public class ReporteBean {
     public HashSet<Report> reporte1;
     public HashSet<Report> reporte2;
     public JDBCDaoReport jdbcReporte;
+
+    public Date getDate1() {
+        return date1;
+    }
+
+    public void setDate1(Date date1) {
+        this.date1 = date1;
+    }
+
+    public Date getDate2() {
+        return date2;
+    }
+
+    public void setDate2(Date date2) {
+        LOG.info("Recibida fecha "+date2);
+        this.date2 = date2;
+    }
+    private static final Logger LOG = Logger.getLogger(ReporteBean.class.getName());
     
    
     public void registroProblema () throws ServiceFacadeException{               
 
-             reporte1=  ServicesFacade.getInstance("applicationconfig.properties").HacerReporte(date1, date2);
-             reporte2=  ServicesFacade.getInstance("applicationconfig.properties").HacerReporteSegundo(date1, date2);
+//             reporte1=  ServicesFacade.getInstance("applicationconfig.properties").HacerReporte(date1, date2);
+//             reporte2=  ServicesFacade.getInstance("applicationconfig.properties").HacerReporteSegundo(date1, date2);
             
     }
 
@@ -65,15 +84,15 @@ public class ReporteBean {
         requestContext.execute("PF('dlg').show()");
     }
     
-    public void reporte1(Date fecha1, Date fecha2) throws PersistenceException
-    {
-        jdbcReporte.load(fecha1, fecha2);
-    }
-    
-    public void reporte2(Date fecha1, Date fecha2) throws PersistenceException
-    {
-        jdbcReporte.loadSegundo(fecha1, fecha2);
-    }
+//    public void reporte1(Date fecha1, Date fecha2) throws PersistenceException
+//    {
+//        jdbcReporte.load(fecha1, fecha2);
+//    }
+//    
+//    public void reporte2(Date fecha1, Date fecha2) throws PersistenceException
+//    {
+//        jdbcReporte.loadSegundo(fecha1, fecha2);
+//    }
     
     public void recorrerReporte1()
     {

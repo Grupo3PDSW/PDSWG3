@@ -13,21 +13,21 @@
  
             <h:panelGrid columns="6" cellpadding="8" >
                 <p:outputLabel value="Desde:" />
-                <p:calendar id="c1" value="#{calendarView.date1}" mode="inline" />
+                <p:calendar id="c1" value="#{beanReport.date1}" mode="inline" />
         
                 <p:outputLabel value="Hasta:" />
-                <p:calendar id="c2" value="#{calendarView.date2}" mode="inline" />
+                <p:calendar id="c2" value="#{beanReport.date2}" mode="inline" />
             </h:panelGrid>
             
             <p:dialog modal="true" resizable="false" header="Values" widgetVar="dlg" showEffect="fold">
                  <p:panelGrid id="display" columns="2" columnClasses="label,value">
                     <h:outputText value="Inline:" />
-                    <h:outputText value="#{calendarView.date1}">
+                    <h:outputText value="#{beanReport.date1}">
                         <f:convertDateTime pattern="MM/dd/yyyy" />
                     </h:outputText>
                     
                     <h:outputText value="Inline:" />
-                    <h:outputText value="#{calendarView.date2}">
+                    <h:outputText value="#{beanReport.date2}">
                         <f:convertDateTime pattern="MM/dd/yyyy" />
                     </h:outputText>
                  </p:panelGrid>
@@ -37,29 +37,29 @@
             
             <h:panelGrid columns="50" cellpadding="70">
                 <td align="center"></td>
-                <p:commandButton value="Generar Reporte" id="GenerarReporte" actionListener="#{ReporteBean.setFecha1(date1)}"  update="growl" icon="ui-icon-disk" />
+                <p:commandButton value="Generar Reporte" id="GenerarReporte"   update="growl" icon="ui-icon-disk" />
             </h:panelGrid>
             
             
-           <p:dataTable var="ReporteMonitores" value="#{dtReporteBean.reporte1}"> 
+           <p:dataTable var="iesimoreporte" value="#{beanReport.reporte1}" > 
                <f:facet name="header">
                   Reporte de Monitores 
                </f:facet>
                <p:column headerText="Monitor">
-                   <h:outputText value="#{ReporteMonitores.monitor}"/>
+                   <h:outputText value="#{iesimoreporte.monitor}"/>
                </p:column>
                <p:column headerText="Nombre">
-                   <h:outputText value="#{ReporteMonitores.nombre}"/>
+                   <h:outputText value="#{iesimoreporte.nombre}"/>
                </p:column>
                <p:column headerText="Tareas">
-                   <h:outputText value="#{ReporteMonitores.tareas}"/>
+                   <h:outputText value="#{iesimoreporte.tareas}"/>
                </p:column>
                <p:column headerText="Tipo de Tareas">
-                   <h:outputText value="#{ReporteMonitores.tipo}"/>
+                   <h:outputText value="#{iesimoreporte.tipo}"/>
                </p:column>               
            </p:dataTable>   
             
-            <p:dataTable var="ReporteMonitores2" value="#{dtReporteBean.reporte2}">
+            <p:dataTable var="ReporteMonitores2" value="#{beanReport  .reporte2}">
                
                <p:column headerText="Monitor">
                    <h:outputText value="#{ReporteMonitores2.monitor}"/>

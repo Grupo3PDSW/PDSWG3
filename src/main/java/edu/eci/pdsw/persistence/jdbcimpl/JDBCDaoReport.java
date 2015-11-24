@@ -104,6 +104,7 @@ public class JDBCDaoReport implements DaoReport{
         
         } catch (SQLException ex) {
              Logger.getLogger(JDBCDaoReport.class.getName()).log(Level.SEVERE, null, ex);
+             throw new PersistenceException("Error al cargar el reporte ....",ex);
          }
          return reportesSegundo;
     }
