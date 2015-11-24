@@ -11,7 +11,7 @@
         <h:form id="Reporte">
             <!--<p:growl id="Reporte de Monitores" showDetail="true" />-->
  
-            <h:panelGrid columns="2" cellpadding="5">
+            <h:panelGrid columns="6" cellpadding="8" >
                 <p:outputLabel value="Desde:" />
                 <p:calendar id="c1" value="#{calendarView.date1}" mode="inline" />
         
@@ -35,11 +35,13 @@
             
             <p:growl id="growl" life="2000" />
             
-            <p:commandButton value="Generar Reporte" id="GenerarReporte" actionListener="#{beanReport.setFecha1(date1)}"  update="growl" icon="ui-icon-disk" />
+            <h:panelGrid columns="50" cellpadding="70">
+                <td align="center"></td>
+                <p:commandButton value="Generar Reporte" id="GenerarReporte" actionListener="#{beanReport.setFecha1(date1)}"  update="growl" icon="ui-icon-disk" />
+            </h:panelGrid>
             
             
-            
-           <p:dataTable var="Reporte Monitores" value="#{dtBasicView.cars}"> 
+           <p:dataTable var="Reporte Monitores" value="#{dtBasicView.ReporteMonitores}"> 
                <f:facet name="header">
                   Reporte de Monitores 
                </f:facet>
@@ -54,8 +56,14 @@
                </p:column>
                <p:column headerText="Tipo de Tareas">
                    <h:outputText value="#{ReporteMonitores.tipo}"/>
-               </p:column>
+               </p:column>               
+           </p:dataTable>   
+            
+           <p:dataTable var="" value="#{dtBasicView.ReporteMonitores}">
                
+               <p:column headerText="Monitor">
+                   <h:outputText value="#{ReporteMonitores.monitor}"/>
+               </p:column>
                <p:column headerText="Lenguajes más Consultados">
                    <h:outputText value="#{ReporteMonitores.lenguajeProgramacion}"/>
                </p:column>
@@ -71,10 +79,7 @@
                <p:column headerText="Cantidad Monitoria">
                    <h:outputText value="#{ReporteMonitores.lenguajeProgramacion}"/>
                </p:column>
-               
-               
-           </p:dataTable>   
-               
+           </p:dataTable> 
                
                
         </h:form>    
