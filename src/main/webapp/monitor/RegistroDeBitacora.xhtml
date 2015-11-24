@@ -13,18 +13,17 @@
         <br />
         <p:outputLabel value="REGISTO DE BITACORA" /><br />
         <br /><br />
-        
-        </center>
+        <h:panelGrid columns="2">
         <h:form> 
+            <h3>Tarea Realizada</h3>
             <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">        
             
                 <p:outputLabel for="car" value="Tarea:" />                
-                <p:selectOneMenu id="car" value="#{bean.car}">
+                <p:selectOneMenu id="car" value="#{beanMonitores.taskList}">
                     <f:selectItem itemLabel="Seleccione una opcion" itemValue="" />
                     <f:selectItems value="#{beanMonitores.taskList}" />
                 </p:selectOneMenu>
             
-
                 <p:outputLabel for="console" value="Estado:" />
              
                 <p:selectOneMenu id="console" value="#{beanMonitores.estado}" style="width:215px">
@@ -33,19 +32,25 @@
                     <f:selectItem itemLabel="Avanzado" itemValue="Avanzado" />
                 </p:selectOneMenu>
                 
-                            
-        </h:panelGrid>  
-            
-            <h3>Comentarios</h3>
+                <h3>Comentarios</h3>
                 <p:inputTextarea rows="6" cols="33" />
-        
-       
-        <center>
-        
+                            
+            </h:panelGrid>  
+        </h:form>
+        <h:form>
+            <h3>Monitoria Realizada</h3>
             <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">        
               
-                <p:outputLabel for="car" value="Lenguaje de programación utilizado" />                
-                <p:selectOneMenu id="car" value="#{bean.car}">
+                <p:outputLabel for="console1" value="¿Se Realizó soporte Académico?:" />
+             
+                <p:selectOneMenu id="console1" value="#{beanMonitores.seRealizoSoporte}" style="width:215px">
+                    <f:selectItem itemLabel="Seleccione una opcion" itemValue="" />
+                    <f:selectItem itemLabel="Si" itemValue="Si" />
+                    <f:selectItem itemLabel="No" itemValue="No" />
+                </p:selectOneMenu>
+                
+                <p:outputLabel for="car1" value="Lenguaje de programación utilizado" />                
+                <p:selectOneMenu id="car1" value="#{beanMonitores.lenguajeProgramacion}">
                     <f:selectItem itemLabel="Seleccione una opcion" itemValue="" />
                     <f:selectItem itemLabel="Java" itemValue="Java" />
                     <f:selectItem itemLabel="C" itemValue="C" />
@@ -54,30 +59,29 @@
                     <f:selectItem itemLabel="Visual Basic" itemValue="Visual Basic" />
                 </p:selectOneMenu>
                 
-                <p:outputLabel for="car" value="Tema" />                
-                <p:selectOneMenu id="car" value="#{bean.car}">
+                <p:outputLabel for="car2" value="Tema" />                
+                <p:selectOneMenu id="car2" value="#{beanMonitores.tema}">
                     <f:selectItem itemLabel="Seleccione una opcion" itemValue="" />
                     <f:selectItem itemLabel="Tema 1" itemValue="Tema 1" />
                     <f:selectItem itemLabel="Tema 2" itemValue=" Tema 2" />
                 </p:selectOneMenu>
                 
-                <p:outputLabel for="console" value="¿Se Realizó soporte Académico?:" />
-             
-                <p:selectOneMenu id="console" value="#{beanMonitores.estado}" style="width:215px">
-                    <f:selectItem itemLabel="Seleccione una opcion" itemValue="" />
-                    <f:selectItem itemLabel="Si" itemValue="Si" />
-                    <f:selectItem itemLabel="No" itemValue="No" />
-                </p:selectOneMenu>
-                        
+                
+                
+                <h3>Descripción</h3>
+                <p:inputTextarea rows="6" cols="33" />
+                
             </h:panelGrid>  
-            </center>  
             
-            <h3>Descrpción</h3>
-            <p:inputTextarea rows="6" cols="33" />
-            
+           
         </h:form>
-        
-          
+            
+        </h:panelGrid>
+         
+        </center>
+        <center>
+            <p:commandButton value="Registrar Bitacora" actionListener="#{beanMonitores.bitacoraBean}"/>
+        </center>
         
     </h:body>
 </html>

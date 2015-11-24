@@ -33,8 +33,31 @@ public class backingBean {
     public int idMonitoria;
     public String Descrip;
     public int idTurn;
-    public Bitacora bitacoraBean;
+    public String seRealizoSoporte;
+    public String lenguajeProgramacion;
+    public String tema;
+
+    public String getTema() {
+        return tema;
+    }
+
+    public void setTema(String tema) {
+        this.tema = tema;
+    }
+
+    public String getLenguajeProgramacion() {
+        return lenguajeProgramacion;
+    }
+
+    public void setLenguajeProgramacion(String lenguajeProgramacion) {
+        this.lenguajeProgramacion = lenguajeProgramacion;
+    }
+
     
+    
+    public Bitacora bitacoraBean;
+    SelectItemGroup g1;
+    public List<SelectItem> taskList;
     
 
     public List<SelectItem> getTaskList() {
@@ -52,9 +75,16 @@ public class backingBean {
     public void setG1(SelectItemGroup g1) {
         this.g1 = g1;
     }
-    public List<SelectItem> taskList;
     
-    SelectItemGroup g1;
+    public String getSeRealizoSoporte() {
+        return seRealizoSoporte;
+    }
+
+    public void setSeRealizoSoporte(String seRealizoSoporte) {
+        this.seRealizoSoporte = seRealizoSoporte;
+    }
+    
+    
 
     public backingBean() {
         this.g1 = new SelectItemGroup("Listado de tareas");    
@@ -66,7 +96,9 @@ public class backingBean {
     }
     
     
-         
+    public void registrarBitacora(){
+        
+    }
        
     
     public Date getFecha() {
