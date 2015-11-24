@@ -42,7 +42,6 @@ public class JDBCDaoReport implements DaoReport{
     @Override
     public HashSet<Report> load(Date fecha1, Date fecha2) throws PersistenceException{
         PreparedStatement ps;
-        PreparedStatement ps1;
         HashSet<Report> reportes = new HashSet<>();
         try{
             ps=con.prepareStatement("SELECT Bitacora.Monitor, Estudiante.Nombre,COUNT(Tarea.id), Tarea.tipo\n" +
@@ -66,24 +65,7 @@ public class JDBCDaoReport implements DaoReport{
             reportes.add(r);
             }
 
-            ps1=con.prepareStatement("SELECT Monitoria.lenguajeProgramacion AS Lenguajes_Mas_Consultados, Monitoria.tema, Monitoria.DarSoporte AS Se_Dio_Soporte, COUNT(Monitoria.lenguajeProgramacion)AS Cantidad_Monitoria, Estudiante.id AS Monitor\n" +
-"FROM Monitoria,Estudiante, Bitacora\n" +
-"WHERE Estudiante.Monitor ='Y' AND Monitoria.id = Bitacora.Monitoria_id AND Estudiante.id=Bitacora.Monitor AND\n" +
-"(Bitacora.fecha BETWEEN ? AND ?)\n" +
-"GROUP BY Monitoria.tema ORDER BY COUNT(Monitoria.lenguajeProgramacion) DESC" );
             
-            ps1.setDate(1, fecha1);
-            ps1.setDate(2, fecha2);
-            ResultSet rs1=ps1.executeQuery();
-            while(rs.next())
-            {
-            Report r = new Report();
-            r.setLenguajeProgramacion(rs1.getString(1));
-            r.setTemaMonitoria(rs.getString(2));
-            r.setSoporte(rs.getString(3));
-            r.setMonitorias(rs.getInt(4));
-            reportes.add(r);
-            }
 
          
             
@@ -94,6 +76,36 @@ public class JDBCDaoReport implements DaoReport{
             
         }
         return reportes;
+    }
+
+    @Override
+    public HashSet<Report> loadSegundo(Date fecha1, Date fecha2) throws PersistenceException {
+        PreparedStatement ps1;
+        HashSet<Report> reportesSegundo = new HashSet<>();
+        try{
+            ps1=con.prepareStatement("SELECT  Estudiante.id AS Monitor, Monitoria.lenguajeProgramacion AS Lenguajes_Mas_Consultados, Monitoria.tema, Monitoria.DarSoporte AS Se_Dio_Soporte, COUNT(Monitoria.lenguajeProgramacion)AS Cantidad_Monitoria\n" +
+"FROM Monitoria,Estudiante, Bitacora\n" +
+"WHERE Estudiante.Monitor ='Y' AND Monitoria.id = Bitacora.Monitoria_id AND Estudiante.id=Bitacora.Monitor AND\n" +
+"(Bitacora.fecha BETWEEN ? AND ?)\n" +
+"GROUP BY Monitoria.tema ORDER BY COUNT(Monitoria.lenguajeProgramacion) DESC" );
+            
+            ps1.setDate(1, fecha1);
+            ps1.setDate(2, fecha2);
+            ResultSet rs1=ps1.executeQuery();
+            while(rs1.next())
+            {
+            Report r = new Report();
+            r.setMonitorias(rs1.getInt(1));
+            r.setLenguajeProgramacion(rs1.getString(2));
+            r.setTemaMonitoria(rs1.getString(3));
+            r.setSoporte(rs1.getString(4));
+            reportesSegundo.add(r);
+            }
+        
+        } catch (SQLException ex) {
+             Logger.getLogger(JDBCDaoReport.class.getName()).log(Level.SEVERE, null, ex);
+         }
+         return reportesSegundo;
     }
 
     

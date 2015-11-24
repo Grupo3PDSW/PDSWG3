@@ -308,8 +308,7 @@ public class ServicesFacade {
             throw new ServiceFacadeException("Error al consultar estudiante.",ex);
         }        
     }
-
-    /**
+/**
      * Muestra un reporte apartir de la base de datos entre fechas seleccionadas 
      * @param fecha1 , Fecha de inicio del intervalo
      * @param fecha2 , Fecha de fin del intervalo
@@ -330,11 +329,20 @@ public class ServicesFacade {
             throw new ServiceFacadeException("Error al consultar estudiante.",ex);
         }        
       }
-    public Report HacerReporte(java.util.Date date1, java.util.Date date2) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
        
+       public HashSet<Report> HacerReporteSegundo( Date fecha1, Date fecha2) throws ServiceFacadeException{
        
+        DaoFactory daof=DaoFactory.getInstance(properties);
+        try {
+            daof.beginSession();
+            HashSet<Report> reportes=daof.getDaoReport().loadSegundo(fecha1,fecha2);
+            daof.endSession();
+            return reportes;
+        } catch (PersistenceException ex) {
+            System.out.println(ex.toString());
+            throw new ServiceFacadeException("Error al consultar estudiante.",ex);
+        }        
+      }
     
     
     

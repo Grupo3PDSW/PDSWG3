@@ -7,10 +7,13 @@ package edu.eci.pdsw.bean;
 
 
 import edu.eci.pdsw.entities.Report;
+import edu.eci.pdsw.persistence.jdbcimpl.JDBCDaoReport;
+import edu.eci.pdsw.persistencee.PersistenceException;
 import edu.eci.pdsw.services.ServiceFacadeException;
 import edu.eci.pdsw.services.ServicesFacade;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.sql.Date;
+import java.util.HashSet;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -36,14 +39,16 @@ public class ReporteBean {
     public String temaMonitoria;
     public String soporte; 
     public int monitorias; 
-    Report r;
+    public HashSet<Report> reporte1;
+    public HashSet<Report> reporte2;
+    public JDBCDaoReport jdbcReporte;
     
    
     public void registroProblema () throws ServiceFacadeException{               
 
-            Report re=  ServicesFacade.getInstance("applicationconfig.properties").HacerReporte(date1, date2);
-            r = new Report(re.getFecha1(),re.getFecha2(),re.getCodigoMonitor(),re.getNombreMonitor(),re.getTareas(),re.getTipo(),re.getLenguajeProgramacion(),re.getTemaMonitoria(),re.getSoporte(),re.getMonitorias());
-//        r= new Report(fecha1, fecha2, codigoMonitor, nombreMonitor, tareas, tipo, lenguajeProgramacion, temaMonitoria, soporte, monitorias);
+             reporte1=  ServicesFacade.getInstance("applicationconfig.properties").HacerReporte(date1, date2);
+             reporte2=  ServicesFacade.getInstance("applicationconfig.properties").HacerReporteSegundo(date1, date2);
+            
     }
 
     public void onDateSelect(SelectEvent event) {
@@ -57,6 +62,16 @@ public class ReporteBean {
          
         requestContext.update("form:display");
         requestContext.execute("PF('dlg').show()");
+    }
+    
+    public void reporte1(Date fecha1, Date fecha2) throws PersistenceException
+    {
+        jdbcReporte.load(fecha1, fecha2);
+    }
+    
+    public void reporte2(Date fecha1, Date fecha2) throws PersistenceException
+    {
+        jdbcReporte.loadSegundo(fecha1, fecha2);
     }
     
     public Date getFecha1() {
@@ -139,12 +154,4 @@ public class ReporteBean {
         this.monitorias = monitorias;
     }
 
-    public Report getR() {
-        return r;
-    }
-
-    public void setR(Report r) {
-        this.r = r;
-    }
 }
-        
