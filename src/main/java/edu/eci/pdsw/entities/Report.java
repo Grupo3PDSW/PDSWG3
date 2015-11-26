@@ -38,7 +38,8 @@ public class Report {
     }
 
     public Report() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+       
     }
 
     public Date getFecha1() {

@@ -13,35 +13,35 @@
  
             <h:panelGrid columns="6" cellpadding="8" >
                 <p:outputLabel value="Desde:" />
-                <p:calendar id="c1" value="#{beanReport.date1}" mode="inline" />
+                <p:calendar id="c1" value="#{ReporteBean.date1}" mode="inline" />
         
                 <p:outputLabel value="Hasta:" />
-                <p:calendar id="c2" value="#{beanReport.date2}" mode="inline" />
+                <p:calendar id="c2" value="#{ReporteBean.date2}" mode="inline" />
             </h:panelGrid>
             
             <p:dialog modal="true" resizable="false" header="Values" widgetVar="dlg" showEffect="fold">
                  <p:panelGrid id="display" columns="2" columnClasses="label,value">
                     <h:outputText value="Inline:" />
-                    <h:outputText value="#{beanReport.date1}">
+                    <h:outputText value="#{ReporteBean.date1}">
                         <f:convertDateTime pattern="MM/dd/yyyy" />
                     </h:outputText>
                     
                     <h:outputText value="Inline:" />
-                    <h:outputText value="#{beanReport.date2}">
+                    <h:outputText value="#{ReporteBean.date2}">
                         <f:convertDateTime pattern="MM/dd/yyyy" />
                     </h:outputText>
                  </p:panelGrid>
             </p:dialog>
             
-            <p:growl id="growl" life="2000" />
+            
             
             <h:panelGrid columns="50" cellpadding="70">
                 <td align="center"></td>
-                <p:commandButton value="Generar Reporte" id="GenerarReporte" actionListener="#{beanReport.registroProblema()}" update="growl" icon="ui-icon-disk" />
+                <p:commandButton value="Generar el Reporte" id="GenerarReporte" actionListener="#{ReporteBean.registroProblema()}" update="tabla1,tabla2" icon="ui-icon-disk"  />
             </h:panelGrid>
             
             
-           <p:dataTable var="iesimoreporte" value="#{beanReport.reporte1}" > 
+           <p:dataTable id="tabla1" var="iesimoreporte" value="#{ReporteBean.reporte1}" > 
                <f:facet name="header">
                   Reporte de Monitores 
                </f:facet>
@@ -59,7 +59,7 @@
                </p:column>               
            </p:dataTable>   
             
-            <p:dataTable var="ReporteMonitores2" value="#{beanReport.reporte2}">
+            <p:dataTable id="tabla2" var="ReporteMonitores2" value="#{ReporteBean.reporte2}">
                
                <p:column headerText="Monitor">
                    <h:outputText value="#{ReporteMonitores2.codigoMonitor}"/>

@@ -73,7 +73,7 @@ public class JDBCDaoReport implements DaoReport{
             
         }catch(SQLException ex) {
            
-                throw new PersistenceException("An error ocurred while loading an order.",ex);
+                throw new PersistenceException("Error al cargar el reporte 1",ex);
             
         }
         return reportes;
@@ -84,31 +84,32 @@ public class JDBCDaoReport implements DaoReport{
         PreparedStatement ps1;
         HashSet<Report> reportesSegundo = new HashSet<>();
         try{
-            ps1=con.prepareStatement("SELECT  Estudiante.id AS Monitor, Monitoria.lenguajeProgramacion AS Lenguajes_Mas_Consultados, Monitoria.tema, Monitoria.DarSoporte AS Se_Dio_Soporte, COUNT(Monitoria.lenguajeProgramacion)AS Cantidad_Monitoria\n" +
+            ps1=con.prepareStatement("SELECT Estudiante.id AS Monitor,Monitoria.lenguajeProgramacion AS Lenguajes_Mas_Consultados, Monitoria.tema, Monitoria.DarSoporte AS Se_Dio_Soporte, COUNT(Monitoria.lenguajeProgramacion)AS Cantidad_Monitoria\n" +
 "FROM Monitoria,Estudiante, Bitacora\n" +
-"WHERE Estudiante.Monitor ='Y' AND Monitoria.id = Bitacora.Monitoria_id AND Estudiante.id=Bitacora.Monitor AND\n" +
+"WHERE Monitoria.id = Bitacora.Monitoria_id AND Estudiante.id=Bitacora.Monitor AND\n" +
 "(Bitacora.fecha BETWEEN ? AND ?)\n" +
-"GROUP BY Monitoria.tema ORDER BY COUNT(Monitoria.lenguajeProgramacion) DESC" );
+"GROUP BY Monitoria.tema \n" +
+"ORDER BY COUNT(Monitoria.lenguajeProgramacion) DESC" );
             
            
            
             ps1.setDate(1,new java.sql.Date(fecha1.getTime()));
-            ps1.setDate(1,new java.sql.Date(fecha2.getTime()));
+            ps1.setDate(2,new java.sql.Date(fecha2.getTime()));
             
             ResultSet rs1=ps1.executeQuery();
             while(rs1.next())
             {
             Report r = new Report();
-            r.setMonitorias(rs1.getInt(1));
+            r.setCodigoMonitor(rs1.getInt(1));
             r.setLenguajeProgramacion(rs1.getString(2));
             r.setTemaMonitoria(rs1.getString(3));
             r.setSoporte(rs1.getString(4));
+            r.setMonitorias(rs1.getInt(5));
             reportesSegundo.add(r);
             }
         
         } catch (SQLException ex) {
-             Logger.getLogger(JDBCDaoReport.class.getName()).log(Level.SEVERE, null, ex);
-             throw new PersistenceException("Error al cargar el reporte ....",ex);
+             throw new PersistenceException("Error al cargar el reporte 2",ex);
          }
          return reportesSegundo;
     }

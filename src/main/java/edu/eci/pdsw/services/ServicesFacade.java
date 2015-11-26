@@ -335,9 +335,9 @@ public class ServicesFacade {
         DaoFactory daof=DaoFactory.getInstance(properties);
         try {
             daof.beginSession();
-            HashSet<Report> reportesSegundo=daof.getDaoReport().loadSegundo(fecha1,fecha2);
+            HashSet<Report> reportes=daof.getDaoReport().loadSegundo(fecha1,fecha2);
             daof.endSession();
-            return reportesSegundo;
+            return reportes;
         } catch (PersistenceException ex) {
             System.out.println(ex.toString());
             throw new ServiceFacadeException("Error al consultar estudiante.",ex);
