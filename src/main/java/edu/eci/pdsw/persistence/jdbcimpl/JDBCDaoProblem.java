@@ -15,6 +15,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -77,6 +78,38 @@ public class JDBCDaoProblem implements DaoProblem{
             }
         }
         return p;
+    }
+
+    @Override
+    public HashSet<Problem> loadSegundo() throws PersistenceException {
+    PreparedStatement ps;
+        HashSet<Problem> problemas = new HashSet<>();
+        try{
+            ps=con.prepareStatement("SELECT id, Equipo_id, descripcion, fecha, Estudiante_id\n" +
+                                    "FROM Problema\n" +
+                                    "ORDER BY fecha ASC;" );
+            
+            
+            
+            ResultSet rs = ps.executeQuery();
+            while(rs.next())
+            {
+            Problem p = new Problem();
+            p.setIdProblem(rs.getInt(1));
+            p.setIdEquipo(rs.getInt(2));
+            p.setDecription(rs.getString(3));
+            p.setDate(rs.getDate(4));
+            p.setEstudiante_id(rs.getInt(5));
+            problemas.add(p);
+            }
+            
+            
+        }catch(SQLException ex) {
+           
+                throw new PersistenceException("Error al cargar los reportes",ex);
+            
+        }
+        return problemas;
     }
 
   

@@ -7,6 +7,7 @@ package edu.eci.pdsw.persistencee;
 
 import edu.eci.pdsw.entities.Equipo;
 import edu.eci.pdsw.entities.Problem;
+import java.util.HashSet;
 
 
 /**
@@ -17,5 +18,7 @@ public interface DaoProblem {
      public void save(Problem p);
      
      public Problem load (int idProblem);
+
+    public HashSet<Problem> loadSegundo()throws PersistenceException;
   
 }

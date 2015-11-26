@@ -344,6 +344,30 @@ public class ServicesFacade {
         }        
       }
     
-    
+        public HashSet<Task> consultarTarea() throws ServiceFacadeException{
+        DaoFactory daof=DaoFactory.getInstance(properties);
+        try {
+            daof.beginSession();
+            HashSet<Task> tar=daof.getDaoTask().loadSegundo();
+            daof.endSession();
+            return tar;
+        } catch (PersistenceException ex) {
+            System.out.println(ex.toString());
+            throw new ServiceFacadeException("Error al consultar estudiante.",ex);
+        }        
+    }
+        
+        public HashSet<Problem> consultarProblem() throws ServiceFacadeException{
+        DaoFactory daof=DaoFactory.getInstance(properties);
+        try {
+            daof.beginSession();
+            HashSet<Problem> pro=daof.getDaoProblem().loadSegundo();
+            daof.endSession();
+            return pro;
+        } catch (PersistenceException ex) {
+            System.out.println(ex.toString());
+            throw new ServiceFacadeException("Error al consultar problem.",ex);
+        }        
+    }
     
 }

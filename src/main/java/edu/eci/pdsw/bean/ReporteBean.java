@@ -66,12 +66,9 @@ public class ReporteBean {
    
     
    
-    public void registroProblema () throws ServiceFacadeException{               
-        System.out.println("hola");
+    public void registroProblema () throws ServiceFacadeException{   
            reporte1=  ServicesFacade.getInstance("applicationconfig.properties").HacerReporte(date1, date2);
-            System.out.println(reporte1+" el reporte");
-            reporte2=  ServicesFacade.getInstance("applicationconfig.properties").HacerReporteSegundo(date1, date2);
-            System.out.println(reporte2+" el reporte 2");
+           reporte2=  ServicesFacade.getInstance("applicationconfig.properties").HacerReporteSegundo(date1, date2);
     }
     
 

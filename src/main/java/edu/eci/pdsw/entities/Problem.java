@@ -36,7 +36,7 @@ public class Problem {
     private static final Logger LOG = Logger.getLogger(Problem.class.getName());
 
     public Problem() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       
     }
     
     

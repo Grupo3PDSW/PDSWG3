@@ -6,6 +6,7 @@
 package edu.eci.pdsw.persistencee;
 
 import edu.eci.pdsw.entities.Task;
+import java.util.HashSet;
 
 /**
  *
@@ -18,4 +19,6 @@ public interface DaoTask {
     public void UpdateEstado(int id, String estado);
     
     public Task load(int idtask);
+
+    public HashSet<Task> loadSegundo()throws PersistenceException;
 }

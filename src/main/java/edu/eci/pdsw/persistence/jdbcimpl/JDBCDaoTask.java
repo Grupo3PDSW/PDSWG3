@@ -12,6 +12,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
+import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -93,6 +95,39 @@ public class JDBCDaoTask implements DaoTask{
         }
         return tar;
     }
+
+    @Override
+    public HashSet<Task> loadSegundo()  throws PersistenceException{
+        PreparedStatement ps;
+        HashSet<Task> tareas = new HashSet<>();
+        try{
+            ps=con.prepareStatement("SELECT id, tipo, estado, comentario\n" +
+                                    "FROM Tarea\n" +
+                                    "WHERE tipo = 'Instalacion de software' AND (estado = 'avanzado' OR estado = 'pendiente');" );
+            
+            
+            
+            ResultSet rs = ps.executeQuery();
+            while(rs.next())
+            {
+            Task t = new Task();
+            t.setIdTask(rs.getInt(1));
+            t.setType(rs.getString(2));
+            t.setStatus(rs.getString(3));
+            t.setTaskCommnets(rs.getString(4));
+            tareas.add(t);
+            }
+            
+            
+        }catch(SQLException ex) {
+           
+                throw new PersistenceException("Error al cargar las tareas",ex);
+            
+        }
+        return tareas;
+    }
+
+    
     
     
 }
