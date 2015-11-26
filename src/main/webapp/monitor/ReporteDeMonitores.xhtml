@@ -37,7 +37,7 @@
             
             <h:panelGrid columns="50" cellpadding="70">
                 <td align="center"></td>
-                <p:commandButton value="Generar Reporte" id="GenerarReporte"   update="growl" icon="ui-icon-disk" />
+                <p:commandButton value="Generar Reporte" id="GenerarReporte" actionListener="#{beanReport.registroProblema()}" update="growl" icon="ui-icon-disk" />
             </h:panelGrid>
             
             
@@ -46,10 +46,10 @@
                   Reporte de Monitores 
                </f:facet>
                <p:column headerText="Monitor">
-                   <h:outputText value="#{iesimoreporte.monitor}"/>
+                   <h:outputText value="#{iesimoreporte.codigoMonitor}"/>
                </p:column>
                <p:column headerText="Nombre">
-                   <h:outputText value="#{iesimoreporte.nombre}"/>
+                   <h:outputText value="#{iesimoreporte.nombreMonitor}"/>
                </p:column>
                <p:column headerText="Tareas">
                    <h:outputText value="#{iesimoreporte.tareas}"/>
@@ -59,25 +59,25 @@
                </p:column>               
            </p:dataTable>   
             
-            <p:dataTable var="ReporteMonitores2" value="#{beanReport  .reporte2}">
+            <p:dataTable var="ReporteMonitores2" value="#{beanReport.reporte2}">
                
                <p:column headerText="Monitor">
-                   <h:outputText value="#{ReporteMonitores2.monitor}"/>
+                   <h:outputText value="#{ReporteMonitores2.codigoMonitor}"/>
                </p:column>
                <p:column headerText="Lenguajes más Consultados">
                    <h:outputText value="#{ReporteMonitores2.lenguajeProgramacion}"/>
                </p:column>
                
                <p:column headerText="Tema">
-                   <h:outputText value="#{ReporteMonitores2.tema}"/>
+                   <h:outputText value="#{ReporteMonitores2.temaMonitoria}"/>
                </p:column>
                
                <p:column headerText="Se dio Soporte">
-                   <h:outputText value="#{ReporteMonitores2.DarSoporte}"/>
+                   <h:outputText value="#{ReporteMonitores2.soporte}"/>
                </p:column>
                
                <p:column headerText="Cantidad Monitoria">
-                   <h:outputText value="#{ReporteMonitores2.lenguajeProgramacion}"/>
+                   <h:outputText value="#{ReporteMonitores2.monitorias}"/>
                </p:column>
            </p:dataTable> 
                

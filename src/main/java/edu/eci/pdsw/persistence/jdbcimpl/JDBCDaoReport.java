@@ -9,7 +9,7 @@ import edu.eci.pdsw.entities.Report;
 import edu.eci.pdsw.persistencee.DaoReport;
 import edu.eci.pdsw.persistencee.PersistenceException;
 import java.sql.Connection;
-import java.sql.Date;
+import java.util.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -51,8 +51,9 @@ public class JDBCDaoReport implements DaoReport{
                                     "GROUP BY Tarea.id" );
             
                  
-            ps.setDate(1, fecha1);
-            ps.setDate(2, fecha2);
+            ps.setDate(1,new java.sql.Date(fecha1.getTime()));
+            ps.setDate(2,new java.sql.Date(fecha2.getTime()));
+            
             
             ResultSet rs = ps.executeQuery();
             while(rs.next())
@@ -89,8 +90,11 @@ public class JDBCDaoReport implements DaoReport{
 "(Bitacora.fecha BETWEEN ? AND ?)\n" +
 "GROUP BY Monitoria.tema ORDER BY COUNT(Monitoria.lenguajeProgramacion) DESC" );
             
-            ps1.setDate(1, fecha1);
-            ps1.setDate(2, fecha2);
+           
+           
+            ps1.setDate(1,new java.sql.Date(fecha1.getTime()));
+            ps1.setDate(1,new java.sql.Date(fecha2.getTime()));
+            
             ResultSet rs1=ps1.executeQuery();
             while(rs1.next())
             {

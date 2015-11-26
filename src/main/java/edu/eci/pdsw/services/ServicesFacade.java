@@ -19,7 +19,7 @@ import edu.eci.pdsw.persistencee.DaoFactory;
 import edu.eci.pdsw.persistencee.PersistenceException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.Date;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Properties;
 
@@ -335,9 +335,9 @@ public class ServicesFacade {
         DaoFactory daof=DaoFactory.getInstance(properties);
         try {
             daof.beginSession();
-            HashSet<Report> reportes=daof.getDaoReport().loadSegundo(fecha1,fecha2);
+            HashSet<Report> reportesSegundo=daof.getDaoReport().loadSegundo(fecha1,fecha2);
             daof.endSession();
-            return reportes;
+            return reportesSegundo;
         } catch (PersistenceException ex) {
             System.out.println(ex.toString());
             throw new ServiceFacadeException("Error al consultar estudiante.",ex);

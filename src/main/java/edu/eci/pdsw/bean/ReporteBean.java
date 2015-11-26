@@ -65,10 +65,10 @@ public class ReporteBean {
     
    
     public void registroProblema () throws ServiceFacadeException{               
-
-//             reporte1=  ServicesFacade.getInstance("applicationconfig.properties").HacerReporte(date1, date2);
-//             reporte2=  ServicesFacade.getInstance("applicationconfig.properties").HacerReporteSegundo(date1, date2);
-            
+        System.out.println("hola");
+            reporte1=  ServicesFacade.getInstance("applicationconfig.properties").HacerReporte(date1, date2);
+            reporte2=  ServicesFacade.getInstance("applicationconfig.properties").HacerReporteSegundo(date1, date2);
+            System.out.println(reporte1.iterator().next().getNombreMonitor());
     }
 
     public void onDateSelect(SelectEvent event) {
@@ -94,30 +94,7 @@ public class ReporteBean {
 //        jdbcReporte.loadSegundo(fecha1, fecha2);
 //    }
     
-    public void recorrerReporte1()
-    {
-        while(reporte1.iterator().hasNext())
-        {
-            Report next = reporte1.iterator().next();
-            setCodigoMonitor(next.getCodigoMonitor());
-            setNombreMonitor(next.getNombreMonitor());
-            setTareas(next.getTareas());
-            setTipo(next.getTipo());
-        }
-    }
     
-        public void recorrerReporte2()
-    {
-        while(reporte2.iterator().hasNext())
-        {
-            Report next2 = reporte2.iterator().next();
-            setCodigoMonitor(next2.getCodigoMonitor());
-            setLenguajeProgramacion(next2.getLenguajeProgramacion());
-            setTemaMonitoria(next2.getTemaMonitoria());
-            setSoporte(next2.getSoporte());
-            setMonitorias(next2.getMonitorias());
-        }
-    }
     
     public Date getFecha1() {
         return date1;
@@ -125,6 +102,22 @@ public class ReporteBean {
 
     public void setFecha1(Date fecha1) {
         this.date1 = date1;
+    }
+
+    public HashSet<Report> getReporte1() {
+        return reporte1;
+    }
+
+    public void setReporte1(HashSet<Report> reporte1) {
+        this.reporte1 = reporte1;
+    }
+
+    public HashSet<Report> getReporte2() {
+        return reporte2;
+    }
+
+    public void setReporte2(HashSet<Report> reporte2) {
+        this.reporte2 = reporte2;
     }
 
     public Date getFecha2() {
