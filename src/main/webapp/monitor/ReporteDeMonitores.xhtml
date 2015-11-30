@@ -6,81 +6,85 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>ReporteDeMonitores</title>
+
+        <br /><br />
+        <BODY BACKGROUND="http://www.solprof.com/sites/default/files/fondo-01.jpg"  > </BODY>
+        <br /><br />
     </h:head>
     <h:body>
         <h:form id="Reporte">
- 
+
             <h:panelGrid columns="6" cellpadding="8" >
                 <p:outputLabel value="Desde:" />
                 <p:calendar id="c1" value="#{ReporteBean.date1}" mode="inline" />
-        
+
                 <p:outputLabel value="Hasta:" />
                 <p:calendar id="c2" value="#{ReporteBean.date2}" mode="inline" />
             </h:panelGrid>
-            
+
             <p:dialog modal="true" resizable="false" header="Values" widgetVar="dlg" showEffect="fold">
-                 <p:panelGrid id="display" columns="2" columnClasses="label,value">
+                <p:panelGrid id="display" columns="2" columnClasses="label,value">
                     <h:outputText value="Inline:" />
                     <h:outputText value="#{ReporteBean.date1}">
                         <f:convertDateTime pattern="MM/dd/yyyy" />
                     </h:outputText>
-                    
+
                     <h:outputText value="Inline:" />
                     <h:outputText value="#{ReporteBean.date2}">
                         <f:convertDateTime pattern="MM/dd/yyyy" />
                     </h:outputText>
-                 </p:panelGrid>
+                </p:panelGrid>
             </p:dialog>
-            
-            
-            
+
+
+
             <h:panelGrid columns="50" cellpadding="70">
                 <td align="center"></td>
                 <p:commandButton value="Generar el Reporte" id="GenerarReporte" actionListener="#{ReporteBean.registroProblema()}" update="tabla1,tabla2" icon="ui-icon-disk"  />
             </h:panelGrid>
-            
-            
-           <p:dataTable id="tabla1" var="iesimoreporte" value="#{ReporteBean.reporte1}" > 
-               <f:facet name="header">
-                  Reporte de Monitores 
-               </f:facet>
-               <p:column headerText="Monitor">
-                   <h:outputText value="#{iesimoreporte.codigoMonitor}"/>
-               </p:column>
-               <p:column headerText="Nombre">
-                   <h:outputText value="#{iesimoreporte.nombreMonitor}"/>
-               </p:column>
-               <p:column headerText="Tareas">
-                   <h:outputText value="#{iesimoreporte.tareas}"/>
-               </p:column>
-               <p:column headerText="Tipo de Tareas">
-                   <h:outputText value="#{iesimoreporte.tipo}"/>
-               </p:column>               
-           </p:dataTable>   
-            
+
+
+            <p:dataTable id="tabla1" var="iesimoreporte" value="#{ReporteBean.reporte1}" > 
+                <f:facet name="header">
+                    Reporte de Monitores 
+                </f:facet>
+                <p:column headerText="Monitor">
+                    <h:outputText value="#{iesimoreporte.codigoMonitor}"/>
+                </p:column>
+                <p:column headerText="Nombre">
+                    <h:outputText value="#{iesimoreporte.nombreMonitor}"/>
+                </p:column>
+                <p:column headerText="Tareas">
+                    <h:outputText value="#{iesimoreporte.tareas}"/>
+                </p:column>
+                <p:column headerText="Tipo de Tareas">
+                    <h:outputText value="#{iesimoreporte.tipo}"/>
+                </p:column>               
+            </p:dataTable>   
+
             <p:dataTable id="tabla2" var="ReporteMonitores2" value="#{ReporteBean.reporte2}">
-               
-               <p:column headerText="Monitor">
-                   <h:outputText value="#{ReporteMonitores2.codigoMonitor}"/>
-               </p:column>
-               <p:column headerText="Lenguajes más Consultados">
-                   <h:outputText value="#{ReporteMonitores2.lenguajeProgramacion}"/>
-               </p:column>
-               
-               <p:column headerText="Tema">
-                   <h:outputText value="#{ReporteMonitores2.temaMonitoria}"/>
-               </p:column>
-               
-               <p:column headerText="Se dio Soporte">
-                   <h:outputText value="#{ReporteMonitores2.soporte}"/>
-               </p:column>
-               
-               <p:column headerText="Cantidad Monitoria">
-                   <h:outputText value="#{ReporteMonitores2.monitorias}"/>
-               </p:column>
-           </p:dataTable> 
-               
-               
+
+                <p:column headerText="Monitor">
+                    <h:outputText value="#{ReporteMonitores2.codigoMonitor}"/>
+                </p:column>
+                <p:column headerText="Lenguajes más Consultados">
+                    <h:outputText value="#{ReporteMonitores2.lenguajeProgramacion}"/>
+                </p:column>
+
+                <p:column headerText="Tema">
+                    <h:outputText value="#{ReporteMonitores2.temaMonitoria}"/>
+                </p:column>
+
+                <p:column headerText="Se dio Soporte">
+                    <h:outputText value="#{ReporteMonitores2.soporte}"/>
+                </p:column>
+
+                <p:column headerText="Cantidad Monitoria">
+                    <h:outputText value="#{ReporteMonitores2.monitorias}"/>
+                </p:column>
+            </p:dataTable> 
+
+
         </h:form>    
     </h:body>
 </html>

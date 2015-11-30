@@ -1,31 +1,39 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui">
-<h:head>
-</h:head>
-<h:body>
-    <center> 
-        <img  src="http://www.escuelaing.edu.co/uploads/keywords/logo.jpg" ></img>
+    <h:head>
+        
+        <br /><br />
+        <BODY BACKGROUND="http://locationcolombia.com/wp-content/uploads/2014/05/BOGOTA-Escuela-col-de-Ingenieria-CIELITO-LINDO-31.jpg"  >
+
+        </BODY>
+        <br /><br />
+        
+        
+    </h:head>
+    <h:body>
+        <center> 
+            <img  src="http://m.escuelaing.edu.co/images/basic/logo.png" ></img>
         </center> >
-    <br /><br /><br /><br /><br /><br />
-    <center>
-    <h:form prependId="false">
-        <h:panelGrid columns="2">
-            <h:outputText value="Login:"/>
-            <p:inputText id="username" required="true" value="#{loginBean.username}"/>
+        <br /><br /><br /><br /><br /><br />
+        <center>
+            <h:form prependId="false">
+                <h:panelGrid columns="2">
+                    <h:outputText value="Login:"  />
+                    <p:inputText id="username" required="true" value="#{loginBean.username}"/>
 
-            <h:outputText value="Password:"/>
-            <p:password id="password" required="true" value="#{loginBean.password}"/>
+                    <h:outputText value="Password:"/>
+                    <p:password id="password" required="true" value="#{loginBean.password}"/>
 
-            <h:outputText value="Remember me:"/>
-            <p:selectBooleanCheckbox id="rememberMe" value="#{loginBean.rememberMe}"/>
+                    <h:outputText value="Remember me:"/>
+                    <p:selectBooleanCheckbox id="rememberMe" value="#{loginBean.rememberMe}"/>
 
-            <h:outputText/>
-            <p:commandButton value="Login" action="#{loginBean.doLogin}" />
-        </h:panelGrid>
+                    <h:outputText/>
+                    <p:commandButton value="Login" action="#{loginBean.doLogin}" />
+                </h:panelGrid>
 
-        <p:messages id="messages" autoUpdate="true" closable="true" />
-    </h:form>
-    </center>
-</h:body>
+                <p:messages id="messages" autoUpdate="true" closable="true" />
+            </h:form>
+        </center>
+    </h:body>
 </html>

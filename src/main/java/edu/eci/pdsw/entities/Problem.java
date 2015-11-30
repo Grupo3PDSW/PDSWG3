@@ -23,10 +23,10 @@ public class Problem {
     public String decription;
     public int idEquipo;  
     public int idProblem;
-    public Date date;
+    public java.util.Date date;
     public int Estudiante_id;
 
-    public Problem(String decription, int idEquipo, int idProblem, Date date, int Estudiante_id) {
+    public Problem(String decription, int idEquipo, int idProblem, java.util.Date date, int Estudiante_id) {
         this.decription = decription;
         this.idEquipo = idEquipo;
         this.idProblem = idProblem;
@@ -72,11 +72,11 @@ public class Problem {
         this.idProblem = idProblem;
     }
 
-    public Date getDate() {
+    public java.util.Date getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(java.util.Date date) {
         this.date = date;
     }
 

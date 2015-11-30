@@ -1,63 +1,98 @@
-
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html     
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:h="http://xmlns.jcp.org/jsf/html"
-    xmlns:p="http://primefaces.org/ui"
-    xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <h:head>
-        <title>RegistroProblema</title>
-    </h:head>
-    <body>        
-        <center> 
-        <img  src="http://www.escuelaing.edu.co/uploads/keywords/logo.jpg" ></img>
-        </center>         
-        <p:layout fullPage="true">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head></h:head>
+    <h:body>    
+
+        <pre>  
+        
+        <p:panel id="panel" header="#{loginBean.subject.principal}" style="margin-top:20px" >
             
-            <p:layoutUnit position="north">
-                <DIV  align="center" class="parrafos">
-                    <P>Escuela Colombiana De Ingenieria Julio Garavito</P>
-                    <P>Reporte de Problemas</P>
-                </DIV>               
-                <p:layoutUnit position="center" resizable="true" size="10" minSize="40" maxSize="20">
-                <div style="height:500px">
-                    <h:form>
-                        <p:growl id="msgs" showDetail="true" />
-
-                       
-
-                            <p:panel id="sports" header="Descripcion">
-                                <h:inputText value="#{beanProblemas.desc}"  />
-                            </p:panel>
-                            
-                            <p:panel id="tarea" header="Id Equipo ">
-                                <h:inputText value="#{beanProblemas.idEquipo}"  />
-                            </p:panel>
-
-                            <p:panel id="finance" header="Id Problema  ">
-                                <h:inputText value="#{beanProblemas.idProblem}"  />
-                            </p:panel>
-
-                            <p:panel id="lifestyle" header="fecha yyyy,mm,dd HH,hh ">
-                                <h:inputText value="#{beanProblemas.date}"  />
-                            </p:panel>
-
-                                <p:panel id="weather" header="Id Estudiante ">
-                                <h:inputText value="#{beanProblemas.Estudiante_id}"  />
-                            </p:panel>
-                      
+            <h:panelGrid columns="1"  >
+                <p:graphicImage value="./imagenes/imagen.jpg" />
+                <p><h:outputLabel for="panel" value="Escuela Colombiana De Ingenieria Julio Garavito"   /></p>
+                <p><h:outputLabel for="panel" value="Reportar Problema"/></p>
+                <p><h:outputLink value="../login.xhtml">Sign out</h:outputLink></p>
+                
+           </h:panelGrid>
+            
+            <h:panelGrid columns="2" cellpadding="5">
+                <h:form id="form1">
+                    <h:panelGrid columns="2" style="margin-top: 10px">
                         
 
-                        <div style="clear:both" />
-                    </h:form>
-                </div>
-                        <p:commandButton value="REGISTRAR" actionListener="#{beanProblemas.problemaBean}" />
-               
-                
-            </p:layoutUnit>
-                
-                
-        </p:layout>  
-    </body>
+                        <p:outputLabel value="Laboratorio: " />
+                        <p:selectOneMenu  value="#{problemaBean.laboratorio}" >
+                            <f:selectItem itemLabel=" " itemValue="" />
+                            <f:selectItems var="lab" value="#{problemaBean.laboratorios}" itemValue="#{lab.nombre}" />
+                        </p:selectOneMenu> 
+
+                        <p:commandButton value="Elegir lab" update=":form3:equipos" onclick="start()" widgetVar="Lab"> </p:commandButton>
+
+                        <br /><br />
+                        <p:progressBar id="progressBarClient" widgetVar="pbClient" style="width:300px"/>
+                    </h:panelGrid >
+                    
+                    
+                    
+                </h:form>
+                <h:form id="form3">
+                    <p:dataTable id="equipos" var="car1" value="#{problemaBean.equiposPorLaboratorio}" sortBy="#{car1.id}" rowKey="#{car1.id}" >
+                        <p:column sortBy="#{car1.id}" headerText="EQUIPO">
+                            <h:outputText value="#{car1.id}"/>
+                        </p:column>
+                        <p:column sortBy="#{car1.descripcion}" headerText="DESCRIPCION">
+                            <h:outputText value="#{car1.descripcion}"/>
+                        </p:column>
+
+                        
+                        <p:column headerText="REPORTAR PROBLEMA">
+
+
+                            <p:commandLink action="SolicitudReporte.xhtml" value="Reportar Problema" >
+
+                                <f:setPropertyActionListener value="#{car1}" target="#{problemaBean.equipo}"/>
+                            </p:commandLink>
+                        </p:column>
+                    </p:dataTable>
+                    <p:commandButton action="index.xhtml" value="BACK" />   
+                </h:form>
+            </h:panelGrid>
+       </p:panel>
+
+<script type="text/javascript">
+function start() {
+    cancel();
+    PF('Lab').disable();
+ 
+    window['progress'] = setInterval(function() {
+        var pbClient = PF('pbClient'),
+        oldValue = pbClient.getValue(),
+        newValue = oldValue + 50;
+ 
+        pbClient.setValue(pbClient.getValue() + 50);
+ 
+       
+        if(newValue === 100) {
+            clearInterval(window['progress']);
+            PF('Lab').enable();
+        }
+        
+ 
+    }, 1000);
+    
+}
+ 
+function cancel() {
+    clearInterval(window['progress']);
+    PF('pbClient').setValue(0);
+    
+}
+</script>
+        </pre>  
+    </h:body>
 </html>

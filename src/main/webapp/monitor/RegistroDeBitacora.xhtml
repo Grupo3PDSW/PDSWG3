@@ -6,76 +6,81 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Registro De Bitacora</title>
+
+
+        <br /><br />
+        <BODY BACKGROUND="http://www.solprof.com/sites/default/files/fondo-01.jpg"  > </BODY>
+        <br /><br />
     </h:head>
     <h:body>
         <center>
-        <img  src="http://www.escuelaing.edu.co/uploads/keywords/logo.jpg" ></img>
-        <br />
-        <p:outputLabel value="REGISTO DE BITACORA" /><br />
-        <br /><br />
-        <h:panelGrid columns="2">
-        <h:form> 
-            <h3>Tarea Realizada</h3>
-            <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">        
-            
-                <p:outputLabel for="car" value="Tarea:" />                
-                <p:selectOneMenu id="car" value="#{beanMonitores.tipoTarea}">
-                    <f:selectItem itemLabel="Seleccione una opcion" itemValue="" />
-                    <f:selectItems value="#{beanMonitores.taskList}" />
-                </p:selectOneMenu>
-            
-                <p:outputLabel for="console" value="Estado:" />
-             
-                <p:selectOneMenu id="console" value="#{beanMonitores.estado}" style="width:215px">
-                    <f:selectItem itemLabel="Seleccione una opcion" itemValue="" />
-                    <f:selectItem itemLabel="Resuelto" itemValue="Resuelto" />
-                    <f:selectItem itemLabel="Avanzado" itemValue="Avanzado" />
-                </p:selectOneMenu>
-                
-                <h3>Comentarios</h3>
-                <p:inputTextarea rows="6" cols="33" value="#{beanMonitores.comentario}"/>
-                            
-            </h:panelGrid>  
-        </h:form>
-        <h:form>
-            <h3>Monitoria Realizada</h3>
-            <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">        
-              
-                
-                
-                <p:outputLabel for="car1" value="Lenguaje de programación utilizado" />                
-                <p:selectOneMenu id="car1" value="#{beanMonitores.lenguajeProgramacion}">
-                    <f:selectItem itemLabel="Seleccione una opcion" itemValue="" />
-                    <f:selectItem itemLabel="Java" itemValue="Java" />
-                    <f:selectItem itemLabel="C" itemValue="C" />
-                    <f:selectItem itemLabel="C++" itemValue="C++" />
-                    <f:selectItem itemLabel="Python" itemValue="Python" />
-                    <f:selectItem itemLabel="Visual Basic" itemValue="Visual Basic" />
-                </p:selectOneMenu>
-                
-                <p:outputLabel for="car2" value="Tema" />                
-                <p:selectOneMenu id="car2" value="#{beanMonitores.tema}">
-                    <f:selectItem itemLabel="Seleccione una opcion" itemValue="" />
-                    <f:selectItem itemLabel="Tema 1" itemValue="Tema 1" />
-                    <f:selectItem itemLabel="Tema 2" itemValue=" Tema 2" />
-                </p:selectOneMenu>
-                
-                
-                
-                <h3>Descripción</h3>
-                <p:inputTextarea rows="6" cols="33" value="#{beanMonitores.descrip}"/>
-                
-            </h:panelGrid>  
-            
-           
-        </h:form>
-            
-        </h:panelGrid>
-         
+            <img  src="http://m.escuelaing.edu.co/images/basic/logo.png" ></img>
+            <br />
+            <p:outputLabel value="REGISTO DE BITACORA" /><br />
+            <br /><br />
+            <h:panelGrid columns="2">
+                <h:form> 
+                    <h3>Tarea Realizada</h3>
+                    <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">        
+
+                        <p:outputLabel for="car" value="Tarea:" />                
+                        <p:selectOneMenu id="car" value="#{beanMonitores.tipoTarea}">
+                            <f:selectItem itemLabel="Seleccione una opcion" itemValue="" />
+                            <f:selectItems value="#{beanMonitores.taskList}" />
+                        </p:selectOneMenu>
+
+                        <p:outputLabel for="console" value="Estado:" />
+
+                        <p:selectOneMenu id="console" value="#{beanMonitores.estado}" style="width:215px">
+                            <f:selectItem itemLabel="Seleccione una opcion" itemValue="" />
+                            <f:selectItem itemLabel="Resuelto" itemValue="Resuelto" />
+                            <f:selectItem itemLabel="Avanzado" itemValue="Avanzado" />
+                        </p:selectOneMenu>
+
+                        <h3>Comentarios</h3>
+                        <p:inputTextarea rows="6" cols="33" value="#{beanMonitores.comentario}"/>
+
+                    </h:panelGrid>  
+                </h:form>
+                <h:form>
+                    <h3>Monitoria Realizada</h3>
+                    <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">        
+
+
+
+                        <p:outputLabel for="car1" value="Lenguaje de programación utilizado" />                
+                        <p:selectOneMenu id="car1" value="#{beanMonitores.lenguajeProgramacion}">
+                            <f:selectItem itemLabel="Seleccione una opcion" itemValue="" />
+                            <f:selectItem itemLabel="Java" itemValue="Java" />
+                            <f:selectItem itemLabel="C" itemValue="C" />
+                            <f:selectItem itemLabel="C++" itemValue="C++" />
+                            <f:selectItem itemLabel="Python" itemValue="Python" />
+                            <f:selectItem itemLabel="Visual Basic" itemValue="Visual Basic" />
+                        </p:selectOneMenu>
+
+                        <p:outputLabel for="car2" value="Tema" />                
+                        <p:selectOneMenu id="car2" value="#{beanMonitores.tema}">
+                            <f:selectItem itemLabel="Seleccione una opcion" itemValue="" />
+                            <f:selectItem itemLabel="Tema 1" itemValue="Tema 1" />
+                            <f:selectItem itemLabel="Tema 2" itemValue=" Tema 2" />
+                        </p:selectOneMenu>
+
+
+
+                        <h3>Descripción</h3>
+                        <p:inputTextarea rows="6" cols="33" value="#{beanMonitores.descrip}"/>
+
+                    </h:panelGrid>  
+
+
+                </h:form>
+
+            </h:panelGrid>
+
         </center>
         <center>
             <p:commandButton value="Registrar Bitacora" actionListener="#{beanMonitores.registrarBitacora()}"/>
         </center>
-        
+
     </h:body>
 </html>

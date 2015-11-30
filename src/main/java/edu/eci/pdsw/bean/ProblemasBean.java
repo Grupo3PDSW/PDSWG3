@@ -28,12 +28,15 @@ public class ProblemasBean {
     public String desc;
     public int idEquipo;  
     public int idProblem;
-    public java.util.Date date;
+    public java.sql.Date date;
+    public java.util.Date fecha;
     public int Estudiante_id;       
     Problem problemaBean;
     
-    public void registroProblema () throws ServiceFacadeException{               
-             
+    public void registroProblema () throws ServiceFacadeException{     
+        
+        java.util.Date fecha = new java.util.Date();
+        java.sql.Date date = new java.sql.Date(fecha.getTime());
         Student stu = ServicesFacade.getInstance("applicationconfig.properties").consultarEstudiante(Estudiante_id);
         Equipo eq = ServicesFacade.getInstance("applicationconfig.properties").consultarEquipo(idEquipo);        
         problemaBean = new Problem(desc,eq.getId(),idProblem,date,stu.getIdStudent());
@@ -66,11 +69,11 @@ public class ProblemasBean {
         this.idProblem = idProblem;
     }
 
-    public java.util.Date getDate() {
+    public java.sql.Date getDate() {
         return date;
     }
 
-    public void setDate(java.util.Date date) {
+    public void setDate(java.sql.Date date) {
         this.date = date;
     }
 
