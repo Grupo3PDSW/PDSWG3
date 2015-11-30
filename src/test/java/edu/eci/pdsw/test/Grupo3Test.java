@@ -140,7 +140,7 @@ public class AppTest {
          d = new Date(2015,11,01,10,00,00);
          
         Bitacora mo;
-         mo = new Bitacora ("se realizo la primer monitoria del dia, y se cumplio con una tarea",1,1,1,1);
+         mo = new Bitacora ("se realizo la primer monitoria del dia, y se cumplio con una tarea",1,1,1,1,1);
         
          
         ServicesFacade f=ServicesFacade.getInstance("h2-applicationconfig.properties");
@@ -167,7 +167,7 @@ public class AppTest {
          d = new Date(2015,11,01,10,00,00);
          
         Bitacora mo;
-         mo = new Bitacora ("se realizo la primer monitoria del dia, y se cumplio con una tarea",1,1,1,1);
+         mo = new Bitacora ("se realizo la primer monitoria del dia, y se cumplio con una tarea",1,1,1,1,1);
         
          
         ServicesFacade f=ServicesFacade.getInstance("h2-applicationconfig.properties");

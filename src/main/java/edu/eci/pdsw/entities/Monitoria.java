@@ -12,16 +12,22 @@ package edu.eci.pdsw.entities;
 public class Monitoria {
     public String LenguajeDeProgramacion;
     public String tema;
-    public int IdMonitoria;
     public String DarSoporte;
+    public int id;
     
-    public Monitoria(String lg, String tema, int IdM, String DarSo){
+    public Monitoria(String lg, String tema,int id){
         LenguajeDeProgramacion=lg;
         this.tema=tema;
-        IdMonitoria=IdM;
-        DarSoporte = DarSo;
-        
-        
+        DarSoporte = "Y";
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
     
     public Monitoria(){
@@ -39,8 +45,7 @@ public class Monitoria {
     @Override
     public String toString() {
         return "Monitoria{" + "LenguajeDeProgramacion=" + LenguajeDeProgramacion
-                           + ", tema=" + tema
-                           + ", IdMonitoria=" + IdMonitoria + '}';
+                           + ", tema=" + tema+ '}';
     }
 
     public String getLenguajeDeProgramacion() {
@@ -57,14 +62,6 @@ public class Monitoria {
 
     public void setTema(String tema) {
         this.tema = tema;
-    }
-
-    public int getIdMonitoria() {
-        return IdMonitoria;
-    }
-
-    public void setIdMonitoria(int IdMonitoria) {
-        this.IdMonitoria = IdMonitoria;
     }
 
 

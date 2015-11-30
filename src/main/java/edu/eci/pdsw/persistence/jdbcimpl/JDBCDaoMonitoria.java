@@ -13,6 +13,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -42,7 +43,6 @@ public class JDBCDaoMonitoria implements DaoMonitoria{
             ResultSet rs=ps.executeQuery();
             
             moni.setDarSoporte(rs.getString("DarSoporte"));
-            moni.setIdMonitoria(rs.getInt("id"));
             moni.setLenguajeDeProgramacion(rs.getString("lenguajeProgramacion"));
             moni.setTema(rs.getString("tema"));
             
@@ -58,26 +58,51 @@ public class JDBCDaoMonitoria implements DaoMonitoria{
     }
 
     @Override
-    public void save(Monitoria mo) {
+    public void save(Monitoria mo)  {
         PreparedStatement ps;
         try {
-            ps = con.prepareStatement("insert into Monitoria   values (?,?,?,?)");
+            ps = con.prepareStatement("insert into Monitoria   values (?,?,?)" ,Statement.RETURN_GENERATED_KEYS);
             ps.setString(1,mo.getLenguajeDeProgramacion());
+            ps.setInt(3,mo.getId());
             ps.setString(2, mo.getTema());
-            ps.setInt(3, mo.getIdMonitoria());       
             ps.setString(4, mo.getDarSoporte());
             
             ps.execute();
             
+            ResultSet rs=ps.getGeneratedKeys();
+            
         } catch (SQLException ex) {
             try {
-                throw new PersistenceException("Error al guardar problema .",ex);
+                throw new PersistenceException("Error al guardar monitoria .",ex);
             } catch (PersistenceException ex1) {
                 Logger.getLogger(JDBCDaoBitacora.class.getName()).log(Level.SEVERE, null, ex1);
             }
         }
     }
+
+    
+    @Override
+    public int consultarUltimoID() throws PersistenceException {
+        PreparedStatement ps;
+        int id = 0 ;
+        try{
+            ps=con.prepareStatement("SELECT id FROM `Monitoria` WHERE id = "
+                                             + "(SELECT MAX( id ) FROM `Monitoria`)" );
+            ps.execute();
+            ResultSet rs=ps.executeQuery();
+            
+            id = (rs.getInt("id"));
+            
+            
+        }catch(SQLException ex) {
+            
+                Logger.getLogger(JDBCDaoStudent.class.getName()).log(Level.SEVERE, null, ex);
+        }
+          return id;
+    }
+        
+}
    
         
     
-}
+

@@ -44,26 +44,44 @@ public class JDBCDaoBitacora implements DaoBitacora{
         try{
             
             if(b.getIdBit()==0){
-                ps=con.prepareStatement("insert into Bitacora(descripcion, tarea_id,"
+                ps=con.prepareStatement("insert into Bitacora(descripcion,id, tarea_id,"
                     + "fecha, Monitoria_id, Monitor, Turno_id) "
-                        + "values (?,?,?,?,?,?)" ,Statement.RETURN_GENERATED_KEYS);
-                ps.setInt(5, b.getMonitor_id());
-                ps.setInt(6 , b.getTurno_id());
+                        + "values (?,?,?,?,?,?,?)");
+                ps.setInt(6, b.getMonitor_id());
+                ps.setInt(7 , b.getTurno_id());
                 ps.setString(1, b.getDescription());  
-                ps.setInt(2, b.getTaskid());
-                ps.setDate(3, (java.sql.Date) b.getFecha());
-                ps.setInt(4, b.getMonitoria_id());
+                ps.setInt(2, b.getIdBit());
+                ps.setInt(3, b.getTaskid());
+                ps.setDate(4, (java.sql.Date) b.getFecha());
+                ps.setInt(5, b.getMonitoria_id());
                 ps.execute();
-                ResultSet rs=ps.getGeneratedKeys();
-                if(rs.next()){
-                    b.setIdBit(rs.getInt("id"));
-                }
+                ResultSet rs=ps.executeQuery();
                 
             }   
               
         }catch (SQLException ex) {
             throw new PersistenceException("An error ocurred while loading an order.",ex);
         }
+    }
+    
+    @Override
+    public int consultarUltimoID() throws PersistenceException {
+        PreparedStatement ps;
+        int id = 0 ;
+        try{
+            ps=con.prepareStatement("SELECT id FROM `Bitacora` WHERE id = "
+                                             + "(SELECT MAX( id ) FROM `Bitacora`)" );
+            ps.execute();
+            ResultSet rs=ps.executeQuery();
+            
+            id = (rs.getInt("id"));
+            
+            
+        }catch(SQLException ex) {
+            
+                Logger.getLogger(JDBCDaoStudent.class.getName()).log(Level.SEVERE, null, ex);
+        }
+          return id;
     }
 
     

@@ -19,7 +19,7 @@
             <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">        
             
                 <p:outputLabel for="car" value="Tarea:" />                
-                <p:selectOneMenu id="car" value="#{beanMonitores.taskList}">
+                <p:selectOneMenu id="car" value="#{beanMonitores.tipoTarea}">
                     <f:selectItem itemLabel="Seleccione una opcion" itemValue="" />
                     <f:selectItems value="#{beanMonitores.taskList}" />
                 </p:selectOneMenu>
@@ -33,7 +33,7 @@
                 </p:selectOneMenu>
                 
                 <h3>Comentarios</h3>
-                <p:inputTextarea rows="6" cols="33" />
+                <p:inputTextarea rows="6" cols="33" value="#{beanMonitores.comentario}"/>
                             
             </h:panelGrid>  
         </h:form>
@@ -41,13 +41,7 @@
             <h3>Monitoria Realizada</h3>
             <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">        
               
-                <p:outputLabel for="console1" value="¿Se Realizó soporte Académico?:" />
-             
-                <p:selectOneMenu id="console1" value="#{beanMonitores.seRealizoSoporte}" style="width:215px">
-                    <f:selectItem itemLabel="Seleccione una opcion" itemValue="" />
-                    <f:selectItem itemLabel="Si" itemValue="Si" />
-                    <f:selectItem itemLabel="No" itemValue="No" />
-                </p:selectOneMenu>
+                
                 
                 <p:outputLabel for="car1" value="Lenguaje de programación utilizado" />                
                 <p:selectOneMenu id="car1" value="#{beanMonitores.lenguajeProgramacion}">
@@ -69,7 +63,7 @@
                 
                 
                 <h3>Descripción</h3>
-                <p:inputTextarea rows="6" cols="33" />
+                <p:inputTextarea rows="6" cols="33" value="#{beanMonitores.descrip}"/>
                 
             </h:panelGrid>  
             
@@ -80,7 +74,7 @@
          
         </center>
         <center>
-            <p:commandButton value="Registrar Bitacora" actionListener="#{beanMonitores.bitacoraBean}"/>
+            <p:commandButton value="Registrar Bitacora" actionListener="#{beanMonitores.registrarBitacora()}"/>
         </center>
         
     </h:body>

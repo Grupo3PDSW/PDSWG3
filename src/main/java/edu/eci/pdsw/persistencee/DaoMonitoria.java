@@ -16,5 +16,6 @@ public interface DaoMonitoria {
     
     public void save (Monitoria mo);
     public Monitoria load(int idMonitoria);
+    public int consultarUltimoID() throws PersistenceException;
     
 }

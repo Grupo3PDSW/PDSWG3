@@ -5,7 +5,7 @@
  */
 package edu.eci.pdsw.entities;
 
-import java.util.Date;
+import java.sql.Date;
 import java.sql.Timestamp;
 
 /**
@@ -17,17 +17,18 @@ public class Bitacora {
     
     public String description;
     public Date fecha;
-    public int IdBit=0;
+    public int IdBit;
     public int taskid;
     public int monitoria_id;
     public int monitor_id;
     public int turno_id;
 
 
-    public Bitacora(String description, int taskid,int monitoria_id, int monitor_id, int turno_id) {
+    public Bitacora(String description, int taskid,int monitoria_id, int monitor_id, int turno_id ,int id) {
         this.description = description;
-        this.fecha = new Date();
-        this.IdBit = 0;
+        java.util.Date d = new java.util.Date(); 
+        java.sql.Date fecha = new java.sql.Date(d.getDate());
+        this.IdBit = id;
         this.taskid = taskid;
         this.monitoria_id = monitoria_id;
         this.monitor_id = monitor_id;

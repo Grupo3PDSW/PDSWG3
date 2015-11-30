@@ -89,6 +89,18 @@ public class ServicesFacade {
         }
     }
     
+    public void registrarMonitoria(Monitoria moni) throws ServiceFacadeException {
+        DaoFactory daof=DaoFactory.getInstance(properties);
+        try {
+            daof.beginSession();
+            daof.getDaoMonitoria().save(moni);
+            daof.commitTransaction();
+            daof.endSession();
+        } catch (PersistenceException ex) {
+            throw new ServiceFacadeException("error no se registro estudiante",ex);
+        }
+    }
+    
     /**
      * El metodo registra una tarea en la BD
      * @param t contiene toda la informacion de la tarea
@@ -222,6 +234,34 @@ public class ServicesFacade {
         }        
     }
     
+    ;
+    
+    
+    public int consultarUltimoIDMonitoria() throws ServiceFacadeException{
+        DaoFactory daof=DaoFactory.getInstance(properties);
+        try {
+            daof.beginSession();
+            int id=daof.getDaoMonitoria().consultarUltimoID();
+            daof.endSession();
+            return id;
+        } catch (PersistenceException ex) {
+            System.out.println(ex.toString());
+            throw new ServiceFacadeException("Error al consultar la bitacora .",ex);
+        }        
+    }
+    
+    public int consultarUltimoIDBitacora() throws ServiceFacadeException{
+        DaoFactory daof=DaoFactory.getInstance(properties);
+        try {
+            daof.beginSession();
+            int id=daof.getDaoBitacora().consultarUltimoID();
+            daof.endSession();
+            return id;
+        } catch (PersistenceException ex) {
+            System.out.println(ex.toString());
+            throw new ServiceFacadeException("Error al consultar la bitacora .",ex);
+        }        
+    }
     
     /**
      * Consulta un turno en la base de datos
@@ -274,11 +314,11 @@ public class ServicesFacade {
        
     
     
-    public Task consultarTarea(int idTask) throws ServiceFacadeException{
+    public Task consultarTarea(String tipo) throws ServiceFacadeException{
         DaoFactory daof=DaoFactory.getInstance(properties);
         try {
             daof.beginSession();
-            Task tar=daof.getDaoTask().load(idTask);
+            Task tar=daof.getDaoTask().load(tipo);
             daof.endSession();
             return tar;
         } catch (PersistenceException ex) {

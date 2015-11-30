@@ -33,10 +33,42 @@ public class backingBean {
     public int idMonitoria;
     public String Descrip;
     public int idTurn;
-    public String seRealizoSoporte;
     public String lenguajeProgramacion;
     public String tema;
+    public String tipoTarea;
+    public String comentario;
 
+    public Bitacora bitacoraBean;
+    SelectItemGroup g1;
+    public List<SelectItem> taskList;
+    
+    
+    public Task task;
+    public Monitoria monitoria;
+    
+    public void registrarBitacora() throws ServiceFacadeException{
+        
+        task = ServicesFacade.getInstance("applicationconfig.properties").consultarTarea(tipoTarea);
+        int idMoni = ServicesFacade.getInstance("applicationconfig.properties").consultarUltimoIDMonitoria();
+        monitoria = new Monitoria(lenguajeProgramacion,tema, idMoni+1);
+        ServicesFacade.getInstance("applicationconfig.properties").registrarMonitoria(monitoria);
+        int idBit = ServicesFacade.getInstance("applicationconfig.properties").consultarUltimoIDBitacora();
+        
+        
+        
+        System.out.println("Entro aquiii asvasd asdv af vad fbv adf adf bvad fbvafdbadfba");
+        System.out.println("adfbadfba   "+Descrip);
+        System.out.println("adfbadfba   "+task.IdTask);
+        System.out.println("adfbadfba   "+idMonitoria);
+        System.out.println("adfbadfba   "+idMonitor);
+        System.out.println("adfbadfba   "+idTurn);
+        
+        
+        Bitacora bi = new Bitacora(Descrip, task.IdTask, idMonitoria, idMonitor, idTurn,idBit);
+        ServicesFacade.getInstance("applicationconfig.properties").registrarBitacora(bi);
+    }
+      
+    
     public String getTema() {
         return tema;
     }
@@ -54,20 +86,50 @@ public class backingBean {
     }
 
     
+    public String getComentario() {
+        return comentario;
+    }
+
+    public void setComentario(String comentario) {
+        this.comentario = comentario;
+    }
+
+    public Monitoria getMonitoria() {
+        return monitoria;
+    }
+
+    public void setMonitoria(Monitoria monitoria) {
+        this.monitoria = monitoria;
+    }
+
     
-    public Bitacora bitacoraBean;
-    SelectItemGroup g1;
-    public List<SelectItem> taskList;
     
 
     public List<SelectItem> getTaskList() {
         return taskList;
     }
+    
 
     public void setTaskList(List<SelectItem> taskList) {
         this.taskList = taskList;
     }
 
+    public String getTipoTarea() {
+        return tipoTarea;
+    }
+
+    public void setTipoTarea(String tipoTarea) {
+        this.tipoTarea = tipoTarea;
+    }
+
+    public Task getTask() {
+        return task;
+    }
+
+    public void setTask(Task task) {
+        this.task = task;
+    }
+    
     public SelectItemGroup getG1() {
         return g1;
     }
@@ -76,19 +138,13 @@ public class backingBean {
         this.g1 = g1;
     }
     
-    public String getSeRealizoSoporte() {
-        return seRealizoSoporte;
-    }
-
-    public void setSeRealizoSoporte(String seRealizoSoporte) {
-        this.seRealizoSoporte = seRealizoSoporte;
-    }
+ 
     
     
 
     public backingBean() {
         this.g1 = new SelectItemGroup("Listado de tareas");    
-        g1.setSelectItems(new SelectItem[] {new SelectItem("t1", "t1"), new SelectItem("t2", "t2"), new SelectItem("t3", "t3")});
+        g1.setSelectItems(new SelectItem[] {new SelectItem("Instalacion de software", "Instalacion de software"), new SelectItem("Solucion a problemas reportados", "Solucion a problemas reportados"), new SelectItem("Arreglos", "Arreglos")});
         
         taskList = new ArrayList<SelectItem>();
         taskList.add(g1);
@@ -96,10 +152,7 @@ public class backingBean {
     }
     
     
-    public void registrarBitacora(){
-        
-    }
-       
+     
     
     public Date getFecha() {
         return fecha;

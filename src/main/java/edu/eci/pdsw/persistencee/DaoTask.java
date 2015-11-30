@@ -18,7 +18,7 @@ public interface DaoTask {
     
     public void UpdateEstado(int id, String estado);
     
-    public Task load(int idtask);
+    public Task load(String tipo);
 
     public HashSet<Task> loadSegundo()throws PersistenceException;
 }

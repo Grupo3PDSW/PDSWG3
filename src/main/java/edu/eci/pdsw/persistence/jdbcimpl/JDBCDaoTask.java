@@ -33,7 +33,7 @@ public class JDBCDaoTask implements DaoTask{
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.        
         PreparedStatement ps;
         try {
-            ps = con.prepareStatement("insert into Bitacora(id, tipo, estado, comentario) values (?,?,?,?)");
+            ps = con.prepareStatement("insert into Tarea(id, tipo, estado, comentario) values (?,?,?,?)");
             ps.setInt(1, t.getIdTask());
             ps.setString(2, t.getType());
             ps.setString(3, t.getStatus());
@@ -71,12 +71,13 @@ public class JDBCDaoTask implements DaoTask{
     }
 
     @Override
-    public Task load(int idtask) {
+    public Task load(String tipo) {
         PreparedStatement ps;
         Task tar = new Task();
         try{
-            ps=con.prepareStatement("SELECT * from Task WHERE id = ?" );
-            ps.setInt(1, idtask);
+            ps=con.prepareStatement("SELECT * FROM `Tarea` WHERE tipo = ?" );
+            ps.setString(1, tipo);
+            ps.execute();
             ResultSet rs=ps.executeQuery();
             
             tar.setIdTask(rs.getInt("id"));

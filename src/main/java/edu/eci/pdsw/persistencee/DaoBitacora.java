@@ -18,5 +18,7 @@ public interface DaoBitacora {
    
    public Bitacora load(int idBitacora) throws PersistenceException;
    
+   public int consultarUltimoID() throws PersistenceException;
+   
    
 }
