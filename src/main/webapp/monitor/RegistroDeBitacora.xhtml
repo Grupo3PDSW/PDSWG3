@@ -13,13 +13,15 @@
         <br /><br />
     </h:head>
     <h:body>
+        
+        <h:form id="idcarfd"> 
         <center>
             <img  src="http://m.escuelaing.edu.co/images/basic/logo.png" ></img>
             <br />
             <p:outputLabel value="REGISTO DE BITACORA" /><br />
             <br /><br />
             <h:panelGrid columns="2">
-                <h:form> 
+                
                     <h3>Tarea Realizada</h3>
                     <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">        
 
@@ -41,8 +43,8 @@
                         <p:inputTextarea rows="6" cols="33" value="#{beanMonitores.comentario}"/>
 
                     </h:panelGrid>  
-                </h:form>
-                <h:form>
+       
+            
                     <h3>Monitoria Realizada</h3>
                     <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">        
 
@@ -73,14 +75,14 @@
                     </h:panelGrid>  
 
 
-                </h:form>
+               
 
             </h:panelGrid>
 
         </center>
         <center>
-            <p:commandButton value="Registrar Bitacora" actionListener="#{beanMonitores.registrarBitacora()}"/>
+            <p:commandButton value="Registrar Bitacora" actionListener="#{beanMonitores.registrarBitacora}" update="idcarfd"/>
         </center>
-
+ </h:form>
     </h:body>
 </html>

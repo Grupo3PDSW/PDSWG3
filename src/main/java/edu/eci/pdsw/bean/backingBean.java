@@ -11,11 +11,13 @@ import edu.eci.pdsw.entities.Task;
 import edu.eci.pdsw.entities.Turn;
 import edu.eci.pdsw.services.ServiceFacadeException;
 import edu.eci.pdsw.services.ServicesFacade;
+import java.io.IOException;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 import javax.faces.model.SelectItemGroup;
 /**
@@ -46,26 +48,36 @@ public class backingBean {
     public Task task;
     public Monitoria monitoria;
     
-    public void registrarBitacora() throws ServiceFacadeException{
+    public void registrarBitacora() throws ServiceFacadeException, IOException{
+        System.out.println("Entro aquiii asvasd asdv af vad fbv adf adf bvad fbvafdbadfba");
+        System.out.println("adfbadfba   "+Descrip);
+        System.out.println("adfbadfba   "+tipoTarea);
         
-        task = ServicesFacade.getInstance("applicationconfig.properties").consultarTarea(tipoTarea);
+        System.out.println("adfbadfba   "+lenguajeProgramacion);
+        System.out.println("adfbadfba   "+tema);
+        
+        
         int idMoni = ServicesFacade.getInstance("applicationconfig.properties").consultarUltimoIDMonitoria();
         monitoria = new Monitoria(lenguajeProgramacion,tema, idMoni+1);
         ServicesFacade.getInstance("applicationconfig.properties").registrarMonitoria(monitoria);
         int idBit = ServicesFacade.getInstance("applicationconfig.properties").consultarUltimoIDBitacora();
         
+        int idTask = ServicesFacade.getInstance("applicationconfig.properties").consultarUltimoIDTask();
+        task= new Task(tipoTarea, estado, (idTask+1),comentario); 
+        ServicesFacade.getInstance("applicationconfig.properties").registrarTarea(task);
         
         
-        System.out.println("Entro aquiii asvasd asdv af vad fbv adf adf bvad fbvafdbadfba");
-        System.out.println("adfbadfba   "+Descrip);
+        
         System.out.println("adfbadfba   "+task.IdTask);
-        System.out.println("adfbadfba   "+idMonitoria);
-        System.out.println("adfbadfba   "+idMonitor);
-        System.out.println("adfbadfba   "+idTurn);
+        System.out.println("adfbadfba   "+monitoria.getId());
+        System.out.println("adfbadfba   "+(idBit+1));
         
         
-        Bitacora bi = new Bitacora(Descrip, task.IdTask, idMonitoria, idMonitor, idTurn,idBit);
+        Bitacora bi = new Bitacora(Descrip, task.IdTask, monitoria.getId(), 2090475, 1,(idBit+1));
         ServicesFacade.getInstance("applicationconfig.properties").registrarBitacora(bi);
+        
+        FacesContext.getCurrentInstance().getExternalContext().redirect("inicioMonitor.xhtml");
+            
     }
       
     
@@ -175,6 +187,7 @@ public class backingBean {
     }
 
     public void setDescrip(String Descrip) {
+        System.out.println("Entro set");
         this.Descrip = Descrip;
     }
 

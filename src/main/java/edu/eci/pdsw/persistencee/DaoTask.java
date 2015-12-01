@@ -21,4 +21,6 @@ public interface DaoTask {
     public Task load(String tipo);
 
     public HashSet<Task> loadSegundo()throws PersistenceException;
+    
+    public int consultarUltimoID();
 }

@@ -263,6 +263,20 @@ public class ServicesFacade {
         }        
     }
     
+    public int consultarUltimoIDTask() throws ServiceFacadeException{
+        DaoFactory daof=DaoFactory.getInstance(properties);
+        try {
+            daof.beginSession();
+            int id=daof.getDaoTask().consultarUltimoID();
+            daof.endSession();
+            return id;
+        } catch (PersistenceException ex) {
+            System.out.println(ex.toString());
+            throw new ServiceFacadeException("Error al consultar la bitacora .",ex);
+        }
+        
+    }
+    
     /**
      * Consulta un turno en la base de datos
      * @param idTurn contiene el Id de la turno a consultar

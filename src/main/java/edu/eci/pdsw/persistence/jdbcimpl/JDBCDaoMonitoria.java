@@ -40,6 +40,7 @@ public class JDBCDaoMonitoria implements DaoMonitoria{
         try{
             ps=con.prepareStatement("Select * from Monitoria where id= ?" );
             ps.setInt(1, idMonitoria);
+            ps.execute();
             ResultSet rs=ps.executeQuery();
             
             moni.setDarSoporte(rs.getString("DarSoporte"));
@@ -61,15 +62,15 @@ public class JDBCDaoMonitoria implements DaoMonitoria{
     public void save(Monitoria mo)  {
         PreparedStatement ps;
         try {
-            ps = con.prepareStatement("insert into Monitoria   values (?,?,?)" ,Statement.RETURN_GENERATED_KEYS);
+            ps = con.prepareStatement("insert into Monitoria   values (?,?,?,?)" );
             ps.setString(1,mo.getLenguajeDeProgramacion());
             ps.setInt(3,mo.getId());
             ps.setString(2, mo.getTema());
             ps.setString(4, mo.getDarSoporte());
             
             ps.execute();
+            //ResultSet rs=ps.executeQuery();
             
-            ResultSet rs=ps.getGeneratedKeys();
             
         } catch (SQLException ex) {
             try {
@@ -90,7 +91,7 @@ public class JDBCDaoMonitoria implements DaoMonitoria{
                                              + "(SELECT MAX( id ) FROM `Monitoria`)" );
             ps.execute();
             ResultSet rs=ps.executeQuery();
-            
+            rs.next();
             id = (rs.getInt("id"));
             
             

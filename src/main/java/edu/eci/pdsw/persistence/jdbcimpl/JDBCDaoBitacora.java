@@ -43,7 +43,7 @@ public class JDBCDaoBitacora implements DaoBitacora{
         PreparedStatement ps;
         try{
             
-            if(b.getIdBit()==0){
+            
                 ps=con.prepareStatement("insert into Bitacora(descripcion,id, tarea_id,"
                     + "fecha, Monitoria_id, Monitor, Turno_id) "
                         + "values (?,?,?,?,?,?,?)");
@@ -52,12 +52,12 @@ public class JDBCDaoBitacora implements DaoBitacora{
                 ps.setString(1, b.getDescription());  
                 ps.setInt(2, b.getIdBit());
                 ps.setInt(3, b.getTaskid());
-                ps.setDate(4, (java.sql.Date) b.getFecha());
+                ps.setDate(4, b.getFecha());
                 ps.setInt(5, b.getMonitoria_id());
                 ps.execute();
-                ResultSet rs=ps.executeQuery();
+                //ResultSet rs=ps.executeQuery();
                 
-            }   
+             
               
         }catch (SQLException ex) {
             throw new PersistenceException("An error ocurred while loading an order.",ex);
@@ -73,7 +73,7 @@ public class JDBCDaoBitacora implements DaoBitacora{
                                              + "(SELECT MAX( id ) FROM `Bitacora`)" );
             ps.execute();
             ResultSet rs=ps.executeQuery();
-            
+            rs.next();
             id = (rs.getInt("id"));
             
             

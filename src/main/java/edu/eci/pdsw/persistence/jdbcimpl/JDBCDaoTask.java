@@ -79,7 +79,7 @@ public class JDBCDaoTask implements DaoTask{
             ps.setString(1, tipo);
             ps.execute();
             ResultSet rs=ps.executeQuery();
-            
+            rs.next();
             tar.setIdTask(rs.getInt("id"));
             tar.setType(rs.getString("tipo"));
             tar.setStatus(rs.getString("estado"));
@@ -126,6 +126,26 @@ public class JDBCDaoTask implements DaoTask{
             
         }
         return tareas;
+    }
+
+    @Override
+    public int consultarUltimoID() {
+        PreparedStatement ps;
+        int id = 0 ;
+        try{
+            ps=con.prepareStatement("SELECT id FROM `Tarea` WHERE id = "
+                                             + "(SELECT MAX( id ) FROM `Tarea`)" );
+            ps.execute();
+            ResultSet rs=ps.executeQuery();
+            rs.next();
+            id = (rs.getInt("id"));
+            
+            
+        }catch(SQLException ex) {
+            
+                Logger.getLogger(JDBCDaoStudent.class.getName()).log(Level.SEVERE, null, ex);
+        }
+          return id;
     }
 
     
