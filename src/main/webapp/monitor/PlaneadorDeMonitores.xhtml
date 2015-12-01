@@ -5,10 +5,26 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
+        
+        
+                <style type="text/css">
+ body
+ { 
+ background-image: url(https://fbcdn-sphotos-a-a.akamaihd.net/hphotos-ak-xap1/t31.0-8/10865949_559542867482520_5393583186749875099_o.jpg);
+ background-repeat: no-repeat;
+ background-attachment:fixed;
+ background-position: 50% 50%;
+ background-size: 100% 100%;
+ }
+        </style>
         <title>Planeador Monitores</title>
-
-
-        <br /><br />
+        <center>
+            <br /><br /><br />
+            <font size =" 6 ">
+        <p:outputLabel value="PLANEADOR DE MONITORES" /><br />
+        </font>
+        </center>
+        <br /><br /><br />
         <BODY BACKGROUND="http://www.solprof.com/sites/default/files/fondo-01.jpg"  > </BODY>
         <br /><br />
     </h:head>
@@ -61,8 +77,12 @@
             
             <h:panelGrid columns="50" cellpadding="70">
                 <td align="center"></td>
-                <p:commandButton value="Planear Jornada" id="PlaneadorJornada" actionListener="#{PlaneadorBean.registroProblema()}" update="tabla1,tabla2" icon="ui-icon-disk"  />
+                <p:commandButton value="Planear Jornada" id="PlaneadorJornada" actionListener="#{PlaneadorBean.registroProblema()}" update="tabla1,tabla2" icon="ui-icon-disk" onclick="PF('dlg2').show();"  />
+            
             </h:panelGrid>
+            <p:dialog header="ATENCION" widgetVar="dlg2" modal="true" height="45" showEffect="Bounce "   hideEffect="explode">
+                <h:outputText value="La operacion podria tardar algunos segundos le agradecemos su espera." />
+            </p:dialog>
             
             
                
