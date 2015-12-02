@@ -4,8 +4,16 @@
 >La aplicacion fue desarrollada para el laboratorio de informática de la decanatura de
 >sistemas, con el fin de mejorar los procesos que involucran a los coordinadores,
 >monitores y usuarios del laboratorio. Los roles de usuaio mencionados anteriormente debe registrase con un codigo de login y una contraseña que fue sumistrada antes de la creacion de la aplicacion.
+>Basicamente la aplicación tiene las siguientes funcionalidades:
 
-Luego de hacer el login correspondiente, encontraran un menu con las siguientes opciones:
+  - Reportar un problema.
+  - Consultar actividades por realizar.
+  - Reportar labores realizadas.
+  - Consultar labores realizadas.
+  - Consultar reporte de trabajo.
+  
+
+Luego de hacer el login correspondiente, encontraran un menu con las siguientes opciones correspondientes a las historias de usuario y que satisfacen las funcionalidades ya mencionadas:
 
 
   - Registro de Bitácora.
