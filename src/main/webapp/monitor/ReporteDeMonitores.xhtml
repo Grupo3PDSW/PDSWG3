@@ -52,11 +52,12 @@
 
             <h:panelGrid columns="50" cellpadding="70">
                 <td align="center"></td>
-                <p:commandButton value="Generar el Reporte" id="GenerarReporte" actionListener="#{ReporteBean.registroProblema()}" update="tabla1,tabla2" icon="ui-icon-disk"  />
+                <p:commandButton value="Generar el Reporte" id="GenerarReporte" actionListener="#{ReporteBean.registroProblema()}" update="tabla1,tabla2,tabla3" icon="ui-icon-disk" onclick="PF('dlg2').show();"/>
             </h:panelGrid>
 
 
-            <p:dataTable id="tabla1" var="iesimoreporte" value="#{ReporteBean.reporte1}" > 
+            <p:dataTable id="tabla1" var="iesimoreporte" value="#{ReporteBean.reporte1}">
+                 
                 <f:facet name="header">
                     Reporte de Monitores 
                 </f:facet>
@@ -95,7 +96,24 @@
                     <h:outputText value="#{ReporteMonitores2.monitorias}"/>
                 </p:column>
             </p:dataTable> 
+            
+            <p:dataTable id="tabla3" var="ReporteHoras" value="#{ReporteBean.reporteHoras}">
 
+                <p:column headerText="Monitor">
+                    <h:outputText value="#{ReporteHoras.codigoMonitor}"/>
+                </p:column>
+                <p:column headerText="Nombre">
+                    <h:outputText value="#{ReporteHoras.nombreMonitor}"/>
+                </p:column>
+
+                <p:column headerText="Cantidad Horas Trabajadas">
+                    <h:outputText value="#{ReporteHoras.horas}"/>
+                </p:column>
+            </p:dataTable> 
+            <p:dialog header="ATENCION" widgetVar="dlg2" modal="true" height="45" showEffect="Bounce "   hideEffect="explode" >
+                <h:outputText value="La operacion podria tardar algunos segundos le agradecemos su espera." />
+            </p:dialog>
+            
 
         </h:form>    
     </h:body>

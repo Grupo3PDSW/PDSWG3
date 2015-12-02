@@ -23,6 +23,15 @@ public class Report {
     public String temaMonitoria;
     public String soporte; 
     public int monitorias; 
+    public int horas; 
+
+    public int getHoras() {
+        return horas;
+    }
+
+    public void setHoras(int horas) {
+        this.horas = horas;
+    }
 
     public Report(Date fecha1, Date fecha2, int codigoMonitor, String nombreMonitor, int tareas, String tipo, String lenguajeProgramacion, String temaMonitoria, String soporte, int monitorias) {
         this.fecha1 = fecha1;

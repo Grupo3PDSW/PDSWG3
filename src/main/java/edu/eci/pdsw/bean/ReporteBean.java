@@ -41,10 +41,22 @@ public class ReporteBean {
     public String lenguajeProgramacion; 
     public String temaMonitoria;
     public String soporte; 
-    public int monitorias; 
+    public int monitorias;  
     public HashSet<Report> reporte1;
     public HashSet<Report> reporte2;
+    public HashSet<Report> reporteHoras;
     public JDBCDaoReport jdbcReporte;
+    public boolean bandera = false; 
+
+    public boolean isBandera() {
+        return bandera;
+    }
+
+    public void setBandera(boolean bandera) {
+        this.bandera = bandera;
+    }
+
+    
     private static final Logger LOG = Logger.getLogger(ReporteBean.class.getName());
     
     
@@ -67,10 +79,11 @@ public class ReporteBean {
     
    
     public void registroProblema () throws ServiceFacadeException{   
+           bandera=true; 
            reporte1=  ServicesFacade.getInstance("applicationconfig.properties").HacerReporte(date1, date2);
            reporte2=  ServicesFacade.getInstance("applicationconfig.properties").HacerReporteSegundo(date1, date2);
+           reporteHoras=  ServicesFacade.getInstance("applicationconfig.properties").HacerReporteHoras(date1, date2); 
     }
-    
 
 
     public void onDateSelect(SelectEvent event) {
@@ -87,7 +100,6 @@ public class ReporteBean {
     }
     
     public HashSet<Report> getReporte1() throws ServiceFacadeException {
-        System.out.println(reporte1+" el reporte1");
         return reporte1;
     }
 
@@ -96,7 +108,6 @@ public class ReporteBean {
     }
 
     public HashSet<Report> getReporte2() throws ServiceFacadeException {
-        System.out.println(reporte2+" el reporte2");
         return reporte2;
     }
 
@@ -167,5 +178,17 @@ public class ReporteBean {
     public void setMonitorias(int monitorias) {
         this.monitorias = monitorias;
     }
+
+    public HashSet<Report> getReporteHoras() {
+        return reporteHoras;
+    }
+
+    public void setReporteHoras(HashSet<Report> reporteHoras) {
+        this.reporteHoras = reporteHoras;
+    }
+  
+    
+    
+    
 
 }

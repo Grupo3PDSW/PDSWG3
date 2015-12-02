@@ -114,6 +114,34 @@ public class JDBCDaoReport implements DaoReport{
          return reportesSegundo;
     }
 
-    
+  public HashSet<Report> loadHoras(Date fecha1, Date fecha2) throws PersistenceException {
+        PreparedStatement ps2;
+        HashSet<Report> reportesHoras = new HashSet<>();
+        try{
+            ps2=con.prepareStatement("SELECT estudiante_id, nombre, SUM(TIMESTAMPDIFF(hour,horainicio, horafin))\n" +
+"FROM Turno, Estudiante, Bitacora\n" +
+"WHERE Turno.Estudiante_id = Estudiante.id AND Turno.id=Bitacora.Turno_id AND (Bitacora.fecha BETWEEN ? AND ?)\n" +
+"GROUP BY Turno.Estudiante_id;" );
+            
+           
+           
+            ps2.setDate(1,new java.sql.Date(fecha1.getTime()));
+            ps2.setDate(2,new java.sql.Date(fecha2.getTime()));
+            
+            ResultSet rs2=ps2.executeQuery();
+            while(rs2.next())
+            {
+            Report r = new Report();
+            r.setCodigoMonitor(rs2.getInt(1));
+            r.setNombreMonitor(rs2.getString(2));
+            r.setHoras(rs2.getInt(3));
+            reportesHoras.add(r);
+            }
+        
+        } catch (SQLException ex) {
+             throw new PersistenceException("Error al cargar el reporte de las horas",ex);
+         }
+         return reportesHoras;
+    }
     
 }

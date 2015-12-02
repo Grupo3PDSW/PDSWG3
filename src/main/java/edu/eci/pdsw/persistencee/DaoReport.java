@@ -21,5 +21,7 @@ public interface DaoReport {
      public HashSet<Report> load (Date fecha1, Date fecha2) throws PersistenceException;
      
      public HashSet<Report> loadSegundo (Date fecha1, Date fecha2) throws PersistenceException;
+     
+     public HashSet<Report> loadHoras (Date fecha1, Date fecha2) throws PersistenceException; 
     
 }

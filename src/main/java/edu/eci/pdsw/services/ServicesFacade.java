@@ -450,4 +450,18 @@ public class ServicesFacade {
         }        
     }
     
+    public HashSet<Report> HacerReporteHoras( Date fecha1, Date fecha2) throws ServiceFacadeException{
+       
+        DaoFactory daof=DaoFactory.getInstance(properties);
+        try {
+            daof.beginSession();
+            HashSet<Report> reportes=daof.getDaoReport().loadHoras(fecha1,fecha2);
+            daof.endSession();
+            return reportes;
+        } catch (PersistenceException ex) {
+            System.out.println(ex.toString());
+            throw new ServiceFacadeException("Error al consultar las horas trabajadas",ex);
+        }        
+      }
+    
 }
