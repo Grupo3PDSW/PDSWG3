@@ -3,9 +3,9 @@
 
 >La aplicacion fue desarrollada para el laboratorio de informática de la decanatura de
 >sistemas, con el fin de mejorar los procesos que involucran a los coordinadores,
->monitores y usuarios del laboratorio. Los roles de usurio mencionados anteriormente debe registrase con un codigo de login y una contraseña que fue sumistrada antes de la creacion de la aplicacion.
+>monitores y usuarios del laboratorio. Los roles de usuaio mencionados anteriormente debe registrase con un codigo de login y una contraseña que fue sumistrada antes de la creacion de la aplicacion.
 
-Luego de hacer el login correspondiente, encontraran un menu no las siguientes opciones:
+Luego de hacer el login correspondiente, encontraran un menu con las siguientes opciones:
 
 
   - Registro de Bitácora.
