@@ -7,6 +7,8 @@ package edu.eci.pdsw.persistencee;
 
 import edu.eci.pdsw.entities.Task;
 import java.util.HashSet;
+import java.util.List;
+import javax.faces.model.SelectItem;
 
 /**
  *
@@ -23,4 +25,8 @@ public interface DaoTask {
     public HashSet<Task> loadSegundo()throws PersistenceException;
     
     public int consultarUltimoID();
+    
+    public void actualizar(String estado, String comentario, int id);
+    
+    public List<SelectItem> loadTodosIdTipo();
 }

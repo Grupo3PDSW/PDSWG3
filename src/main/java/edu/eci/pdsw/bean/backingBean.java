@@ -37,7 +37,7 @@ public class backingBean {
     public int idTurn;
     public String lenguajeProgramacion;
     public String tema;
-    public String tipoTarea;
+    public int tipoTarea;
     public String comentario;
 
     public Bitacora bitacoraBean;
@@ -49,12 +49,7 @@ public class backingBean {
     public Monitoria monitoria;
     
     public void registrarBitacora() throws ServiceFacadeException, IOException{
-        System.out.println("Entro aquiii asvasd asdv af vad fbv adf adf bvad fbvafdbadfba");
-        System.out.println("adfbadfba   "+Descrip);
-        System.out.println("adfbadfba   "+tipoTarea);
         
-        System.out.println("adfbadfba   "+lenguajeProgramacion);
-        System.out.println("adfbadfba   "+tema);
         
         
         int idMoni = ServicesFacade.getInstance("applicationconfig.properties").consultarUltimoIDMonitoria();
@@ -62,18 +57,15 @@ public class backingBean {
         ServicesFacade.getInstance("applicationconfig.properties").registrarMonitoria(monitoria);
         int idBit = ServicesFacade.getInstance("applicationconfig.properties").consultarUltimoIDBitacora();
         
-        int idTask = ServicesFacade.getInstance("applicationconfig.properties").consultarUltimoIDTask();
-        task= new Task(tipoTarea, estado, (idTask+1),comentario); 
-        ServicesFacade.getInstance("applicationconfig.properties").registrarTarea(task);
         
+        ServicesFacade.getInstance("applicationconfig.properties").actualizarEstadoComentarioTarea(estado, comentario, tipoTarea);
         
-        
-        System.out.println("adfbadfba   "+task.IdTask);
-        System.out.println("adfbadfba   "+monitoria.getId());
-        System.out.println("adfbadfba   "+(idBit+1));
-        
-        
-        Bitacora bi = new Bitacora(Descrip, task.IdTask, monitoria.getId(), 2090475, 1,(idBit+1));
+       System.out.println("Entro aquiii asvasd asdv af vad fbv adf adf bvad fbvafdbadfba");
+        System.out.println("Descripcion   "+Descrip);
+        System.out.println("Id tarea   "+tipoTarea);
+        System.out.println("Monitoria id   "+monitoria.getId());
+        System.out.println("Id Bitacora   "+(idBit+1));
+        Bitacora bi = new Bitacora(Descrip, tipoTarea,monitoria.getId() , 2090475, 1,(idBit+1));
         ServicesFacade.getInstance("applicationconfig.properties").registrarBitacora(bi);
         
         FacesContext.getCurrentInstance().getExternalContext().redirect("inicioMonitor.xhtml");
@@ -126,11 +118,11 @@ public class backingBean {
         this.taskList = taskList;
     }
 
-    public String getTipoTarea() {
+    public int getTipoTarea() {
         return tipoTarea;
     }
 
-    public void setTipoTarea(String tipoTarea) {
+    public void setTipoTarea(int tipoTarea) {
         this.tipoTarea = tipoTarea;
     }
 
@@ -154,13 +146,15 @@ public class backingBean {
     
     
 
-    public backingBean() {
+    public backingBean() throws ServiceFacadeException {
+        /*
         this.g1 = new SelectItemGroup("Listado de tareas");    
         g1.setSelectItems(new SelectItem[] {new SelectItem("Instalacion de software", "Instalacion de software"), new SelectItem("Solucion a problemas reportados", "Solucion a problemas reportados"), new SelectItem("Arreglos", "Arreglos")});
         
         taskList = new ArrayList<SelectItem>();
         taskList.add(g1);
-
+        */
+        taskList = ServicesFacade.getInstance("applicationconfig.properties").TareasIdYTipo();
     }
     
     

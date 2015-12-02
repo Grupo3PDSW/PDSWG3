@@ -21,7 +21,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Properties;
+import javax.faces.model.SelectItem;
 
 /**
  *
@@ -119,7 +121,18 @@ public class ServicesFacade {
     }
     
     
-    
+    public void actualizarEstadoComentarioTarea(String estado, String comentario, int id) throws ServiceFacadeException {
+        DaoFactory daof=DaoFactory.getInstance(properties);
+        try {
+            daof.beginSession();
+            daof.getDaoTask().actualizar(estado, comentario, id);
+            daof.commitTransaction();
+            daof.endSession();
+        } catch (PersistenceException ex) {
+            throw new ServiceFacadeException("error no se registro la tarea",ex);
+        }
+    }
+            
         /**
      * El metodo registra un problema en la BD
      * @param p     
@@ -244,6 +257,19 @@ public class ServicesFacade {
             int id=daof.getDaoMonitoria().consultarUltimoID();
             daof.endSession();
             return id;
+        } catch (PersistenceException ex) {
+            System.out.println(ex.toString());
+            throw new ServiceFacadeException("Error al consultar la bitacora .",ex);
+        }        
+    }
+    
+    public List<SelectItem> TareasIdYTipo() throws ServiceFacadeException{
+        DaoFactory daof=DaoFactory.getInstance(properties);
+        try {
+            daof.beginSession();
+            List<SelectItem> sit=daof.getDaoTask().loadTodosIdTipo();
+            daof.endSession();
+            return sit;
         } catch (PersistenceException ex) {
             System.out.println(ex.toString());
             throw new ServiceFacadeException("Error al consultar la bitacora .",ex);

@@ -12,10 +12,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.faces.model.SelectItem;
+import javax.faces.model.SelectItemGroup;
 
 /**
  *
@@ -146,6 +150,58 @@ public class JDBCDaoTask implements DaoTask{
                 Logger.getLogger(JDBCDaoStudent.class.getName()).log(Level.SEVERE, null, ex);
         }
           return id;
+    }
+
+    @Override
+    public void actualizar(String estado, String comentario, int id) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.        
+        PreparedStatement ps;
+        try {
+            ps = con.prepareStatement("UPDATE `Tarea` SET `estado`= ? , `comentario`= ?"
+                    + "WHERE `id` = ?");
+            
+            ps.setString(1, estado);
+            ps.setString(2, comentario);
+            ps.setInt(3, id);     
+            
+            ps.execute();
+            System.out.println("Entro a actualizar");
+        } catch (SQLException ex) {
+            try {
+                throw new PersistenceException("Error.",ex);
+            } catch (PersistenceException ex1) {
+                Logger.getLogger(JDBCDaoBitacora.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+        }
+    }
+
+    @Override
+    public List<SelectItem> loadTodosIdTipo() {
+        PreparedStatement ps;
+        SelectItemGroup g1;
+        List<SelectItem> si = new ArrayList<SelectItem>();
+        try{
+            ps=con.prepareStatement("SELECT `id`, `tipo` FROM `Tarea` WHERE `Estado` = 'Avanzado' " );
+            ps.execute();
+            ResultSet rs=ps.executeQuery();
+            
+            
+            g1 = new SelectItemGroup("Listado de tareas");
+            
+            while(rs.next()){
+                SelectItem it = new SelectItem(rs.getInt("id"), rs.getString("tipo"));
+                si.add(it);
+            }
+            
+            
+        }catch(SQLException ex) {
+            try {
+                throw new PersistenceException("An error ocurred while loading an order.",ex);
+            } catch (PersistenceException ex1) {
+                Logger.getLogger(JDBCDaoStudent.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+        }
+        return si;
     }
 
     

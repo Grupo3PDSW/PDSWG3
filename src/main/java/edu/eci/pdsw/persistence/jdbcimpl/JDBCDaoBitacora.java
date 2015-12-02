@@ -43,7 +43,7 @@ public class JDBCDaoBitacora implements DaoBitacora{
         PreparedStatement ps;
         try{
             
-            
+                
                 ps=con.prepareStatement("insert into Bitacora(descripcion,id, tarea_id,"
                     + "fecha, Monitoria_id, Monitor, Turno_id) "
                         + "values (?,?,?,?,?,?,?)");
@@ -56,7 +56,7 @@ public class JDBCDaoBitacora implements DaoBitacora{
                 ps.setInt(5, b.getMonitoria_id());
                 ps.execute();
                 //ResultSet rs=ps.executeQuery();
-                
+                System.out.println("Entro a registrar la bitacora");
              
               
         }catch (SQLException ex) {
