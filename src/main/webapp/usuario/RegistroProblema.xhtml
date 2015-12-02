@@ -1,108 +1,49 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
-    <h:head></h:head>
-    <h:body>    
-
-            <style type="text/css">
- body
- { 
- background-image: url(https://fbcdn-sphotos-a-a.akamaihd.net/hphotos-ak-xap1/t31.0-8/10865949_559542867482520_5393583186749875099_o.jpg);
- background-repeat: no-repeat;
- background-attachment:fixed;
- background-position: 50% 50%;
- background-size: 100% 100%;
- }
-        </style>
-        <pre>  
-        
-        <p:panel id="panel" header="#{loginBean.subject.principal}" style="margin-top:20px" >
+<html     
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>RegistroProblema</title>
+    </h:head>
             
-            <h:panelGrid columns="1"  >
-                <p:graphicImage value="./imagenes/imagen.jpg" />
-                <p><h:outputLabel for="panel" value="Escuela Colombiana De Ingenieria Julio Garavito"   /></p>
-                <p><h:outputLabel for="panel" value="Reportar Problema"/></p>
-                <p><h:outputLink value="../login.xhtml">Sign out</h:outputLink></p>
+        <center> 
+        <img  src="http://www.escuelaing.edu.co/uploads/keywords/logo.jpg" ></img>
+        </center>               
+                       
                 
-           </h:panelGrid>
-            
-            <h:panelGrid columns="2" cellpadding="5">
-                <h:form id="form1">
-                    <h:panelGrid columns="2" style="margin-top: 10px">
-                        
-
-                        <p:outputLabel value="Laboratorio: " />
-                        <p:selectOneMenu  value="#{problemaBean.laboratorio}" >
-                            <f:selectItem itemLabel=" " itemValue="" />
-                            <f:selectItems var="lab" value="#{problemaBean.laboratorios}" itemValue="#{lab.nombre}" />
-                        </p:selectOneMenu> 
-
-                        <p:commandButton value="Elegir lab" update=":form3:equipos" onclick="start()" widgetVar="Lab"> </p:commandButton>
-
-                        <br /><br />
-                        <p:progressBar id="progressBarClient" widgetVar="pbClient" style="width:300px"/>
-                    </h:panelGrid >
-                    
-                    
-                    
+                <h:body>
+                <h:form id = "Formulario_1">
+                    <h:outputText value="Descripcion"  />
+                    <h:inputText value="#{beanProblemas.setDecription(decription)}"  />
                 </h:form>
-                <h:form id="form3">
-                    <p:dataTable id="equipos" var="car1" value="#{problemaBean.equiposPorLaboratorio}" sortBy="#{car1.id}" rowKey="#{car1.id}" >
-                        <p:column sortBy="#{car1.id}" headerText="EQUIPO">
-                            <h:outputText value="#{car1.id}"/>
-                        </p:column>
-                        <p:column sortBy="#{car1.descripcion}" headerText="DESCRIPCION">
-                            <h:outputText value="#{car1.descripcion}"/>
-                        </p:column>
 
-                        
-                        <p:column headerText="REPORTAR PROBLEMA">
-
-
-                            <p:commandLink action="SolicitudReporte.xhtml" value="Reportar Problema" >
-
-                                <f:setPropertyActionListener value="#{car1}" target="#{problemaBean.equipo}"/>
-                            </p:commandLink>
-                        </p:column>
-                    </p:dataTable>
-                    <p:commandButton action="index.xhtml" value="BACK" />   
+                <h:form id = "Formulario_2">
+                    <h:outputText value="id Equipo"  />
+                    <h:inputText value="#{beanProblemas.setIdEquipo(idEquipo)}"  />
                 </h:form>
-            </h:panelGrid>
-       </p:panel>
 
-<script type="text/javascript">
-function start() {
-    cancel();
-    PF('Lab').disable();
- 
-    window['progress'] = setInterval(function() {
-        var pbClient = PF('pbClient'),
-        oldValue = pbClient.getValue(),
-        newValue = oldValue + 50;
- 
-        pbClient.setValue(pbClient.getValue() + 50);
- 
-       
-        if(newValue === 100) {
-            clearInterval(window['progress']);
-            PF('Lab').enable();
-        }
-        
- 
-    }, 1000);
-    
-}
- 
-function cancel() {
-    clearInterval(window['progress']);
-    PF('pbClient').setValue(0);
-    
-}
-</script>
-        </pre>  
-    </h:body>
+                <h:form id = "Formulario_3">
+                    <h:outputText value="ID problema"  />
+                    <h:inputText value="#{beanProblemas.setIdProblem(idProblem)}"  />
+                </h:form>
+
+                <h:form id = "Formulario_4">
+                    <h:outputText value="fecha yyyy,mm,dd,HH,hh"  />
+                    <h:inputText value="#{beanProblemas.setDate(date)}"  />
+                </h:form>
+
+                <h:form id = "Formulario_5">
+                    <h:outputText value="Estudiante_id"  />
+                    <h:inputText value="#{beanProblemas.setEstudiante_id(Estudiante_id)}"  />
+                </h:form>
+
+              
+
+
+                </h:body>
+                
+        <p:commandButton value="REGISTRAR" actionListener="#{beanProblemas.registroProblema()}" />
+               
 </html>
