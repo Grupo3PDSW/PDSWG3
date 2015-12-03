@@ -2,7 +2,7 @@ deployment:
   staging:
     branch: master
     heroku: 
-      appname: grupo3pdsw
+      appname: proyectog3
 
 test:
   post:
