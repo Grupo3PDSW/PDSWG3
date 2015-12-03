@@ -78,8 +78,9 @@
             <h:panelGrid columns="50" cellpadding="70">
                 <td align="center"></td>
                 <p:commandButton value="Planear Jornada" id="PlaneadorJornada" actionListener="#{PlaneadorBean.registroProblema()}" update="tabla1,tabla2" icon="ui-icon-disk" onclick="PF('dlg2').show();"  />
-            </center>
+            
             </h:panelGrid>
+                </center>
             <p:dialog header="ATENCION" widgetVar="dlg2" modal="true" height="45" showEffect="Bounce "   hideEffect="explode">
                 <h:outputText value="La operacion podria tardar algunos segundos le agradecemos su espera." />
             </p:dialog>

@@ -1,49 +1,85 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html     
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:h="http://xmlns.jcp.org/jsf/html"
-    xmlns:p="http://primefaces.org/ui">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>RegistroProblema</title>
+        <title>Reportar Problema </title>
+
+
+        <br /><br />
+        
+        <style type="text/css">
+ body
+ { 
+ background-image: url(https://fbcdn-sphotos-a-a.akamaihd.net/hphotos-ak-xap1/t31.0-8/10865949_559542867482520_5393583186749875099_o.jpg);
+ background-repeat: no-repeat;
+ background-attachment:fixed;
+ background-position: 50% 50%;
+ background-size: 100% 100%;
+ }
+        </style>
+        
+        
     </h:head>
-            
-        <center> 
-        <img  src="http://www.escuelaing.edu.co/uploads/keywords/logo.jpg" ></img>
-        </center>               
-                       
+    <h:body>
+        
+        <h:form id="idcarfd"> 
+        <center>
+            <img  src="http://m.escuelaing.edu.co/images/basic/logo.png" ></img>
+            <br />
+            <p:outputLabel value="REPORTE DE PROBLEMA" /><br />
+            <br /><br />
+            <h:panelGrid columns="2">
                 
-                <h:body>
-                <h:form id = "Formulario_1">
-                    <h:outputText value="Descripcion"  />
-                    <h:inputText value="#{beanProblemas.setDecription(decription)}"  />
-                </h:form>
+                   
+                    <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">  
+                   
+                        <p:outputLabel for="carn" value="Numero De Carnet:" />  
+                        <p:inputText id="carn" value="#{beanProblemas.estudiante_id}" required="true"  />
+                        <p:outputLabel for="car" value="Laboratorio:"  />                
+                        <p:selectOneMenu id="car"  >
+                            <f:selectItem itemLabel="Seleccione una opcion" itemValue=""  />
+                            <f:selectItem itemLabel="Laboratorio de Redes" itemValue="Laboratorio de Redes" />
+                            <f:selectItem itemLabel="Laboratorio de Desarrollo de software" itemValue="Laboratorio de Desarrollo de software" />
+                            <f:selectItem itemLabel="Laboratorio de Plataformas Computaciones" itemValue="Laboratorio de Plataformas Computaciones" />
+                        </p:selectOneMenu>
 
-                <h:form id = "Formulario_2">
-                    <h:outputText value="id Equipo"  />
-                    <h:inputText value="#{beanProblemas.setIdEquipo(idEquipo)}"  />
-                </h:form>
+                        <p:outputLabel for="console" value="Codigo del Computador:" />                       
+                        <p:selectOneMenu id="console" value="#{beanProblemas.idEquipo}" style="width:215px" required="true">
+                            <f:selectItem itemLabel="Seleccione una opcion" itemValue="" />
+                            <f:selectItem itemLabel="1" itemValue="1" />
+                            <f:selectItem itemLabel="2" itemValue="2" />
+                            <f:selectItem itemLabel="3" itemValue="3" />
+                            <f:selectItem itemLabel="4" itemValue="4" />
+                            <f:selectItem itemLabel="5" itemValue="5" />
+                            <f:selectItem itemLabel="6" itemValue="6" />
+                            <f:selectItem itemLabel="7" itemValue="7" />
+                            <f:selectItem itemLabel="8" itemValue="8" />
+                            <f:selectItem itemLabel="9" itemValue="9" />
+                            <f:selectItem itemLabel="10" itemValue="10" />
+                            <f:selectItem itemLabel="11" itemValue="11" />
+                            <f:selectItem itemLabel="12" itemValue="12" />
+                            <f:selectItem itemLabel="13" itemValue="13" />
+                            <f:selectItem itemLabel="14" itemValue="14" />
+                            <f:selectItem itemLabel="15" itemValue="15" />                         
+                            
+                        </p:selectOneMenu>
 
-                <h:form id = "Formulario_3">
-                    <h:outputText value="ID problema"  />
-                    <h:inputText value="#{beanProblemas.setIdProblem(idProblem)}"  />
-                </h:form>
+                        <h3>Descripcion Del Problema</h3>
+                        <p:inputTextarea rows="6" cols="33" value="#{beanProblemas.decription}" required="true"/>
 
-                <h:form id = "Formulario_4">
-                    <h:outputText value="fecha yyyy,mm,dd,HH,hh"  />
-                    <h:inputText value="#{beanProblemas.setDate(date)}"  />
-                </h:form>
+                    </h:panelGrid>  
 
-                <h:form id = "Formulario_5">
-                    <h:outputText value="Estudiante_id"  />
-                    <h:inputText value="#{beanProblemas.setEstudiante_id(Estudiante_id)}"  />
-                </h:form>
-
-              
-
-
-                </h:body>
-                
-        <p:commandButton value="REGISTRAR" actionListener="#{beanProblemas.registroProblema()}" />
-               
+            </h:panelGrid>
+        </center>
+        <center>
+            <p:commandButton value="Reportar Problema" actionListener="#{beanProblemas.registroProblema()}" update="idcarfd"  icon="ui-icon-disk" onclick="PF('dlg2').show();"/>
+            <p:dialog header="ATENCION" widgetVar="dlg2" modal="true" height="45" showEffect="Bounce "   hideEffect="explode" >
+                <h:outputText value="El problema ha sido reportado, gracias por su aporte." />
+            </p:dialog>
+        </center>
+ </h:form>
+    </h:body>
 </html>

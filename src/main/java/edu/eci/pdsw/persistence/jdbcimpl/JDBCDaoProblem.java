@@ -38,7 +38,7 @@ public class JDBCDaoProblem implements DaoProblem{
             ps = con.prepareStatement("insert into Problema   values (?,?,?,?,?)");
             ps.setString(1, p.getDecription());
             ps.setInt(2, p.getIdEquipo());
-            ps.setInt(3, p.getIdEquipo());
+            ps.setInt(3, p.getIdProblem());
             ps.setDate(4, (Date) p.getDate());
             ps.setInt(5,p.getEstudiante_id());
             
@@ -110,6 +110,25 @@ public class JDBCDaoProblem implements DaoProblem{
             
         }
         return problemas;
+    }
+
+    @Override
+    public int maximunid() {
+        PreparedStatement ps;
+        int maxid = 0;
+        try {
+            ps = con.prepareStatement("SELECT max(id) from Problema");          
+            ResultSet rs = ps.executeQuery();
+            maxid=rs.getInt(1);     
+
+        } catch (SQLException ex) {
+            try {
+                throw new PersistenceException("An error ocurred while loading an order.", ex);
+            } catch (PersistenceException ex1) {
+                Logger.getLogger(JDBCDaoStudent.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+        }
+        return maxid;
     }
 
   

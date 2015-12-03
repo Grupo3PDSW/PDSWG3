@@ -13,9 +13,11 @@ import edu.eci.pdsw.entities.Task;
 import edu.eci.pdsw.entities.Turn;
 import edu.eci.pdsw.services.ServiceFacadeException;
 import edu.eci.pdsw.services.ServicesFacade;
+import java.io.IOException;
 import java.sql.Date;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -32,16 +34,19 @@ public class ProblemasBean {
     public java.util.Date fecha;
     public int Estudiante_id;       
     Problem problemaBean;
+    public String laboratorio;
     
-    public void registroProblema () throws ServiceFacadeException{     
+    public void registroProblema () throws ServiceFacadeException, IOException{     
         
         java.util.Date fecha = new java.util.Date();
         java.sql.Date date = new java.sql.Date(fecha.getTime());
+        idProblem= ServicesFacade.getInstance("applicationconfig.properties").consultarMaxId();
         Student stu = ServicesFacade.getInstance("applicationconfig.properties").consultarEstudiante(Estudiante_id);
         Equipo eq = ServicesFacade.getInstance("applicationconfig.properties").consultarEquipo(idEquipo);        
-        problemaBean = new Problem(desc,eq.getId(),idProblem,date,stu.getIdStudent());
+        problemaBean = new Problem(desc,eq.getId(),idProblem+1,date,stu.getIdStudent());
         
         ServicesFacade.getInstance("applicationconfig.properties").registrarProblema(problemaBean);
+        FacesContext.getCurrentInstance().getExternalContext().redirect("inicioUsuario.xhtml");
     }
         
         
@@ -83,6 +88,38 @@ public class ProblemasBean {
 
     public void setEstudiante_id(int Estudiante_id) {
         this.Estudiante_id = Estudiante_id;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public java.util.Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(java.util.Date fecha) {
+        this.fecha = fecha;
+    }
+
+    public Problem getProblemaBean() {
+        return problemaBean;
+    }
+
+    public void setProblemaBean(Problem problemaBean) {
+        this.problemaBean = problemaBean;
+    }
+
+    public String getLaboratorio() {
+        return laboratorio;
+    }
+
+    public void setLaboratorio(String laboratorio) {
+        this.laboratorio = laboratorio;
     }
     
     

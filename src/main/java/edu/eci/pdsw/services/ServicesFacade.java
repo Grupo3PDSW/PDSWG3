@@ -151,6 +151,25 @@ public class ServicesFacade {
     }
     
             /**
+     * El metodo consulta el maximo id de un problema
+     * @param   
+     * @throws ServiceFacadeException 
+     */
+    public int consultarMaxId() throws ServiceFacadeException {
+        DaoFactory daof=DaoFactory.getInstance(properties);
+        try {
+            daof.beginSession();            
+            int maxid;
+            maxid = daof.getDaoProblem().maximunid();
+            daof.endSession();
+            return maxid;
+        } catch (PersistenceException ex) {
+            System.out.println(ex.toString());
+            throw new ServiceFacadeException("Error al consultar el identificador.",ex);
+        }
+    }
+    
+            /**
      * El metodo registra un equipo en la BD
      * @param e
      * @throws ServiceFacadeException 

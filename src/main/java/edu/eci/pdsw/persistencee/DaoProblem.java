@@ -15,10 +15,13 @@ import java.util.HashSet;
  * @author 2098167
  */
 public interface DaoProblem {
-     public void save(Problem p);
-     
-     public Problem load (int idProblem);
 
-    public HashSet<Problem> loadSegundo()throws PersistenceException;
-  
+    public void save(Problem p);
+
+    public Problem load(int idProblem);
+    
+    public int maximunid();
+
+    public HashSet<Problem> loadSegundo() throws PersistenceException;
+
 }
