@@ -30,7 +30,11 @@
                         <p:outputLabel for="car" value="Tarea:" />                
                         <p:selectOneMenu id="car" value="#{beanMonitores.tipoTarea}">
                             <f:selectItem itemLabel="Seleccione una opcion" itemValue="" />
+                            <f:selectItem itemLabel="Instalacion de Software" itemValue="Instalacion de Software" />
+                            <f:selectItem itemLabel="Solucion a problemas reportados" itemValue="Solucion a problemas reportados" />
+                            <f:selectItem itemLabel="Organizacion una opcion" itemValue="Organizacion" />
                             <f:selectItems value="#{beanMonitores.taskList}" />
+                            
                         </p:selectOneMenu>
 
                         <p:outputLabel for="console" value="Estado:" />
@@ -65,8 +69,12 @@
                         <p:outputLabel for="car2" value="Tema" />                
                         <p:selectOneMenu id="car2" value="#{beanMonitores.tema}">
                             <f:selectItem itemLabel="Seleccione una opcion" itemValue="" />
-                            <f:selectItem itemLabel="Tema 1" itemValue="Tema 1" />
-                            <f:selectItem itemLabel="Tema 2" itemValue=" Tema 2" />
+                            <f:selectItem itemLabel="Arrays" itemValue="Arrays" />
+                            <f:selectItem itemLabel="Creación de objetos" itemValue=" Creación de objetos" />
+                            <f:selectItem itemLabel="Triggers" itemValue="Triggers" />
+                            <f:selectItem itemLabel="Metodos para retornar un tipo de dato" itemValue=" Metodos para retornar un tipo de dato" />
+                            <f:selectItem itemLabel="Insertar datos" itemValue="Insertar datos" />
+                            <f:selectItem itemLabel="Manejo de excepciones" itemValue="Manejo de excepciones" />
                         </p:selectOneMenu>
 
 
