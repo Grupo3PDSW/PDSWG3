@@ -60,12 +60,8 @@ public class backingBean {
         
         ServicesFacade.getInstance("applicationconfig.properties").actualizarEstadoComentarioTarea(estado, comentario, tipoTarea);
         
-       System.out.println("Entro aquiii asvasd asdv af vad fbv adf adf bvad fbvafdbadfba");
-        System.out.println("Descripcion   "+Descrip);
-        System.out.println("Id tarea   "+tipoTarea);
-        System.out.println("Monitoria id   "+monitoria.getId());
-        System.out.println("Id Bitacora   "+(idBit+1));
-        Bitacora bi = new Bitacora(Descrip, tipoTarea,monitoria.getId() , 2090475, 1,(idBit+1));
+       
+        Bitacora bi = new Bitacora(Descrip, tipoTarea,monitoria.getId() , idMonitor, 1,(idBit+1));
         ServicesFacade.getInstance("applicationconfig.properties").registrarBitacora(bi);
         
         FacesContext.getCurrentInstance().getExternalContext().redirect("inicioMonitor.xhtml");

@@ -70,7 +70,7 @@
                         </p:selectOneMenu>
 
 
-
+                        
                         <h3>Descripción</h3>
                         <p:inputTextarea rows="6" cols="33" value="#{beanMonitores.descrip}"/>
 
@@ -82,7 +82,13 @@
             </h:panelGrid>
 
         </center>
-        <center>
+        
+            
+            <center>
+                <p:outputLabel  value="Confirme su usuario porfavor: " />      
+            <p:inputTextarea rows="1" cols="8" value="#{beanMonitores.idMonitor}"/>
+            </center>
+            <center>
             <p:commandButton value="Registrar Bitacora" actionListener="#{beanMonitores.registrarBitacora}" update="idcarfd"/>
         </center>
  </h:form>
