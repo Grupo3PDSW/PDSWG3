@@ -75,7 +75,7 @@
             </h:panelGrid>
         </center>
         <center>
-            <p:commandButton value="Reportar Problema" actionListener="#{beanProblemas.registroProblema()}" update="idcarfd"  icon="ui-icon-disk" onclick="PF('dlg2').show();"/>
+            <p:commandButton value="Reportar Problema" actionListener="#{beanProblemas.registroProblema}" update="idcarfd"  icon="ui-icon-disk" onclick="PF('dlg2').show();"/>
             <p:dialog header="ATENCION" widgetVar="dlg2" modal="true" height="45" showEffect="Bounce "   hideEffect="explode" >
                 <h:outputText value="El problema ha sido reportado, gracias por su aporte." />
             </p:dialog>
