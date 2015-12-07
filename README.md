@@ -13,6 +13,7 @@
   - Consultar reporte de trabajo.
   
 
+
 Luego de hacer el login correspondiente, encontraran un menu con las siguientes opciones correspondientes a las historias de usuario y que satisfacen las funcionalidades ya mencionadas:
 
 
