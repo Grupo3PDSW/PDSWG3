@@ -30,9 +30,6 @@
                         <p:outputLabel for="car" value="Tarea:" />                
                         <p:selectOneMenu id="car" value="#{beanMonitores.tipoTarea}">
                             <f:selectItem itemLabel="Seleccione una opcion" itemValue="" />
-                            <f:selectItem itemLabel="Instalacion de Software" itemValue="Instalacion de Software" />
-                            <f:selectItem itemLabel="Solucion a problemas reportados" itemValue="Solucion a problemas reportados" />
-                            <f:selectItem itemLabel="Organizacion una opcion" itemValue="Organizacion" />
                             <f:selectItems value="#{beanMonitores.taskList}" />
                             
                         </p:selectOneMenu>
