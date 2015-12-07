@@ -17,8 +17,11 @@ Luego de hacer el login correspondiente, encontraran un menu con las siguientes 
 
 
   - Registro de Bitácora.
+  - 
   - Registro de Monitores.
+  - 
   - Registro de Problema.
+  - 
   - Paneador de Monitores.
 
 ### REGISTRO DE BITÁCORA
