@@ -29,12 +29,18 @@ Luego de hacer el login correspondiente, encontraran un menu con las siguientes 
 
 ### REGISTRO DE MONITORES
 
-> Permite generar un repote del trabajo realizado por los monitores del laboratorio apartir > de un intervalo de fechas seleccionado por el coordinador. El reporte incluye el código
+> Permite generar un repote del trabajo realizado por los monitores del laboratorio apartir 
+> de un intervalo de fechas seleccionado por el coordinador. El reporte incluye el código
 > del monitor, el nombre, la cantidad de tareas realizadas y a su vez el numero de horas
 > trabajadas. Adicionalmente genera una tabla con los reportes de los temas y los lenguajes
 > de programación mas consultados indicando si se pudo dar el soporte solcitado.
 
 ### REGISTRO DE PROBLEMA
+
+>Permite a los usuarios de cualquiera de los laboratorios de sistemas
+>generar el reporte de un problema que hubiera tenido con el equipo
+>el reporte incluye un campo donde selecciona el identificador del equipo 
+>el laboratorio al que pertenece y una breve descripcion del problema a revisar. 
 
 ### PLANEADOR DE MONITORES
 
