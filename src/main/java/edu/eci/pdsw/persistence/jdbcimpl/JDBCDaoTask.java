@@ -108,7 +108,7 @@ public class JDBCDaoTask implements DaoTask{
         try{
             ps=con.prepareStatement("SELECT id, tipo, estado, comentario\n" +
                                     "FROM Tarea\n" +
-                                    "WHERE tipo = ('Instalacion de software' OR 'Organizacion' OR 'Arreglos' OR 'Solucion a problemas reportados') AND (estado = 'avanzado' OR estado = 'pendiente');" );
+                                    "WHERE tipo = ('Instalacion de software' OR 'Organizacion' OR 'Arreglos' OR 'Solucion a problemas reportados') AND (estado = 'Avanzado' OR estado = 'pendiente' OR estado = 'avanzado' OR estado = 'Pendiente');" );
             
             
             
