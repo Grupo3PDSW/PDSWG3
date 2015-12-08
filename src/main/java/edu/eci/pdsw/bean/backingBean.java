@@ -25,7 +25,8 @@ import javax.faces.model.SelectItemGroup;
  * @author 2101751
  */
 @ManagedBean (name = "beanMonitores")
-@SessionScoped
+@ViewScoped
+//@SessionScoped
 public class backingBean {
     
     public String estado;
