@@ -181,7 +181,7 @@ public class JDBCDaoTask implements DaoTask{
         SelectItemGroup g1;
         List<SelectItem> si = new ArrayList<SelectItem>();
         try{
-            ps=con.prepareStatement("SELECT `id`, `tipo` FROM `Tarea` WHERE `Estado` = 'Avanzado' or `Estado` = 'pendiente' " );
+            ps=con.prepareStatement("SELECT `id`, `tipo` FROM `Tarea` WHERE `Estado` = 'Avanzado' OR `Estado` = 'pendiente' " );
             ps.execute();
             ResultSet rs=ps.executeQuery();
             
