@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 import javax.faces.model.SelectItemGroup;
@@ -25,7 +26,7 @@ import javax.faces.model.SelectItemGroup;
  * @author 2101751
  */
 @ManagedBean (name = "beanMonitores")
-@SessionScoped
+@ViewScoped
 public class backingBean {
     
     public String estado;

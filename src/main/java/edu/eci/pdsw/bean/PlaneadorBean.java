@@ -13,6 +13,7 @@ import java.util.Date;
 import java.util.HashSet;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 
 /**
  *
@@ -20,7 +21,7 @@ import javax.faces.bean.SessionScoped;
  */
 
 @ManagedBean (name = "PlaneadorBean")
-@SessionScoped
+@ViewScoped
 public class PlaneadorBean {
     
     public String type;
